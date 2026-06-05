@@ -1,0 +1,28 @@
+# Python caches and test artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Frontend dependencies and build output
+frontend/node_modules/
+frontend/dist/
+node_modules/
+dist/
+
+# Local runtime data
+api_1102.sqlite3
+*.sqlite
+*.sqlite3
+
+# Environment, logs, and temporary files
+.env
+.env.*
+*.log
+*.tmp
+*.temp
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
