@@ -197,7 +197,7 @@ Automated validation compares app outputs against mapped workbook cells for defa
 
 - Pipe diameters and wall thicknesses are entered in inches.
 - Cover depth is entered in feet and represents depth from the surface datum to the top of pipe.
-- Operating pressure and stress values are reported in psi.
+- Operating pressure is entered as psig and cannot be below 0 psia (-14.73 psig); stress values are reported in psi.
 - Soil unit weight is handled in pcf where applicable.
 - Highway wheel loads are entered in pounds.
 - Railroad surface pressure is entered in psi.
@@ -334,6 +334,7 @@ The app surfaces warnings and review prompts for conditions such as:
 
 - Missing or invalid required input values.
 - Cover depth values outside workbook-supported ranges.
+- Operating pressure below 0 psia (-14.73 psig).
 - Nonstandard wall thickness values for the selected NPS.
 - Results that need review or fail allowable checks.
 - Stale or not-yet-calculated scenario results.

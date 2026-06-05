@@ -78,7 +78,7 @@ const fieldHelp: Record<string, string> = {
   class_location: "Class location used with pipeline location to determine design factor F.",
   design_factor: "Design factor F from the standards table.",
   temperature_derating_factor: "Temperature factor applied when operating temperature exceeds the standard threshold.",
-  operating_pressure: "Internal operating pressure used for hoop and combined stress checks.",
+  operating_pressure: "Internal operating pressure in psig used for hoop and combined stress checks. Values cannot be below 0 psia (-14.73 psig).",
   installation_temperature: "Temperature at installation used for thermal stress calculation.",
   operating_temperature: "Operating temperature used for temperature derating and thermal stress.",
   soil_type: "Backfill/soil category used to select E' and resilient modulus values.",
@@ -1075,7 +1075,7 @@ function LoadingForm({
         <Panel>
           <SectionHeader title="D. Operating Conditions" />
           <div className="form-grid two">
-            <Field label="Operating Pressure P" value={shared.operating_pressure ?? (isRail ? 800 : 1000)} onChange={(v) => patch("shared_inputs", "operating_pressure", numeric(v))} unit="psi" helpText={fieldHelp.operating_pressure} />
+            <Field label="Operating Pressure P" value={shared.operating_pressure ?? (isRail ? 800 : 1000)} onChange={(v) => patch("shared_inputs", "operating_pressure", numeric(v))} unit="psig" hint="Minimum: -14.73 psig (0 psia)" helpText={fieldHelp.operating_pressure} />
             <Field label="Installation Temperature T1" value={shared.installation_temperature ?? 70} onChange={(v) => patch("shared_inputs", "installation_temperature", numeric(v))} unit="F" helpText={fieldHelp.installation_temperature} />
             <Field label="Operating Temperature T2" value={shared.operating_temperature ?? 70} onChange={(v) => patch("shared_inputs", "operating_temperature", numeric(v))} unit="F" helpText={fieldHelp.operating_temperature} />
           </div>
@@ -1586,7 +1586,7 @@ function ReportPreview({ calc, project, scenario, onBack }: { calc: Calculation;
             ["Spec / Grade", `${values.pipe_specification || "API 5L"} / ${values.pipe_grade || "X65"}`],
             ["SMYS (psi)", fmt(values.smys || 65000)],
             ["Joint Factor E", fmt(values.joint_factor || 1, 3)],
-            ["Pressure P (psi)", fmt(values.operating_pressure || 1000)],
+            ["Pressure P (psig)", fmt(values.operating_pressure || 1000)],
             ["Soil Type", values.soil_type || "Loose sands and gravels"],
             [calc.calculation_type === "Railroad" ? "Surface Pressure w (psi)" : "Design Wheel Load W (lb)", fmt(calc.calculation_type === "Railroad" ? values.surface_pressure || 13.9 : values.design_wheel_load || 10000, calc.calculation_type === "Railroad" ? 1 : 0)]
           ]} />

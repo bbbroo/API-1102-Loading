@@ -6,6 +6,9 @@ from app.calculations.result_models import WarningMessage
 from app.standards.dropdown_options import CALCULATION_STATUSES
 from app.standards.pipe_dimensions import PIPE_DIMENSIONS, normalize_nps
 
+MIN_OPERATING_PRESSURE_PSIG = -14.73
+MAX_OPERATING_PRESSURE_PSIG = 6000.0
+
 
 def validate_shared_inputs(inputs: dict) -> list[WarningMessage]:
     warnings: list[WarningMessage] = []
@@ -37,10 +40,10 @@ def validate_shared_inputs(inputs: dict) -> list[WarningMessage]:
     if h and not (1 <= h <= 30):
         warnings.append(WarningMessage("cover_range", "Cover depth is outside workbook-supported range 1 to 30 ft.", "review"))
     pressure = float(inputs.get("operating_pressure") or 0)
-    if pressure < 0:
-        warnings.append(WarningMessage("pressure_invalid", "Operating pressure must be non-negative.", "error"))
-    if pressure > 6000:
-        warnings.append(WarningMessage("pressure_range", "Operating pressure is outside workbook-supported range 0 to 6000 psi.", "review"))
+    if pressure < MIN_OPERATING_PRESSURE_PSIG:
+        warnings.append(WarningMessage("pressure_invalid", "Operating pressure cannot be below 0 psia (-14.73 psig).", "error"))
+    if pressure > MAX_OPERATING_PRESSURE_PSIG:
+        warnings.append(WarningMessage("pressure_range", "Operating pressure is outside workbook-supported range -14.73 to 6000 psig.", "review"))
     gamma = float(inputs.get("soil_unit_weight") or 0)
     if gamma and not (50 <= gamma <= 200):
         warnings.append(WarningMessage("soil_weight_range", "Soil unit weight is outside workbook-supported range 50 to 200 pcf.", "review"))

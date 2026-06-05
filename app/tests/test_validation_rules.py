@@ -7,12 +7,23 @@ from app.standards.soil_properties import SOIL_PROPERTIES
 
 
 def test_invalid_geometry_warnings():
-    warnings = validate_shared_inputs({"outside_diameter": 12.75, "wall_thickness": 0, "bored_diameter": 12.0, "cover_depth": 40, "operating_pressure": -1, "soil_unit_weight": 20})
+    warnings = validate_shared_inputs({"outside_diameter": 12.75, "wall_thickness": 0, "bored_diameter": 12.0, "cover_depth": 40, "operating_pressure": -15, "soil_unit_weight": 20})
     codes = {w.code for w in warnings}
     assert "wall_invalid" in codes
     assert "bored_diameter_invalid" in codes
     assert "cover_range" in codes
     assert "pressure_invalid" in codes
+
+
+def test_operating_pressure_allows_absolute_zero_gauge_limit():
+    warnings = validate_shared_inputs({"outside_diameter": 12.75, "wall_thickness": 0.25, "bored_diameter": 14.75, "cover_depth": 6, "operating_pressure": -14.73, "soil_unit_weight": 120})
+    assert "pressure_invalid" not in {warning.code for warning in warnings}
+
+
+def test_operating_pressure_below_zero_psia_is_invalid():
+    result = calculate_highway({"operating_pressure": -14.74})
+    assert result.intermediate_values["operating_pressure"] == -14.74
+    assert any(warning.code == "pressure_invalid" and "0 psia" in warning.message for warning in result.warnings)
 
 
 def test_edited_highway_inputs_recalculate_and_normalize_invalid_options():
