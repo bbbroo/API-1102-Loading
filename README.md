@@ -111,8 +111,6 @@ The tool supports both Highway and Railroad loading calculations. It can be used
 
 ![Project Detail](docs/playwright-confirmation/project-detail-from-dashboard.png)
 
-![Standards Tables](docs/playwright-confirmation/standards-tables.png)
-
 ![Calculation Worksheet](docs/playwright-confirmation/calculation-worksheet.png)
 
 ![Railroad Calculation Worksheet](docs/playwright-confirmation/railroad-calculation-worksheet.png)
