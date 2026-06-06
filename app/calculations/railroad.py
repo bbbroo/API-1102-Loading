@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from app.calculations.interpolation import bounds, linear, two_step
+from app.calculations.interpolation import linear, linear_clamped, two_step
 from app.calculations.result_models import CalculationResult, WarningMessage, summarize_checks
 from app.calculations.shared import DEFAULT_SHARED_RAILROAD, base_stresses, checks_from_values, enrich_shared_inputs, trace_warnings
 from app.calculations.validation import validate_shared_inputs
@@ -21,9 +21,7 @@ def _depth_band_rail(cover: float) -> str:
 
 def _railroad_glr(shared: dict[str, Any], band: str):
     table = tables.GL_BY_DEPTH[band]
-    lower, upper, _ = bounds(list(table.keys()), float(shared["outside_diameter"]))
-    segment = {lower: table[lower], upper: table[upper]}
-    return linear("Railroad GLr workbook forecast", segment, float(shared["cover_depth"]), warn_extrapolation=False)
+    return linear("Railroad GLr", table, float(shared["outside_diameter"]))
 
 
 def calculate_railroad(shared_inputs: dict[str, Any] | None = None, railroad_inputs: dict[str, Any] | None = None) -> CalculationResult:
@@ -45,7 +43,8 @@ def calculate_railroad(shared_inputs: dict[str, Any] | None = None, railroad_inp
     burial_table = tables.BURIAL_A_BY_H_BD if shared["e_prime"] < 1000 else tables.BURIAL_B_BY_H_BD
     be, t = linear("Railroad burial factor", burial_table, shared["h_bd"])
     traces.append(t)
-    ee, t = linear("Railroad excavation factor", tables.EXCAVATION_BY_BD_D, shared["bd_d"])
+    excavation_table = {key: value for key, value in tables.EXCAVATION_BY_BD_D.items() if key <= 1.3}
+    ee, t = linear_clamped("Railroad excavation factor", excavation_table, shared["bd_d"])
     traces.append(t)
     she = khe * be * ee * (shared["soil_unit_weight"] / (12**3)) * shared["outside_diameter"]
     fi, t = linear("Railroad impact factor", tables.IMPACT_BY_COVER, shared["cover_depth"])
@@ -60,9 +59,11 @@ def calculate_railroad(shared_inputs: dict[str, Any] | None = None, railroad_inp
     glr, t = _railroad_glr(shared, band)
     traces.append(t)
     double_track_band = "6" if shared["cover_depth"] <= 6 else ("10" if shared["cover_depth"] <= 10 else "14")
-    nh, t = linear("Railroad Nh factor", tables.NH_BY_DEPTH[double_track_band], shared["outside_diameter"])
+    nh_table = {key: value for key, value in tables.NH_BY_DEPTH[double_track_band].items() if key <= 42}
+    nh, t = linear_clamped("Railroad Nh factor", nh_table, shared["outside_diameter"])
     traces.append(t)
-    nl, t = linear("Railroad NL factor", tables.NL_BY_DEPTH[double_track_band], shared["outside_diameter"])
+    nl_table = {key: value for key, value in tables.NL_BY_DEPTH[double_track_band].items() if key <= 42}
+    nl, t = linear_clamped("Railroad NL factor", nl_table, shared["outside_diameter"])
     traces.append(t)
     w = float(rail.get("surface_pressure", 13.9))
     shr = nh * khr * ghr * fi * w

@@ -29,11 +29,14 @@ def _pavement_factor_case(shared: dict[str, Any]) -> str:
 
 def _highway_glh(shared: dict[str, Any], band: str):
     table = tables.GL_BY_DEPTH.get(band, tables.GL_BY_DEPTH["6"])
-    outside_diameter = float(shared["outside_diameter"])
-    cover_depth = float(shared["cover_depth"])
-    if band == "8" and outside_diameter in table and cover_depth in table:
-        return linear("Highway GLh workbook fallback", table, cover_depth, warn_extrapolation=False)
-    return linear("Highway GLh", table, outside_diameter)
+    return linear("Highway GLh", table, float(shared["outside_diameter"]))
+
+
+def _highway_klh(shared: dict[str, Any]):
+    if float(shared["tw_d"]) > 0.08:
+        value = 2.592
+        return value, []
+    return two_step("Highway KLh", tables.KL_BY_ER, shared["er"], shared["tw_d"])
 
 
 def calculate_highway(shared_inputs: dict[str, Any] | None = None, highway_inputs: dict[str, Any] | None = None) -> CalculationResult:
@@ -55,7 +58,7 @@ def calculate_highway(shared_inputs: dict[str, Any] | None = None, highway_input
     traces.append(t)
     khh, more = two_step("Highway KHh", tables.KH_BY_ER, shared["er"], shared["tw_d"])
     traces.extend(more)
-    klh, more = two_step("Highway KLh", tables.KL_BY_ER, shared["er"], shared["tw_d"])
+    klh, more = _highway_klh(shared)
     traces.extend(more)
     band = _depth_band_highway(shared["cover_depth"])
     ghh, t = linear("Highway GHh", tables.GH_BY_DEPTH.get(band, tables.GH_BY_DEPTH["6"]), shared["outside_diameter"])

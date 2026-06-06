@@ -29,6 +29,15 @@ def linear(table_name: str, table: dict[float, float], x: float, warn_extrapolat
     return y, InterpolationTrace(table_name, float(x), lower, upper, y, extrapolated, warning)
 
 
+def linear_clamped(table_name: str, table: dict[float, float], x: float) -> tuple[float, InterpolationTrace]:
+    ordered = sorted(float(v) for v in table)
+    value = min(max(float(x), ordered[0]), ordered[-1])
+    y, trace = linear(table_name, table, value, warn_extrapolation=False)
+    trace.input_value = float(x)
+    trace.extrapolated = value != float(x)
+    return y, trace
+
+
 def by_nearest_key(table_name: str, table: dict[float, float], x: float) -> tuple[float, InterpolationTrace]:
     key = min(table.keys(), key=lambda k: abs(float(k) - float(x)))
     y = float(table[key])
