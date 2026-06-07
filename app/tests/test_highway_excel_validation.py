@@ -9,7 +9,7 @@ def test_highway_default_matches_excel_if_workbook_available():
     assert result.overall_result == "Pass"
     assert result.controlling_check == "Effective Stress"
     assert HIGHWAY_WORKBOOK.parent.name == "Refs"
-    assert HIGHWAY_WORKBOOK.name.startswith("Copy of")
+    assert HIGHWAY_WORKBOOK.name == "API 1102 Highway_260606.xlsx"
     if HIGHWAY_WORKBOOK.exists():
         assert_within_tolerance(compare_default_highway())
 

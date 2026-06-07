@@ -1,10 +1,10 @@
 APP_VERSION = "0.1.0"
 ENGINE_VERSION = "0.1.1"
-STANDARDS_VERSION = "workbook-port-2026-06-03"
+STANDARDS_VERSION = "workbook-sync-2026-06-07"
 
 SOURCE_WORKBOOKS = {
-    "highway": "Copy of API 1102 Highway.xlsx",
-    "railroad": "Copy of API 1102 Railroad.xlsx",
+    "highway": "API 1102 Highway_260606.xlsx",
+    "railroad": "API 1102 Railroad_260606.xlsx",
 }
 
 READ_ONLY_NOTICE = (

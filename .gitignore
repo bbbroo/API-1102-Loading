@@ -22,6 +22,7 @@ api_1102.sqlite3
 *.log
 *.tmp
 *.temp
+*.bak_*
 
 # OS/editor noise
 .DS_Store

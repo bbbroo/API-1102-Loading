@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from app.backend.api import calculations, dashboard, exports, projects, scenarios, standards
+from app.backend.api import calculations, dashboard, digitized_graphs, exports, projects, scenarios, standards
 from app.backend.database.models import Base
 from app.backend.database.seed import seed_if_empty
 from app.backend.database.session import SessionLocal, engine
@@ -20,12 +22,17 @@ app.add_middleware(
 )
 app.mount("/static", StaticFiles(directory="app/backend/static"), name="static")
 
+DIGITIZED_DIR = Path("Refs/digitized_api_1102")
+if DIGITIZED_DIR.exists():
+    app.mount("/api/digitized-assets", StaticFiles(directory=DIGITIZED_DIR), name="digitized-assets")
+
 app.include_router(dashboard.router, prefix="/api")
 app.include_router(projects.router, prefix="/api")
 app.include_router(calculations.router, prefix="/api")
 app.include_router(scenarios.router, prefix="/api")
 app.include_router(standards.router, prefix="/api")
 app.include_router(exports.router, prefix="/api")
+app.include_router(digitized_graphs.router, prefix="/api")
 
 
 @app.on_event("startup")

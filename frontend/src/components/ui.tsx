@@ -9,6 +9,7 @@ import {
   FolderKanban,
   Info,
   LayoutDashboard,
+  LineChart,
   Plus,
   Save,
   Search,
@@ -17,12 +18,13 @@ import {
 import hdrLogo from "../assets/hdr-logo.svg";
 import type { Calculation } from "../types";
 
-export type PageKey = "dashboard" | "projects" | "projectDetail" | "workspace" | "report" | "standards" | "references" | "about";
+export type PageKey = "dashboard" | "projects" | "projectDetail" | "workspace" | "report" | "standards" | "graphViewer" | "references" | "about";
 
 export const navItems = [
   ["dashboard", LayoutDashboard, "Dashboard"],
   ["projects", FolderKanban, "Projects"],
   ["standards", Database, "Standards Tables"],
+  ["graphViewer", LineChart, "Graph Viewer"],
   ["references", BookOpen, "References"],
   ["about", Info, "About"]
 ] as const;

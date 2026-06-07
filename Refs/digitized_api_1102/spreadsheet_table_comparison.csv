@@ -1,0 +1,713 @@
+workbook,figure,factor,curve_name,x_value,digitized_api_value,spreadsheet_value,absolute_difference,percent_difference,status,notes
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.0,,11632.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B17
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.00726,,11632.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B18
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.00811,10587.668178,10587.668178,0.0,0.0,PASS,spreadsheet_cell=Tables!B19
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.00825,10387.695985,10387.695985,0.0,0.0,PASS,spreadsheet_cell=Tables!B20
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.01,8263.509735,8263.509735,0.0,0.0,PASS,spreadsheet_cell=Tables!B21
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.0125,6253.259838,6253.259838,0.0,0.0,PASS,spreadsheet_cell=Tables!B22
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.015,4817.399319,4817.399319,0.0,0.0,PASS,spreadsheet_cell=Tables!B23
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.0175,3778.69799,3778.69799,0.0,0.0,PASS,spreadsheet_cell=Tables!B24
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.02,2993.515046,2993.515046,0.0,0.0,PASS,spreadsheet_cell=Tables!B25
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.025,1793.592711,1793.592711,0.0,0.0,PASS,spreadsheet_cell=Tables!B26
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.03,1145.78382,1145.78382,0.0,0.0,PASS,spreadsheet_cell=Tables!B27
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.035,799.537498,799.537498,0.0,0.0,PASS,spreadsheet_cell=Tables!B28
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.04,647.032019,647.032019,0.0,0.0,PASS,spreadsheet_cell=Tables!B29
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.045,530.01545,530.01545,0.0,0.0,PASS,spreadsheet_cell=Tables!B30
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.05,465.990229,465.990229,0.0,0.0,PASS,spreadsheet_cell=Tables!B31
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.055,402.015428,402.015428,0.0,0.0,PASS,spreadsheet_cell=Tables!B32
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.06,338.874442,338.874442,0.0,0.0,PASS,spreadsheet_cell=Tables!B33
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.065,275.851875,275.851875,0.0,0.0,PASS,spreadsheet_cell=Tables!B34
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.07,211.871511,211.871511,0.0,0.0,PASS,spreadsheet_cell=Tables!B35
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.075,149.467395,149.467395,0.0,0.0,PASS,spreadsheet_cell=Tables!B36
+Highway,Figure 3,KHe,E_prime_ksi=0.2,0.08,,88.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B37
+Highway,Figure 3,KHe,E_prime_ksi=0.2,5.0,,88.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!B38
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.0,,7625.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D17
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.00726,,7625.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D18
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.00792,7191.417758,7191.417758,0.0,0.0,PASS,spreadsheet_cell=Tables!D19
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.00825,7004.511625,7004.511625,0.0,0.0,PASS,spreadsheet_cell=Tables!D20
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.01,6180.267296,6180.267296,0.0,0.0,PASS,spreadsheet_cell=Tables!D21
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.0125,5174.915097,5174.915097,0.0,0.0,PASS,spreadsheet_cell=Tables!D22
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.015,4253.231171,4253.231171,0.0,0.0,PASS,spreadsheet_cell=Tables!D23
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.0175,3343.972685,3343.972685,0.0,0.0,PASS,spreadsheet_cell=Tables!D24
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.02,2632.836699,2632.836699,0.0,0.0,PASS,spreadsheet_cell=Tables!D25
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.025,1639.56979,1639.56979,0.0,0.0,PASS,spreadsheet_cell=Tables!D26
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.03,1063.296027,1063.296027,0.0,0.0,PASS,spreadsheet_cell=Tables!D27
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.035,799.537498,799.537498,0.0,0.0,PASS,spreadsheet_cell=Tables!D28
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.04,647.032019,647.032019,0.0,0.0,PASS,spreadsheet_cell=Tables!D29
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.045,530.01545,530.01545,0.0,0.0,PASS,spreadsheet_cell=Tables!D30
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.05,465.990229,465.990229,0.0,0.0,PASS,spreadsheet_cell=Tables!D31
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.055,402.015428,402.015428,0.0,0.0,PASS,spreadsheet_cell=Tables!D32
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.06,338.874442,338.874442,0.0,0.0,PASS,spreadsheet_cell=Tables!D33
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.065,275.851875,275.851875,0.0,0.0,PASS,spreadsheet_cell=Tables!D34
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.07,211.871511,211.871511,0.0,0.0,PASS,spreadsheet_cell=Tables!D35
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.075,149.467395,149.467395,0.0,0.0,PASS,spreadsheet_cell=Tables!D36
+Highway,Figure 3,KHe,E_prime_ksi=0.5,0.08,,88.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D37
+Highway,Figure 3,KHe,E_prime_ksi=0.5,5.0,,88.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!D38
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.0,,5772.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F17
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.00738,5371.262654,5371.262654,0.0,0.0,PASS,spreadsheet_cell=Tables!F18
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.00775,5191.631319,5191.631319,0.0,0.0,PASS,spreadsheet_cell=Tables!F19
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.00825,4986.966487,4986.966487,0.0,0.0,PASS,spreadsheet_cell=Tables!F20
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.01,4421.712494,4421.712494,0.0,0.0,PASS,spreadsheet_cell=Tables!F21
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.0125,3789.925806,3789.925806,0.0,0.0,PASS,spreadsheet_cell=Tables!F22
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.015,3230.830095,3230.830095,0.0,0.0,PASS,spreadsheet_cell=Tables!F23
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.0175,2719.47016,2719.47016,0.0,0.0,PASS,spreadsheet_cell=Tables!F24
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.02,2275.090667,2275.090667,0.0,0.0,PASS,spreadsheet_cell=Tables!F25
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.025,1552.6354,1552.6354,0.0,0.0,PASS,spreadsheet_cell=Tables!F26
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.03,1042.662849,1042.662849,0.0,0.0,PASS,spreadsheet_cell=Tables!F27
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.035,823.383203,823.383203,0.0,0.0,PASS,spreadsheet_cell=Tables!F28
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.04,647.032019,647.032019,0.0,0.0,PASS,spreadsheet_cell=Tables!F29
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.045,530.01545,530.01545,0.0,0.0,PASS,spreadsheet_cell=Tables!F30
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.05,465.990229,465.990229,0.0,0.0,PASS,spreadsheet_cell=Tables!F31
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.055,402.015428,402.015428,0.0,0.0,PASS,spreadsheet_cell=Tables!F32
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.06,338.874442,338.874442,0.0,0.0,PASS,spreadsheet_cell=Tables!F33
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.065,275.851875,275.851875,0.0,0.0,PASS,spreadsheet_cell=Tables!F34
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.07,211.871511,211.871511,0.0,0.0,PASS,spreadsheet_cell=Tables!F35
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.075,149.467395,149.467395,0.0,0.0,PASS,spreadsheet_cell=Tables!F36
+Highway,Figure 3,KHe,E_prime_ksi=1.0,0.08,,88.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F37
+Highway,Figure 3,KHe,E_prime_ksi=1.0,5.0,,88.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!F38
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.0,,4443.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!H17
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.00726,4063.879904,4063.879904,0.0,0.0,PASS,spreadsheet_cell=Tables!H18
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.00775,3829.759583,3829.759583,0.0,0.0,PASS,spreadsheet_cell=Tables!H19
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.00825,3645.285057,3645.285057,0.0,0.0,PASS,spreadsheet_cell=Tables!H20
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.01,3166.031095,3166.031095,0.0,0.0,PASS,spreadsheet_cell=Tables!H21
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.0125,2703.318214,2703.318214,0.0,0.0,PASS,spreadsheet_cell=Tables!H22
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.015,2391.657618,2391.657618,0.0,0.0,PASS,spreadsheet_cell=Tables!H23
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.0175,2113.576774,2113.576774,0.0,0.0,PASS,spreadsheet_cell=Tables!H24
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.02,1851.790055,1851.790055,0.0,0.0,PASS,spreadsheet_cell=Tables!H25
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.025,1382.693917,1382.693917,0.0,0.0,PASS,spreadsheet_cell=Tables!H26
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.03,994.741355,994.741355,0.0,0.0,PASS,spreadsheet_cell=Tables!H27
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.035,799.537498,799.537498,0.0,0.0,PASS,spreadsheet_cell=Tables!H28
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.04,647.032019,647.032019,0.0,0.0,PASS,spreadsheet_cell=Tables!H29
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.045,530.01545,530.01545,0.0,0.0,PASS,spreadsheet_cell=Tables!H30
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.05,465.990229,465.990229,0.0,0.0,PASS,spreadsheet_cell=Tables!H31
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.055,402.015428,402.015428,0.0,0.0,PASS,spreadsheet_cell=Tables!H32
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.06,338.874442,338.874442,0.0,0.0,PASS,spreadsheet_cell=Tables!H33
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.065,275.851875,275.851875,0.0,0.0,PASS,spreadsheet_cell=Tables!H34
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.07,211.871511,211.871511,0.0,0.0,PASS,spreadsheet_cell=Tables!H35
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.075,149.467395,149.467395,0.0,0.0,PASS,spreadsheet_cell=Tables!H36
+Highway,Figure 3,KHe,E_prime_ksi=2.0,0.08,,88.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!H37
+Highway,Figure 3,KHe,E_prime_ksi=2.0,5.0,,88.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!H38
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.0,,11632.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B18
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.00726,,11632.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B19
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.00811,10587.668178,10587.668178,0.0,0.0,PASS,spreadsheet_cell=Tables!B20
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.00825,10387.695985,10387.695985,0.0,0.0,PASS,spreadsheet_cell=Tables!B21
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.01,8263.509735,8263.509735,0.0,0.0,PASS,spreadsheet_cell=Tables!B22
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.0125,6253.259838,6253.259838,0.0,0.0,PASS,spreadsheet_cell=Tables!B23
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.015,4817.399319,4817.399319,0.0,0.0,PASS,spreadsheet_cell=Tables!B24
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.0175,3778.69799,3778.69799,0.0,0.0,PASS,spreadsheet_cell=Tables!B25
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.02,2993.515046,2993.515046,0.0,0.0,PASS,spreadsheet_cell=Tables!B26
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.025,1793.592711,1793.592711,0.0,0.0,PASS,spreadsheet_cell=Tables!B27
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.03,1145.78382,1145.78382,0.0,0.0,PASS,spreadsheet_cell=Tables!B28
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.035,799.537498,799.537498,0.0,0.0,PASS,spreadsheet_cell=Tables!B29
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.04,647.032019,647.032019,0.0,0.0,PASS,spreadsheet_cell=Tables!B30
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.045,530.01545,530.01545,0.0,0.0,PASS,spreadsheet_cell=Tables!B31
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.05,465.990229,465.990229,0.0,0.0,PASS,spreadsheet_cell=Tables!B32
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.055,402.015428,402.015428,0.0,0.0,PASS,spreadsheet_cell=Tables!B33
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.06,338.874442,338.874442,0.0,0.0,PASS,spreadsheet_cell=Tables!B34
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.065,275.851875,275.851875,0.0,0.0,PASS,spreadsheet_cell=Tables!B35
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.07,211.871511,211.871511,0.0,0.0,PASS,spreadsheet_cell=Tables!B36
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.075,149.467395,149.467395,0.0,0.0,PASS,spreadsheet_cell=Tables!B37
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,0.08,,88.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B38
+Railroad,Figure 3,KHe,E_prime_ksi=0.2,5.0,,88.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!B39
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.0,,7625.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D18
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.00726,,7625.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D19
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.00792,7191.417758,7191.417758,0.0,0.0,PASS,spreadsheet_cell=Tables!D20
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.00825,7004.511625,7004.511625,0.0,0.0,PASS,spreadsheet_cell=Tables!D21
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.01,6180.267296,6180.267296,0.0,0.0,PASS,spreadsheet_cell=Tables!D22
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.0125,5174.915097,5174.915097,0.0,0.0,PASS,spreadsheet_cell=Tables!D23
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.015,4253.231171,4253.231171,0.0,0.0,PASS,spreadsheet_cell=Tables!D24
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.0175,3343.972685,3343.972685,0.0,0.0,PASS,spreadsheet_cell=Tables!D25
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.02,2632.836699,2632.836699,0.0,0.0,PASS,spreadsheet_cell=Tables!D26
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.025,1639.56979,1639.56979,0.0,0.0,PASS,spreadsheet_cell=Tables!D27
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.03,1063.296027,1063.296027,0.0,0.0,PASS,spreadsheet_cell=Tables!D28
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.035,799.537498,799.537498,0.0,0.0,PASS,spreadsheet_cell=Tables!D29
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.04,647.032019,647.032019,0.0,0.0,PASS,spreadsheet_cell=Tables!D30
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.045,530.01545,530.01545,0.0,0.0,PASS,spreadsheet_cell=Tables!D31
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.05,465.990229,465.990229,0.0,0.0,PASS,spreadsheet_cell=Tables!D32
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.055,402.015428,402.015428,0.0,0.0,PASS,spreadsheet_cell=Tables!D33
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.06,338.874442,338.874442,0.0,0.0,PASS,spreadsheet_cell=Tables!D34
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.065,275.851875,275.851875,0.0,0.0,PASS,spreadsheet_cell=Tables!D35
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.07,211.871511,211.871511,0.0,0.0,PASS,spreadsheet_cell=Tables!D36
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.075,149.467395,149.467395,0.0,0.0,PASS,spreadsheet_cell=Tables!D37
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,0.08,,88.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D38
+Railroad,Figure 3,KHe,E_prime_ksi=0.5,5.0,,88.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!D39
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.0,,5772.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F18
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.00738,5371.262654,5371.262654,0.0,0.0,PASS,spreadsheet_cell=Tables!F19
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.00775,5191.631319,5191.631319,0.0,0.0,PASS,spreadsheet_cell=Tables!F20
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.00825,4986.966487,4986.966487,0.0,0.0,PASS,spreadsheet_cell=Tables!F21
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.01,4421.712494,4421.712494,0.0,0.0,PASS,spreadsheet_cell=Tables!F22
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.0125,3789.925806,3789.925806,0.0,0.0,PASS,spreadsheet_cell=Tables!F23
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.015,3230.830095,3230.830095,0.0,0.0,PASS,spreadsheet_cell=Tables!F24
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.0175,2719.47016,2719.47016,0.0,0.0,PASS,spreadsheet_cell=Tables!F25
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.02,2275.090667,2275.090667,0.0,0.0,PASS,spreadsheet_cell=Tables!F26
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.025,1552.6354,1552.6354,0.0,0.0,PASS,spreadsheet_cell=Tables!F27
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.03,1042.662849,1042.662849,0.0,0.0,PASS,spreadsheet_cell=Tables!F28
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.035,823.383203,823.383203,0.0,0.0,PASS,spreadsheet_cell=Tables!F29
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.04,647.032019,647.032019,0.0,0.0,PASS,spreadsheet_cell=Tables!F30
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.045,530.01545,530.01545,0.0,0.0,PASS,spreadsheet_cell=Tables!F31
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.05,465.990229,465.990229,0.0,0.0,PASS,spreadsheet_cell=Tables!F32
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.055,402.015428,402.015428,0.0,0.0,PASS,spreadsheet_cell=Tables!F33
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.06,338.874442,338.874442,0.0,0.0,PASS,spreadsheet_cell=Tables!F34
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.065,275.851875,275.851875,0.0,0.0,PASS,spreadsheet_cell=Tables!F35
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.07,211.871511,211.871511,0.0,0.0,PASS,spreadsheet_cell=Tables!F36
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.075,149.467395,149.467395,0.0,0.0,PASS,spreadsheet_cell=Tables!F37
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,0.08,,88.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F38
+Railroad,Figure 3,KHe,E_prime_ksi=1.0,5.0,,88.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!F39
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.0,,4443.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!H18
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.00726,4063.879904,4063.879904,0.0,0.0,PASS,spreadsheet_cell=Tables!H19
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.00775,3829.759583,3829.759583,0.0,0.0,PASS,spreadsheet_cell=Tables!H20
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.00825,3645.285057,3645.285057,0.0,0.0,PASS,spreadsheet_cell=Tables!H21
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.01,3166.031095,3166.031095,0.0,0.0,PASS,spreadsheet_cell=Tables!H22
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.0125,2703.318214,2703.318214,0.0,0.0,PASS,spreadsheet_cell=Tables!H23
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.015,2391.657618,2391.657618,0.0,0.0,PASS,spreadsheet_cell=Tables!H24
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.0175,2113.576774,2113.576774,0.0,0.0,PASS,spreadsheet_cell=Tables!H25
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.02,1851.790055,1851.790055,0.0,0.0,PASS,spreadsheet_cell=Tables!H26
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.025,1382.693917,1382.693917,0.0,0.0,PASS,spreadsheet_cell=Tables!H27
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.03,994.741355,994.741355,0.0,0.0,PASS,spreadsheet_cell=Tables!H28
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.035,799.537498,799.537498,0.0,0.0,PASS,spreadsheet_cell=Tables!H29
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.04,647.032019,647.032019,0.0,0.0,PASS,spreadsheet_cell=Tables!H30
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.045,530.01545,530.01545,0.0,0.0,PASS,spreadsheet_cell=Tables!H31
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.05,465.990229,465.990229,0.0,0.0,PASS,spreadsheet_cell=Tables!H32
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.055,402.015428,402.015428,0.0,0.0,PASS,spreadsheet_cell=Tables!H33
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.06,338.874442,338.874442,0.0,0.0,PASS,spreadsheet_cell=Tables!H34
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.065,275.851875,275.851875,0.0,0.0,PASS,spreadsheet_cell=Tables!H35
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.07,211.871511,211.871511,0.0,0.0,PASS,spreadsheet_cell=Tables!H36
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.075,149.467395,149.467395,0.0,0.0,PASS,spreadsheet_cell=Tables!H37
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,0.08,,88.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!H38
+Railroad,Figure 3,KHe,E_prime_ksi=2.0,5.0,,88.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!H39
+Highway,Figure 4,Be,soil_type=A,0.0,,0.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B43
+Highway,Figure 4,Be,soil_type=A,1.0,0.334142,0.334142,0.0,0.000137,PASS,spreadsheet_cell=Tables!B44
+Highway,Figure 4,Be,soil_type=A,2.0,0.639287,0.639287,0.0,4.4e-05,PASS,spreadsheet_cell=Tables!B45
+Highway,Figure 4,Be,soil_type=A,3.0,0.8495,0.8495,0.0,3e-05,PASS,spreadsheet_cell=Tables!B46
+Highway,Figure 4,Be,soil_type=A,4.0,0.982464,0.982464,0.0,4e-06,PASS,spreadsheet_cell=Tables!B47
+Highway,Figure 4,Be,soil_type=A,5.0,1.080321,1.080321,0.0,4e-06,PASS,spreadsheet_cell=Tables!B48
+Highway,Figure 4,Be,soil_type=A,6.0,1.156494,1.156494,0.0,4e-06,PASS,spreadsheet_cell=Tables!B49
+Highway,Figure 4,Be,soil_type=A,7.0,1.214893,1.214893,0.0,3.1e-05,PASS,spreadsheet_cell=Tables!B50
+Highway,Figure 4,Be,soil_type=A,8.0,1.259303,1.259303,0.0,1.2e-05,PASS,spreadsheet_cell=Tables!B51
+Highway,Figure 4,Be,soil_type=A,9.0,1.29354,1.29354,0.0,1.6e-05,PASS,spreadsheet_cell=Tables!B52
+Highway,Figure 4,Be,soil_type=A,10.0,1.320356,1.320356,0.0,3e-05,PASS,spreadsheet_cell=Tables!B53
+Highway,Figure 4,Be,soil_type=A,11.0,1.340109,1.340109,0.0,3.4e-05,PASS,spreadsheet_cell=Tables!B54
+Highway,Figure 4,Be,soil_type=A,12.0,1.352953,1.352953,0.0,1.3e-05,PASS,spreadsheet_cell=Tables!B55
+Highway,Figure 4,Be,soil_type=A,13.0,1.359649,1.359649,0.0,3.3e-05,PASS,spreadsheet_cell=Tables!B56
+Highway,Figure 4,Be,soil_type=A,14.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B57
+Highway,Figure 4,Be,soil_type=A,15.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B58
+Highway,Figure 4,Be,soil_type=A,16.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B59
+Highway,Figure 4,Be,soil_type=A,17.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B60
+Highway,Figure 4,Be,soil_type=A,18.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B61
+Highway,Figure 4,Be,soil_type=A,19.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B62
+Highway,Figure 4,Be,soil_type=A,20.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B63
+Highway,Figure 4,Be,soil_type=A,21.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B64
+Highway,Figure 4,Be,soil_type=A,22.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B65
+Highway,Figure 4,Be,soil_type=A,23.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B66
+Highway,Figure 4,Be,soil_type=A,24.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B67
+Highway,Figure 4,Be,soil_type=A,25.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B68
+Highway,Figure 4,Be,soil_type=A,26.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B69
+Highway,Figure 4,Be,soil_type=A,27.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B70
+Highway,Figure 4,Be,soil_type=A,28.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B71
+Highway,Figure 4,Be,soil_type=A,29.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B72
+Highway,Figure 4,Be,soil_type=A,30.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B73
+Highway,Figure 4,Be,soil_type=A,31.0,,1.364,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B74
+Highway,Figure 4,Be,soil_type=A,32.0,,1.364,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B75
+Highway,Figure 4,Be,soil_type=A,60.0,,1.364,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!B76
+Highway,Figure 4,Be,soil_type=B,0.0,,0.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D43
+Highway,Figure 4,Be,soil_type=B,1.0,0.32983,0.32983,0.0,0.000126,PASS,spreadsheet_cell=Tables!D44
+Highway,Figure 4,Be,soil_type=B,2.0,0.621643,0.621643,0.0,1e-05,PASS,spreadsheet_cell=Tables!D45
+Highway,Figure 4,Be,soil_type=B,3.0,0.780853,0.780853,0.0,4.7e-05,PASS,spreadsheet_cell=Tables!D46
+Highway,Figure 4,Be,soil_type=B,4.0,0.887339,0.887339,0.0,2.4e-05,PASS,spreadsheet_cell=Tables!D47
+Highway,Figure 4,Be,soil_type=B,5.0,0.965123,0.965123,0.0,3.1e-05,PASS,spreadsheet_cell=Tables!D48
+Highway,Figure 4,Be,soil_type=B,6.0,1.024676,1.024676,0.0,8e-06,PASS,spreadsheet_cell=Tables!D49
+Highway,Figure 4,Be,soil_type=B,7.0,1.070074,1.070074,0.0,2.8e-05,PASS,spreadsheet_cell=Tables!D50
+Highway,Figure 4,Be,soil_type=B,8.0,1.104811,1.104811,0.0,1.3e-05,PASS,spreadsheet_cell=Tables!D51
+Highway,Figure 4,Be,soil_type=B,9.0,1.130942,1.130942,0.0,7e-06,PASS,spreadsheet_cell=Tables!D52
+Highway,Figure 4,Be,soil_type=B,10.0,1.149598,1.149598,0.0,9e-06,PASS,spreadsheet_cell=Tables!D53
+Highway,Figure 4,Be,soil_type=B,11.0,1.162014,1.162014,0.0,4e-06,PASS,spreadsheet_cell=Tables!D54
+Highway,Figure 4,Be,soil_type=B,12.0,1.168501,1.168501,0.0,2.8e-05,PASS,spreadsheet_cell=Tables!D55
+Highway,Figure 4,Be,soil_type=B,13.0,1.169707,1.169707,0.0,4e-06,PASS,spreadsheet_cell=Tables!D56
+Highway,Figure 4,Be,soil_type=B,14.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D57
+Highway,Figure 4,Be,soil_type=B,15.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D58
+Highway,Figure 4,Be,soil_type=B,16.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D59
+Highway,Figure 4,Be,soil_type=B,17.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D60
+Highway,Figure 4,Be,soil_type=B,18.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D61
+Highway,Figure 4,Be,soil_type=B,19.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D62
+Highway,Figure 4,Be,soil_type=B,20.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D63
+Highway,Figure 4,Be,soil_type=B,21.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D64
+Highway,Figure 4,Be,soil_type=B,22.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D65
+Highway,Figure 4,Be,soil_type=B,23.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D66
+Highway,Figure 4,Be,soil_type=B,24.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D67
+Highway,Figure 4,Be,soil_type=B,25.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D68
+Highway,Figure 4,Be,soil_type=B,26.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D69
+Highway,Figure 4,Be,soil_type=B,27.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D70
+Highway,Figure 4,Be,soil_type=B,28.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D71
+Highway,Figure 4,Be,soil_type=B,29.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D72
+Highway,Figure 4,Be,soil_type=B,30.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D73
+Highway,Figure 4,Be,soil_type=B,31.0,,1.173,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D74
+Highway,Figure 4,Be,soil_type=B,32.0,,1.173,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D75
+Highway,Figure 4,Be,soil_type=B,60.0,,1.173,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!D76
+Railroad,Figure 4,Be,soil_type=A,0.0,,0.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B44
+Railroad,Figure 4,Be,soil_type=A,1.0,0.334142,0.334142,0.0,0.000137,PASS,spreadsheet_cell=Tables!B45
+Railroad,Figure 4,Be,soil_type=A,2.0,0.639287,0.639287,0.0,4.4e-05,PASS,spreadsheet_cell=Tables!B46
+Railroad,Figure 4,Be,soil_type=A,3.0,0.8495,0.8495,0.0,3e-05,PASS,spreadsheet_cell=Tables!B47
+Railroad,Figure 4,Be,soil_type=A,4.0,0.982464,0.982464,0.0,4e-06,PASS,spreadsheet_cell=Tables!B48
+Railroad,Figure 4,Be,soil_type=A,5.0,1.080321,1.080321,0.0,4e-06,PASS,spreadsheet_cell=Tables!B49
+Railroad,Figure 4,Be,soil_type=A,6.0,1.156494,1.156494,0.0,4e-06,PASS,spreadsheet_cell=Tables!B50
+Railroad,Figure 4,Be,soil_type=A,7.0,1.214893,1.214893,0.0,3.1e-05,PASS,spreadsheet_cell=Tables!B51
+Railroad,Figure 4,Be,soil_type=A,8.0,1.259303,1.259303,0.0,1.2e-05,PASS,spreadsheet_cell=Tables!B52
+Railroad,Figure 4,Be,soil_type=A,9.0,1.29354,1.29354,0.0,1.6e-05,PASS,spreadsheet_cell=Tables!B53
+Railroad,Figure 4,Be,soil_type=A,10.0,1.320356,1.320356,0.0,3e-05,PASS,spreadsheet_cell=Tables!B54
+Railroad,Figure 4,Be,soil_type=A,11.0,1.340109,1.340109,0.0,3.4e-05,PASS,spreadsheet_cell=Tables!B55
+Railroad,Figure 4,Be,soil_type=A,12.0,1.352953,1.352953,0.0,1.3e-05,PASS,spreadsheet_cell=Tables!B56
+Railroad,Figure 4,Be,soil_type=A,13.0,1.359649,1.359649,0.0,3.3e-05,PASS,spreadsheet_cell=Tables!B57
+Railroad,Figure 4,Be,soil_type=A,14.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B58
+Railroad,Figure 4,Be,soil_type=A,15.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B59
+Railroad,Figure 4,Be,soil_type=A,16.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B60
+Railroad,Figure 4,Be,soil_type=A,17.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B61
+Railroad,Figure 4,Be,soil_type=A,18.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B62
+Railroad,Figure 4,Be,soil_type=A,19.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B63
+Railroad,Figure 4,Be,soil_type=A,20.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B64
+Railroad,Figure 4,Be,soil_type=A,21.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B65
+Railroad,Figure 4,Be,soil_type=A,22.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B66
+Railroad,Figure 4,Be,soil_type=A,23.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B67
+Railroad,Figure 4,Be,soil_type=A,24.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B68
+Railroad,Figure 4,Be,soil_type=A,25.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B69
+Railroad,Figure 4,Be,soil_type=A,26.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B70
+Railroad,Figure 4,Be,soil_type=A,27.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B71
+Railroad,Figure 4,Be,soil_type=A,28.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B72
+Railroad,Figure 4,Be,soil_type=A,29.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B73
+Railroad,Figure 4,Be,soil_type=A,30.0,1.360803,1.360803,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!B74
+Railroad,Figure 4,Be,soil_type=A,31.0,,1.364,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B75
+Railroad,Figure 4,Be,soil_type=A,32.0,,1.364,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B76
+Railroad,Figure 4,Be,soil_type=A,60.0,,1.364,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!B77
+Railroad,Figure 4,Be,soil_type=B,0.0,,0.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D44
+Railroad,Figure 4,Be,soil_type=B,1.0,0.32983,0.32983,0.0,0.000126,PASS,spreadsheet_cell=Tables!D45
+Railroad,Figure 4,Be,soil_type=B,2.0,0.621643,0.621643,0.0,1e-05,PASS,spreadsheet_cell=Tables!D46
+Railroad,Figure 4,Be,soil_type=B,3.0,0.780853,0.780853,0.0,4.7e-05,PASS,spreadsheet_cell=Tables!D47
+Railroad,Figure 4,Be,soil_type=B,4.0,0.887339,0.887339,0.0,2.4e-05,PASS,spreadsheet_cell=Tables!D48
+Railroad,Figure 4,Be,soil_type=B,5.0,0.965123,0.965123,0.0,3.1e-05,PASS,spreadsheet_cell=Tables!D49
+Railroad,Figure 4,Be,soil_type=B,6.0,1.024676,1.024676,0.0,8e-06,PASS,spreadsheet_cell=Tables!D50
+Railroad,Figure 4,Be,soil_type=B,7.0,1.070074,1.070074,0.0,2.8e-05,PASS,spreadsheet_cell=Tables!D51
+Railroad,Figure 4,Be,soil_type=B,8.0,1.104811,1.104811,0.0,1.3e-05,PASS,spreadsheet_cell=Tables!D52
+Railroad,Figure 4,Be,soil_type=B,9.0,1.130942,1.130942,0.0,7e-06,PASS,spreadsheet_cell=Tables!D53
+Railroad,Figure 4,Be,soil_type=B,10.0,1.149598,1.149598,0.0,9e-06,PASS,spreadsheet_cell=Tables!D54
+Railroad,Figure 4,Be,soil_type=B,11.0,1.162014,1.162014,0.0,4e-06,PASS,spreadsheet_cell=Tables!D55
+Railroad,Figure 4,Be,soil_type=B,12.0,1.168501,1.168501,0.0,2.8e-05,PASS,spreadsheet_cell=Tables!D56
+Railroad,Figure 4,Be,soil_type=B,13.0,1.169707,1.169707,0.0,4e-06,PASS,spreadsheet_cell=Tables!D57
+Railroad,Figure 4,Be,soil_type=B,14.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D58
+Railroad,Figure 4,Be,soil_type=B,15.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D59
+Railroad,Figure 4,Be,soil_type=B,16.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D60
+Railroad,Figure 4,Be,soil_type=B,17.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D61
+Railroad,Figure 4,Be,soil_type=B,18.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D62
+Railroad,Figure 4,Be,soil_type=B,19.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D63
+Railroad,Figure 4,Be,soil_type=B,20.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D64
+Railroad,Figure 4,Be,soil_type=B,21.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D65
+Railroad,Figure 4,Be,soil_type=B,22.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D66
+Railroad,Figure 4,Be,soil_type=B,23.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D67
+Railroad,Figure 4,Be,soil_type=B,24.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D68
+Railroad,Figure 4,Be,soil_type=B,25.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D69
+Railroad,Figure 4,Be,soil_type=B,26.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D70
+Railroad,Figure 4,Be,soil_type=B,27.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D71
+Railroad,Figure 4,Be,soil_type=B,28.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D72
+Railroad,Figure 4,Be,soil_type=B,29.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D73
+Railroad,Figure 4,Be,soil_type=B,30.0,1.16962,1.16962,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!D74
+Railroad,Figure 4,Be,soil_type=B,31.0,,1.173,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D75
+Railroad,Figure 4,Be,soil_type=B,32.0,,1.173,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D76
+Railroad,Figure 4,Be,soil_type=B,60.0,,1.173,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!D77
+Highway,Figure 5,Ee,Ee,1.0,,0.8307,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B80
+Highway,Figure 5,Ee,Ee,1.05,0.907581,0.907581,0.0,4.2e-05,PASS,spreadsheet_cell=Tables!B81
+Highway,Figure 5,Ee,Ee,1.1,0.993725,0.993725,0.0,2.9e-05,PASS,spreadsheet_cell=Tables!B82
+Highway,Figure 5,Ee,Ee,1.15,1.087064,1.087064,0.0,8e-06,PASS,spreadsheet_cell=Tables!B83
+Highway,Figure 5,Ee,Ee,1.2,1.188139,1.188139,0.0,3e-05,PASS,spreadsheet_cell=Tables!B84
+Highway,Figure 5,Ee,Ee,1.25,1.292515,1.292515,0.0,2.2e-05,PASS,spreadsheet_cell=Tables!B85
+Highway,Figure 5,Ee,Ee,1.3,,1.4,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B86
+Highway,Figure 5,Ee,Ee,5.0,,9.353889999999982,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!B87
+Railroad,Figure 5,Ee,Ee,1.0,,0.8307,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B81
+Railroad,Figure 5,Ee,Ee,1.05,0.907581,0.907581,0.0,4.2e-05,PASS,spreadsheet_cell=Tables!B82
+Railroad,Figure 5,Ee,Ee,1.1,0.993725,0.993725,0.0,2.9e-05,PASS,spreadsheet_cell=Tables!B83
+Railroad,Figure 5,Ee,Ee,1.15,1.087064,1.087064,0.0,8e-06,PASS,spreadsheet_cell=Tables!B84
+Railroad,Figure 5,Ee,Ee,1.2,1.188139,1.188139,0.0,3e-05,PASS,spreadsheet_cell=Tables!B85
+Railroad,Figure 5,Ee,Ee,1.25,1.292515,1.292515,0.0,2.2e-05,PASS,spreadsheet_cell=Tables!B86
+Railroad,Figure 5,Ee,Ee,1.3,,1.4,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B87
+Railroad,Figure 5,Ee,Ee,5.0,,9.353889999999982,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!B88
+Highway,Figure 7,Fi,crossing=highway,0.0,,1.5,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B91
+Highway,Figure 7,Fi,crossing=highway,5.22,1.502573,1.502573,0.0,2.3e-05,PASS,spreadsheet_cell=Tables!B92
+Highway,Figure 7,Fi,crossing=highway,21.62,1.003029,1.003029,0.0,1.7e-05,PASS,spreadsheet_cell=Tables!B93
+Highway,Figure 7,Fi,crossing=highway,100.0,,1.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B94
+Railroad,Figure 7,Fi,crossing=railroad,0.0,1.750005,1.750005,0.0,1.4e-05,PASS,spreadsheet_cell=Tables!B92
+Railroad,Figure 7,Fi,crossing=railroad,5.22,1.750005,1.750005,0.0,1.4e-05,PASS,spreadsheet_cell=Tables!B93
+Railroad,Figure 7,Fi,crossing=railroad,30.0,,1.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B94
+Railroad,Figure 7,Fi,crossing=railroad,100.0,,1.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B95
+Railroad,Figure 8,KHr,Er_ksi=5,0.0,,454.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B100
+Railroad,Figure 8,KHr,Er_ksi=5,0.01058,457.128641,457.128641,0.0,0.0,PASS,spreadsheet_cell=Tables!B101
+Railroad,Figure 8,KHr,Er_ksi=5,0.01296,473.659291,473.659291,0.0,0.0,PASS,spreadsheet_cell=Tables!B102
+Railroad,Figure 8,KHr,Er_ksi=5,0.01444,473.137377,473.137377,0.0,0.0,PASS,spreadsheet_cell=Tables!B103
+Railroad,Figure 8,KHr,Er_ksi=5,0.01867,450.464264,450.464264,0.0,0.0,PASS,spreadsheet_cell=Tables!B104
+Railroad,Figure 8,KHr,Er_ksi=5,0.02526,376.743824,376.743824,0.0,0.0,PASS,spreadsheet_cell=Tables!B105
+Railroad,Figure 8,KHr,Er_ksi=5,0.03515,238.558487,238.558487,0.0,0.0,PASS,spreadsheet_cell=Tables!B106
+Railroad,Figure 8,KHr,Er_ksi=5,0.04258,180.734442,180.734442,0.0,0.0,PASS,spreadsheet_cell=Tables!B107
+Railroad,Figure 8,KHr,Er_ksi=5,0.05015,140.581426,140.581426,0.0,0.0,PASS,spreadsheet_cell=Tables!B108
+Railroad,Figure 8,KHr,Er_ksi=5,0.06518,84.483888,84.483888,0.0,0.0,PASS,spreadsheet_cell=Tables!B109
+Railroad,Figure 8,KHr,Er_ksi=5,0.08,,48.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B110
+Railroad,Figure 8,KHr,Er_ksi=5,5.0,,48.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!B111
+Railroad,Figure 8,KHr,Er_ksi=10,0.0,,315.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D100
+Railroad,Figure 8,KHr,Er_ksi=10,0.01058,318.155391,318.155391,0.0,0.0,PASS,spreadsheet_cell=Tables!D101
+Railroad,Figure 8,KHr,Er_ksi=10,0.01296,335.210127,335.210127,0.0,0.0,PASS,spreadsheet_cell=Tables!D102
+Railroad,Figure 8,KHr,Er_ksi=10,0.01444,338.118192,338.118192,0.0,0.0,PASS,spreadsheet_cell=Tables!D103
+Railroad,Figure 8,KHr,Er_ksi=10,0.01867,330.918906,330.918906,0.0,0.0,PASS,spreadsheet_cell=Tables!D104
+Railroad,Figure 8,KHr,Er_ksi=10,0.02526,292.676078,292.676078,0.0,0.0,PASS,spreadsheet_cell=Tables!D105
+Railroad,Figure 8,KHr,Er_ksi=10,0.03515,208.929562,208.929562,0.0,0.0,PASS,spreadsheet_cell=Tables!D106
+Railroad,Figure 8,KHr,Er_ksi=10,0.04258,162.414977,162.414977,0.0,0.0,PASS,spreadsheet_cell=Tables!D107
+Railroad,Figure 8,KHr,Er_ksi=10,0.05015,128.412578,128.412578,0.0,0.0,PASS,spreadsheet_cell=Tables!D108
+Railroad,Figure 8,KHr,Er_ksi=10,0.06518,76.916237,76.916237,0.0,0.0,PASS,spreadsheet_cell=Tables!D109
+Railroad,Figure 8,KHr,Er_ksi=10,0.08,,42.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D110
+Railroad,Figure 8,KHr,Er_ksi=10,5.0,,42.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!D111
+Railroad,Figure 8,KHr,Er_ksi=20,0.0,,196.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F100
+Railroad,Figure 8,KHr,Er_ksi=20,0.01058,199.165341,199.165341,0.0,0.0,PASS,spreadsheet_cell=Tables!F101
+Railroad,Figure 8,KHr,Er_ksi=20,0.01296,226.256597,226.256597,0.0,0.0,PASS,spreadsheet_cell=Tables!F102
+Railroad,Figure 8,KHr,Er_ksi=20,0.01444,234.262463,234.262463,0.0,0.0,PASS,spreadsheet_cell=Tables!F103
+Railroad,Figure 8,KHr,Er_ksi=20,0.01867,241.067125,241.067125,0.0,0.0,PASS,spreadsheet_cell=Tables!F104
+Railroad,Figure 8,KHr,Er_ksi=20,0.02526,224.684293,224.684293,0.0,0.0,PASS,spreadsheet_cell=Tables!F105
+Railroad,Figure 8,KHr,Er_ksi=20,0.03515,176.27098,176.27098,0.0,0.0,PASS,spreadsheet_cell=Tables!F106
+Railroad,Figure 8,KHr,Er_ksi=20,0.04258,144.67065,144.67065,0.0,0.0,PASS,spreadsheet_cell=Tables!F107
+Railroad,Figure 8,KHr,Er_ksi=20,0.05015,117.267747,117.267747,0.0,0.0,PASS,spreadsheet_cell=Tables!F108
+Railroad,Figure 8,KHr,Er_ksi=20,0.06518,69.460414,69.460414,0.0,0.0,PASS,spreadsheet_cell=Tables!F109
+Railroad,Figure 8,KHr,Er_ksi=20,0.08,,37.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F110
+Railroad,Figure 8,KHr,Er_ksi=20,5.0,,37.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!F111
+Railroad,Figure 9,GHr,H_ft=6,0.0,,1.006,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B124
+Railroad,Figure 9,GHr,H_ft=6,2.0,,1.006,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B125
+Railroad,Figure 9,GHr,H_ft=6,4.0,1.059929,1.059929,0.0,4.4e-05,PASS,spreadsheet_cell=Tables!B126
+Railroad,Figure 9,GHr,H_ft=6,6.0,1.085548,1.085548,0.0,3.3e-05,PASS,spreadsheet_cell=Tables!B127
+Railroad,Figure 9,GHr,H_ft=6,8.0,1.081442,1.081442,0.0,4e-06,PASS,spreadsheet_cell=Tables!B128
+Railroad,Figure 9,GHr,H_ft=6,10.0,1.047295,1.047295,0.0,2.6e-05,PASS,spreadsheet_cell=Tables!B129
+Railroad,Figure 9,GHr,H_ft=6,12.0,1.001302,1.001302,0.0,2e-05,PASS,spreadsheet_cell=Tables!B130
+Railroad,Figure 9,GHr,H_ft=6,18.0,0.879038,0.879038,0.0,2e-06,PASS,spreadsheet_cell=Tables!B131
+Railroad,Figure 9,GHr,H_ft=6,24.0,0.777475,0.777475,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!B132
+Railroad,Figure 9,GHr,H_ft=6,34.0,0.64846,0.64846,0.0,6.3e-05,PASS,spreadsheet_cell=Tables!B133
+Railroad,Figure 9,GHr,H_ft=6,42.0,0.5737,0.5737,0.0,4.7e-05,PASS,spreadsheet_cell=Tables!B134
+Railroad,Figure 9,GHr,H_ft=6,100.0,,0.579,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!B135
+Railroad,Figure 9,GHr,H_ft=10,0.0,,0.681,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D124
+Railroad,Figure 9,GHr,H_ft=10,2.0,,0.681,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D125
+Railroad,Figure 9,GHr,H_ft=10,4.0,0.717101,0.717101,0.0,3e-05,PASS,spreadsheet_cell=Tables!D126
+Railroad,Figure 9,GHr,H_ft=10,6.0,0.726261,0.726261,0.0,7e-06,PASS,spreadsheet_cell=Tables!D127
+Railroad,Figure 9,GHr,H_ft=10,8.0,0.719288,0.719288,0.0,1.6e-05,PASS,spreadsheet_cell=Tables!D128
+Railroad,Figure 9,GHr,H_ft=10,10.0,0.700518,0.700518,0.0,5.1e-05,PASS,spreadsheet_cell=Tables!D129
+Railroad,Figure 9,GHr,H_ft=10,12.0,0.67834,0.67834,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!D130
+Railroad,Figure 9,GHr,H_ft=10,18.0,0.618924,0.618924,0.0,2.1e-05,PASS,spreadsheet_cell=Tables!D131
+Railroad,Figure 9,GHr,H_ft=10,24.0,0.566887,0.566887,0.0,6.4e-05,PASS,spreadsheet_cell=Tables!D132
+Railroad,Figure 9,GHr,H_ft=10,34.0,0.49474,0.49474,0.0,4.8e-05,PASS,spreadsheet_cell=Tables!D133
+Railroad,Figure 9,GHr,H_ft=10,42.0,0.448114,0.448114,0.0,0.000105,PASS,spreadsheet_cell=Tables!D134
+Railroad,Figure 9,GHr,H_ft=10,100.0,,0.453,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!D135
+Railroad,Figure 9,GHr,H_ft=14,0.0,,0.486,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F124
+Railroad,Figure 9,GHr,H_ft=14,2.0,0.481172,0.481172,0.0,7.9e-05,PASS,spreadsheet_cell=Tables!F125
+Railroad,Figure 9,GHr,H_ft=14,4.0,0.505834,0.505834,0.0,4.7e-05,PASS,spreadsheet_cell=Tables!F126
+Railroad,Figure 9,GHr,H_ft=14,6.0,0.507102,0.507102,0.0,6.9e-05,PASS,spreadsheet_cell=Tables!F127
+Railroad,Figure 9,GHr,H_ft=14,8.0,0.500979,0.500979,0.0,5e-05,PASS,spreadsheet_cell=Tables!F128
+Railroad,Figure 9,GHr,H_ft=14,10.0,0.489373,0.489373,0.0,1.7e-05,PASS,spreadsheet_cell=Tables!F129
+Railroad,Figure 9,GHr,H_ft=14,12.0,0.477333,0.477333,0.0,3.1e-05,PASS,spreadsheet_cell=Tables!F130
+Railroad,Figure 9,GHr,H_ft=14,18.0,0.445342,0.445342,0.0,3.8e-05,PASS,spreadsheet_cell=Tables!F131
+Railroad,Figure 9,GHr,H_ft=14,24.0,0.415546,0.415546,0.0,6e-06,PASS,spreadsheet_cell=Tables!F132
+Railroad,Figure 9,GHr,H_ft=14,34.0,0.369581,0.369581,0.0,9.4e-05,PASS,spreadsheet_cell=Tables!F133
+Railroad,Figure 9,GHr,H_ft=14,42.0,0.33503,0.33503,0.0,7.3e-05,PASS,spreadsheet_cell=Tables!F134
+Railroad,Figure 9,GHr,H_ft=14,100.0,,0.34,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!F135
+Railroad,Figure 10,NH,H_ft=6,0.0,,1.0628,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B140
+Railroad,Figure 10,NH,H_ft=6,2.0,1.064591,1.064591,0.0,4e-05,PASS,spreadsheet_cell=Tables!B141
+Railroad,Figure 10,NH,H_ft=6,42.0,,1.3496,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B142
+Railroad,Figure 10,NH,H_ft=6,100.0,,1.7628630499999998,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!B143
+Railroad,Figure 10,NH,H_ft=10,0.0,,1.2107,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D140
+Railroad,Figure 10,NH,H_ft=10,2.0,,1.2107,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D141
+Railroad,Figure 10,NH,H_ft=10,42.0,,1.4106,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D142
+Railroad,Figure 10,NH,H_ft=10,100.0,,1.700455,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!D143
+Railroad,Figure 10,NH,H_ft=14,0.0,,1.3595,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F140
+Railroad,Figure 10,NH,H_ft=14,2.0,,1.3595,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F141
+Railroad,Figure 10,NH,H_ft=14,42.0,,1.562,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F142
+Railroad,Figure 10,NH,H_ft=14,100.0,,1.8556250000000003,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!F143
+Railroad,Figure 11,KLr,Er_ksi=5,0.0,,550.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B246
+Railroad,Figure 11,KLr,Er_ksi=5,0.0103,548.529787,548.529787,0.0,0.0,PASS,spreadsheet_cell=Tables!B247
+Railroad,Figure 11,KLr,Er_ksi=5,0.015,498.624251,498.624251,0.0,0.0,PASS,spreadsheet_cell=Tables!B248
+Railroad,Figure 11,KLr,Er_ksi=5,0.02,461.492715,461.492715,0.0,0.0,PASS,spreadsheet_cell=Tables!B249
+Railroad,Figure 11,KLr,Er_ksi=5,0.03,411.461052,411.461052,0.0,0.0,PASS,spreadsheet_cell=Tables!B250
+Railroad,Figure 11,KLr,Er_ksi=5,0.05,338.231402,338.231402,0.0,0.0,PASS,spreadsheet_cell=Tables!B251
+Railroad,Figure 11,KLr,Er_ksi=5,0.08,229.420272,229.420272,0.0,0.0,PASS,spreadsheet_cell=Tables!B252
+Railroad,Figure 11,KLr,Er_ksi=5,5.0,,228.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!B253
+Railroad,Figure 11,KLr,Er_ksi=10,0.0,,384.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D246
+Railroad,Figure 11,KLr,Er_ksi=10,0.0103,381.395853,381.395853,0.0,0.0,PASS,spreadsheet_cell=Tables!D247
+Railroad,Figure 11,KLr,Er_ksi=10,0.015,341.117247,341.117247,0.0,0.0,PASS,spreadsheet_cell=Tables!D248
+Railroad,Figure 11,KLr,Er_ksi=10,0.02,314.10277,314.10277,0.0,0.0,PASS,spreadsheet_cell=Tables!D249
+Railroad,Figure 11,KLr,Er_ksi=10,0.03,276.452651,276.452651,0.0,0.0,PASS,spreadsheet_cell=Tables!D250
+Railroad,Figure 11,KLr,Er_ksi=10,0.05,223.634719,223.634719,0.0,0.0,PASS,spreadsheet_cell=Tables!D251
+Railroad,Figure 11,KLr,Er_ksi=10,0.08,170.433559,170.433559,0.0,0.0,PASS,spreadsheet_cell=Tables!D252
+Railroad,Figure 11,KLr,Er_ksi=10,5.0,,169.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!D253
+Railroad,Figure 11,KLr,Er_ksi=20,0.0,,258.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F246
+Railroad,Figure 11,KLr,Er_ksi=20,0.0103,,258.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F247
+Railroad,Figure 11,KLr,Er_ksi=20,0.015,234.317949,234.317949,0.0,0.0,PASS,spreadsheet_cell=Tables!F248
+Railroad,Figure 11,KLr,Er_ksi=20,0.02,217.361365,217.361365,0.0,0.0,PASS,spreadsheet_cell=Tables!F249
+Railroad,Figure 11,KLr,Er_ksi=20,0.03,193.202725,193.202725,0.0,0.0,PASS,spreadsheet_cell=Tables!F250
+Railroad,Figure 11,KLr,Er_ksi=20,0.05,160.313324,160.313324,0.0,0.0,PASS,spreadsheet_cell=Tables!F251
+Railroad,Figure 11,KLr,Er_ksi=20,0.08,126.496284,126.496284,0.0,0.0,PASS,spreadsheet_cell=Tables!F252
+Railroad,Figure 11,KLr,Er_ksi=20,5.0,,126.0,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!F253
+Railroad,Figure 12,GLr,H_ft=6,0.0,,2.261,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B262
+Railroad,Figure 12,GLr,H_ft=6,2.0,,2.261,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B263
+Railroad,Figure 12,GLr,H_ft=6,4.0,1.536325,1.536325,0.0,1.6e-05,PASS,spreadsheet_cell=Tables!B264
+Railroad,Figure 12,GLr,H_ft=6,6.0,1.26056,1.26056,0.0,2.6e-05,PASS,spreadsheet_cell=Tables!B265
+Railroad,Figure 12,GLr,H_ft=6,8.0,1.12589,1.12589,0.0,2.5e-05,PASS,spreadsheet_cell=Tables!B266
+Railroad,Figure 12,GLr,H_ft=6,10.0,1.043968,1.043968,0.0,3.3e-05,PASS,spreadsheet_cell=Tables!B267
+Railroad,Figure 12,GLr,H_ft=6,12.0,0.993222,0.993222,0.0,3.5e-05,PASS,spreadsheet_cell=Tables!B268
+Railroad,Figure 12,GLr,H_ft=6,26.0,0.704801,0.704801,0.0,5.5e-05,PASS,spreadsheet_cell=Tables!B269
+Railroad,Figure 12,GLr,H_ft=6,42.0,,0.404,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B270
+Railroad,Figure 12,GLr,H_ft=6,100.0,,0.404,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!B271
+Railroad,Figure 12,GLr,H_ft=10,0.0,,1.705,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D262
+Railroad,Figure 12,GLr,H_ft=10,2.0,1.68224,1.68224,0.0,1.5e-05,PASS,spreadsheet_cell=Tables!D263
+Railroad,Figure 12,GLr,H_ft=10,4.0,1.124322,1.124322,0.0,3.8e-05,PASS,spreadsheet_cell=Tables!D264
+Railroad,Figure 12,GLr,H_ft=10,6.0,0.920036,0.920036,0.0,9e-06,PASS,spreadsheet_cell=Tables!D265
+Railroad,Figure 12,GLr,H_ft=10,8.0,0.823262,0.823262,0.0,2.2e-05,PASS,spreadsheet_cell=Tables!D266
+Railroad,Figure 12,GLr,H_ft=10,10.0,0.778737,0.778737,0.0,1.1e-05,PASS,spreadsheet_cell=Tables!D267
+Railroad,Figure 12,GLr,H_ft=10,12.0,0.743682,0.743682,0.0,1.8e-05,PASS,spreadsheet_cell=Tables!D268
+Railroad,Figure 12,GLr,H_ft=10,26.0,0.53173,0.53173,0.0,1e-06,PASS,spreadsheet_cell=Tables!D269
+Railroad,Figure 12,GLr,H_ft=10,42.0,,0.312,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D270
+Railroad,Figure 12,GLr,H_ft=10,100.0,,0.312,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!D271
+Railroad,Figure 12,GLr,H_ft=14,0.0,,1.243,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F262
+Railroad,Figure 12,GLr,H_ft=14,2.0,1.227603,1.227603,0.0,1.4e-05,PASS,spreadsheet_cell=Tables!F263
+Railroad,Figure 12,GLr,H_ft=14,4.0,0.853565,0.853565,0.0,6e-06,PASS,spreadsheet_cell=Tables!F264
+Railroad,Figure 12,GLr,H_ft=14,6.0,0.680279,0.680279,0.0,2.4e-05,PASS,spreadsheet_cell=Tables!F265
+Railroad,Figure 12,GLr,H_ft=14,8.0,0.583892,0.583892,0.0,6.1e-05,PASS,spreadsheet_cell=Tables!F266
+Railroad,Figure 12,GLr,H_ft=14,10.0,0.5406,0.5406,0.0,1.8e-05,PASS,spreadsheet_cell=Tables!F267
+Railroad,Figure 12,GLr,H_ft=14,12.0,0.516856,0.516856,0.0,9.1e-05,PASS,spreadsheet_cell=Tables!F268
+Railroad,Figure 12,GLr,H_ft=14,26.0,0.364012,0.364012,0.0,0.000116,PASS,spreadsheet_cell=Tables!F269
+Railroad,Figure 12,GLr,H_ft=14,42.0,,0.231,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F270
+Railroad,Figure 12,GLr,H_ft=14,100.0,,0.231,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!F271
+Railroad,Figure 13,NL,H_ft=6,0.0,,1.033,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B276
+Railroad,Figure 13,NL,H_ft=6,2.19,,1.033,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B277
+Railroad,Figure 13,NL,H_ft=6,14.238,1.018843,1.018843,0.0,4.5e-05,PASS,spreadsheet_cell=Tables!B278
+Railroad,Figure 13,NL,H_ft=6,24.507,1.0143,1.0143,0.0,1.5e-05,PASS,spreadsheet_cell=Tables!B279
+Railroad,Figure 13,NL,H_ft=6,42.0,1.29275,1.29275,0.0,3.1e-05,PASS,spreadsheet_cell=Tables!B280
+Railroad,Figure 13,NL,H_ft=6,100.0,,2.2159821500028585,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!B281
+Railroad,Figure 13,NL,H_ft=10,0.0,,1.033,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D276
+Railroad,Figure 13,NL,H_ft=10,2.19,,1.033,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D277
+Railroad,Figure 13,NL,H_ft=10,14.238,1.070368,1.070368,0.0,4.6e-05,PASS,spreadsheet_cell=Tables!D278
+Railroad,Figure 13,NL,H_ft=10,24.507,1.103638,1.103638,0.0,2.8e-05,PASS,spreadsheet_cell=Tables!D279
+Railroad,Figure 13,NL,H_ft=10,42.0,,1.453,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D280
+Railroad,Figure 13,NL,H_ft=10,100.0,,2.6113488252443844,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!D281
+Railroad,Figure 13,NL,H_ft=14,0.0,,1.132,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F276
+Railroad,Figure 13,NL,H_ft=14,2.19,,1.132,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F277
+Railroad,Figure 13,NL,H_ft=14,14.238,1.321543,1.321543,0.0,2.7e-05,PASS,spreadsheet_cell=Tables!F278
+Railroad,Figure 13,NL,H_ft=14,24.507,1.309149,1.309149,0.0,1.5e-05,PASS,spreadsheet_cell=Tables!F279
+Railroad,Figure 13,NL,H_ft=14,42.0,,1.497,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F280
+Railroad,Figure 13,NL,H_ft=14,100.0,,2.119841022123136,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!F281
+Highway,Figure 14,KHh,Er_ksi=5,0.01018,,19.819,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B99
+Highway,Figure 14,KHh,Er_ksi=5,0.01061,,19.819,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B100
+Highway,Figure 14,KHh,Er_ksi=5,0.01211,20.409571,20.409571,0.0,2e-06,PASS,spreadsheet_cell=Tables!B101
+Highway,Figure 14,KHh,Er_ksi=5,0.01394,20.701947,20.701947,0.0,1e-06,PASS,spreadsheet_cell=Tables!B102
+Highway,Figure 14,KHh,Er_ksi=5,0.01541,20.680805,20.680805,0.0,1e-06,PASS,spreadsheet_cell=Tables!B103
+Highway,Figure 14,KHh,Er_ksi=5,0.01729,20.366337,20.366337,0.0,1e-06,PASS,spreadsheet_cell=Tables!B104
+Highway,Figure 14,KHh,Er_ksi=5,0.02018,19.351933,19.351933,0.0,2e-06,PASS,spreadsheet_cell=Tables!B105
+Highway,Figure 14,KHh,Er_ksi=5,0.02425,17.211156,17.211156,0.0,1e-06,PASS,spreadsheet_cell=Tables!B106
+Highway,Figure 14,KHh,Er_ksi=5,0.02991,13.386608,13.386608,0.0,3e-06,PASS,spreadsheet_cell=Tables!B107
+Highway,Figure 14,KHh,Er_ksi=5,0.03582,10.457779,10.457779,0.0,1e-06,PASS,spreadsheet_cell=Tables!B108
+Highway,Figure 14,KHh,Er_ksi=5,0.04007,8.681266,8.681266,0.0,3e-06,PASS,spreadsheet_cell=Tables!B109
+Highway,Figure 14,KHh,Er_ksi=5,0.04484,7.165142,7.165142,0.0,5e-06,PASS,spreadsheet_cell=Tables!B110
+Highway,Figure 14,KHh,Er_ksi=5,0.05012,5.913546,5.913546,0.0,5e-06,PASS,spreadsheet_cell=Tables!B111
+Highway,Figure 14,KHh,Er_ksi=5,0.05496,5.0283,5.0283,0.0,8e-06,PASS,spreadsheet_cell=Tables!B112
+Highway,Figure 14,KHh,Er_ksi=5,0.05999,4.1783,4.1783,0.0,9e-06,PASS,spreadsheet_cell=Tables!B113
+Highway,Figure 14,KHh,Er_ksi=5,0.06488,3.493082,3.493082,0.0,7e-06,PASS,spreadsheet_cell=Tables!B114
+Highway,Figure 14,KHh,Er_ksi=5,0.07005,2.844291,2.844291,0.0,9e-06,PASS,spreadsheet_cell=Tables!B115
+Highway,Figure 14,KHh,Er_ksi=5,0.07493,2.339512,2.339512,0.0,1.4e-05,PASS,spreadsheet_cell=Tables!B116
+Highway,Figure 14,KHh,Er_ksi=5,0.08,1.890518,1.890518,0.0,7e-06,PASS,spreadsheet_cell=Tables!B117
+Highway,Figure 14,KHh,Er_ksi=5,5.0,,1.906,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!B118
+Highway,Figure 14,KHh,Er_ksi=10,0.01018,,12.714,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D99
+Highway,Figure 14,KHh,Er_ksi=10,0.01061,13.009063,13.009063,0.0,2e-06,PASS,spreadsheet_cell=Tables!D100
+Highway,Figure 14,KHh,Er_ksi=10,0.01211,14.00257,14.00257,0.0,1e-06,PASS,spreadsheet_cell=Tables!D101
+Highway,Figure 14,KHh,Er_ksi=10,0.01394,14.588438,14.588438,0.0,2e-06,PASS,spreadsheet_cell=Tables!D102
+Highway,Figure 14,KHh,Er_ksi=10,0.01541,14.752615,14.752615,0.0,3e-06,PASS,spreadsheet_cell=Tables!D103
+Highway,Figure 14,KHh,Er_ksi=10,0.01729,14.66749,14.66749,0.0,2e-06,PASS,spreadsheet_cell=Tables!D104
+Highway,Figure 14,KHh,Er_ksi=10,0.02018,14.034725,14.034725,0.0,0.0,PASS,spreadsheet_cell=Tables!D105
+Highway,Figure 14,KHh,Er_ksi=10,0.02425,12.495093,12.495093,0.0,2e-06,PASS,spreadsheet_cell=Tables!D106
+Highway,Figure 14,KHh,Er_ksi=10,0.02991,10.553495,10.553495,0.0,1e-06,PASS,spreadsheet_cell=Tables!D107
+Highway,Figure 14,KHh,Er_ksi=10,0.03582,8.800937,8.800937,0.0,0.0,PASS,spreadsheet_cell=Tables!D108
+Highway,Figure 14,KHh,Er_ksi=10,0.04007,7.64597,7.64597,0.0,3e-06,PASS,spreadsheet_cell=Tables!D109
+Highway,Figure 14,KHh,Er_ksi=10,0.04484,6.582001,6.582001,0.0,2e-06,PASS,spreadsheet_cell=Tables!D110
+Highway,Figure 14,KHh,Er_ksi=10,0.05012,5.487985,5.487985,0.0,4e-06,PASS,spreadsheet_cell=Tables!D111
+Highway,Figure 14,KHh,Er_ksi=10,0.05496,4.645432,4.645432,0.0,1e-06,PASS,spreadsheet_cell=Tables!D112
+Highway,Figure 14,KHh,Er_ksi=10,0.05999,3.820476,3.820476,0.0,4e-06,PASS,spreadsheet_cell=Tables!D113
+Highway,Figure 14,KHh,Er_ksi=10,0.06488,3.143621,3.143621,0.0,7e-06,PASS,spreadsheet_cell=Tables!D114
+Highway,Figure 14,KHh,Er_ksi=10,0.07005,2.500741,2.500741,0.0,1.4e-05,PASS,spreadsheet_cell=Tables!D115
+Highway,Figure 14,KHh,Er_ksi=10,0.07493,2.020049,2.020049,0.0,2.2e-05,PASS,spreadsheet_cell=Tables!D116
+Highway,Figure 14,KHh,Er_ksi=10,0.08,,1.605,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D117
+Highway,Figure 14,KHh,Er_ksi=10,5.0,,1.605,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!D118
+Highway,Figure 14,KHh,Er_ksi=20,0.01018,,6.856,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F99
+Highway,Figure 14,KHh,Er_ksi=20,0.01061,7.181056,7.181056,0.0,4e-06,PASS,spreadsheet_cell=Tables!F100
+Highway,Figure 14,KHh,Er_ksi=20,0.01211,8.119176,8.119176,0.0,5e-06,PASS,spreadsheet_cell=Tables!F101
+Highway,Figure 14,KHh,Er_ksi=20,0.01394,8.815981,8.815981,0.0,1e-06,PASS,spreadsheet_cell=Tables!F102
+Highway,Figure 14,KHh,Er_ksi=20,0.01541,9.170997,9.170997,0.0,3e-06,PASS,spreadsheet_cell=Tables!F103
+Highway,Figure 14,KHh,Er_ksi=20,0.01729,9.450636,9.450636,0.0,0.0,PASS,spreadsheet_cell=Tables!F104
+Highway,Figure 14,KHh,Er_ksi=20,0.02018,9.580863,9.580863,0.0,0.0,PASS,spreadsheet_cell=Tables!F105
+Highway,Figure 14,KHh,Er_ksi=20,0.02425,9.37069,9.37069,0.0,1e-06,PASS,spreadsheet_cell=Tables!F106
+Highway,Figure 14,KHh,Er_ksi=20,0.02991,8.465908,8.465908,0.0,6e-06,PASS,spreadsheet_cell=Tables!F107
+Highway,Figure 14,KHh,Er_ksi=20,0.03582,7.226154,7.226154,0.0,2e-06,PASS,spreadsheet_cell=Tables!F108
+Highway,Figure 14,KHh,Er_ksi=20,0.04007,6.422059,6.422059,0.0,7e-06,PASS,spreadsheet_cell=Tables!F109
+Highway,Figure 14,KHh,Er_ksi=20,0.04484,5.623595,5.623595,0.0,2e-06,PASS,spreadsheet_cell=Tables!F110
+Highway,Figure 14,KHh,Er_ksi=20,0.05012,4.757844,4.757844,0.0,4e-06,PASS,spreadsheet_cell=Tables!F111
+Highway,Figure 14,KHh,Er_ksi=20,0.05496,4.054534,4.054534,0.0,1e-05,PASS,spreadsheet_cell=Tables!F112
+Highway,Figure 14,KHh,Er_ksi=20,0.05999,3.360369,3.360369,0.0,6e-06,PASS,spreadsheet_cell=Tables!F113
+Highway,Figure 14,KHh,Er_ksi=20,0.06488,2.768625,2.768625,0.0,1.1e-05,PASS,spreadsheet_cell=Tables!F114
+Highway,Figure 14,KHh,Er_ksi=20,0.07005,2.18949,2.18949,0.0,3e-06,PASS,spreadsheet_cell=Tables!F115
+Highway,Figure 14,KHh,Er_ksi=20,0.07493,1.726026,1.726026,0.0,1.4e-05,PASS,spreadsheet_cell=Tables!F116
+Highway,Figure 14,KHh,Er_ksi=20,0.08,1.282862,1.282862,0.0,2.7e-05,PASS,spreadsheet_cell=Tables!F117
+Highway,Figure 14,KHh,Er_ksi=20,5.0,,1.301,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!F118
+Highway,Figure 15,GHh,H_ft=3_to_4,0.0,,1.444,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B123
+Highway,Figure 15,GHh,H_ft=3_to_4,2.124,,1.444,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B124
+Highway,Figure 15,GHh,H_ft=3_to_4,2.35,1.443251,1.443251,0.0,2.5e-05,PASS,spreadsheet_cell=Tables!B125
+Highway,Figure 15,GHh,H_ft=3_to_4,3.172,1.479439,1.479439,0.0,3.3e-05,PASS,spreadsheet_cell=Tables!B126
+Highway,Figure 15,GHh,H_ft=3_to_4,3.952,1.489621,1.489621,0.0,3e-06,PASS,spreadsheet_cell=Tables!B127
+Highway,Figure 15,GHh,H_ft=3_to_4,4.935,1.485303,1.485303,0.0,3e-05,PASS,spreadsheet_cell=Tables!B128
+Highway,Figure 15,GHh,H_ft=3_to_4,6.0,1.467951,1.467951,0.0,1e-05,PASS,spreadsheet_cell=Tables!B129
+Highway,Figure 15,GHh,H_ft=3_to_4,8.0,1.412652,1.412652,0.0,2.2e-05,PASS,spreadsheet_cell=Tables!B130
+Highway,Figure 15,GHh,H_ft=3_to_4,10.0,1.338616,1.338616,0.0,5e-06,PASS,spreadsheet_cell=Tables!B131
+Highway,Figure 15,GHh,H_ft=3_to_4,12.0,1.271013,1.271013,0.0,3.7e-05,PASS,spreadsheet_cell=Tables!B132
+Highway,Figure 15,GHh,H_ft=3_to_4,14.0,1.221771,1.221771,0.0,3e-05,PASS,spreadsheet_cell=Tables!B133
+Highway,Figure 15,GHh,H_ft=3_to_4,18.0,1.167529,1.167529,0.0,2.2e-05,PASS,spreadsheet_cell=Tables!B134
+Highway,Figure 15,GHh,H_ft=3_to_4,30.0,1.047598,1.047598,0.0,3.5e-05,PASS,spreadsheet_cell=Tables!B135
+Highway,Figure 15,GHh,H_ft=3_to_4,40.0,0.961673,0.961673,0.0,3.3e-05,PASS,spreadsheet_cell=Tables!B136
+Highway,Figure 15,GHh,H_ft=3_to_4,42.0,0.944428,0.944428,0.0,2.4e-05,PASS,spreadsheet_cell=Tables!B137
+Highway,Figure 15,GHh,H_ft=3_to_4,60.0,,0.946,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!B138
+Highway,Figure 15,GHh,H_ft=6,0.0,,1.093,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D123
+Highway,Figure 15,GHh,H_ft=6,2.124,,1.093,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D124
+Highway,Figure 15,GHh,H_ft=6,2.35,1.104828,1.104828,0.0,2.5e-05,PASS,spreadsheet_cell=Tables!D125
+Highway,Figure 15,GHh,H_ft=6,3.172,1.140718,1.140718,0.0,3e-06,PASS,spreadsheet_cell=Tables!D126
+Highway,Figure 15,GHh,H_ft=6,3.952,1.156943,1.156943,0.0,4e-06,PASS,spreadsheet_cell=Tables!D127
+Highway,Figure 15,GHh,H_ft=6,4.935,1.163078,1.163078,0.0,2.9e-05,PASS,spreadsheet_cell=Tables!D128
+Highway,Figure 15,GHh,H_ft=6,6.0,1.156804,1.156804,0.0,2.5e-05,PASS,spreadsheet_cell=Tables!D129
+Highway,Figure 15,GHh,H_ft=6,8.0,1.117498,1.117498,0.0,1e-05,PASS,spreadsheet_cell=Tables!D130
+Highway,Figure 15,GHh,H_ft=6,10.0,1.071242,1.071242,0.0,1.3e-05,PASS,spreadsheet_cell=Tables!D131
+Highway,Figure 15,GHh,H_ft=6,12.0,1.029811,1.029811,0.0,4.6e-05,PASS,spreadsheet_cell=Tables!D132
+Highway,Figure 15,GHh,H_ft=6,14.0,0.990883,0.990883,0.0,5e-06,PASS,spreadsheet_cell=Tables!D133
+Highway,Figure 15,GHh,H_ft=6,18.0,0.930285,0.930285,0.0,1.6e-05,PASS,spreadsheet_cell=Tables!D134
+Highway,Figure 15,GHh,H_ft=6,30.0,0.797153,0.797153,0.0,5.5e-05,PASS,spreadsheet_cell=Tables!D135
+Highway,Figure 15,GHh,H_ft=6,40.0,0.72366,0.72366,0.0,6.3e-05,PASS,spreadsheet_cell=Tables!D136
+Highway,Figure 15,GHh,H_ft=6,42.0,,0.714,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D137
+Highway,Figure 15,GHh,H_ft=6,60.0,,0.714,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!D138
+Highway,Figure 15,GHh,H_ft=8,0.0,,0.853,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F123
+Highway,Figure 15,GHh,H_ft=8,2.124,,0.853,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F124
+Highway,Figure 15,GHh,H_ft=8,2.35,0.860202,0.860202,0.0,3.2e-05,PASS,spreadsheet_cell=Tables!F125
+Highway,Figure 15,GHh,H_ft=8,3.172,0.883775,0.883775,0.0,2.5e-05,PASS,spreadsheet_cell=Tables!F126
+Highway,Figure 15,GHh,H_ft=8,3.952,0.893828,0.893828,0.0,5.1e-05,PASS,spreadsheet_cell=Tables!F127
+Highway,Figure 15,GHh,H_ft=8,4.935,0.898807,0.898807,0.0,3.7e-05,PASS,spreadsheet_cell=Tables!F128
+Highway,Figure 15,GHh,H_ft=8,6.0,0.898156,0.898156,0.0,2.9e-05,PASS,spreadsheet_cell=Tables!F129
+Highway,Figure 15,GHh,H_ft=8,8.0,0.886784,0.886784,0.0,3.8e-05,PASS,spreadsheet_cell=Tables!F130
+Highway,Figure 15,GHh,H_ft=8,10.0,0.867725,0.867725,0.0,3.5e-05,PASS,spreadsheet_cell=Tables!F131
+Highway,Figure 15,GHh,H_ft=8,12.0,0.842055,0.842055,0.0,4.3e-05,PASS,spreadsheet_cell=Tables!F132
+Highway,Figure 15,GHh,H_ft=8,14.0,0.809037,0.809037,0.0,3.1e-05,PASS,spreadsheet_cell=Tables!F133
+Highway,Figure 15,GHh,H_ft=8,18.0,0.769823,0.769823,0.0,2.9e-05,PASS,spreadsheet_cell=Tables!F134
+Highway,Figure 15,GHh,H_ft=8,30.0,0.671467,0.671467,0.0,5.9e-05,PASS,spreadsheet_cell=Tables!F135
+Highway,Figure 15,GHh,H_ft=8,40.0,0.594201,0.594201,0.0,5.9e-05,PASS,spreadsheet_cell=Tables!F136
+Highway,Figure 15,GHh,H_ft=8,42.0,,0.579,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F137
+Highway,Figure 15,GHh,H_ft=8,60.0,,0.579,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!F138
+Highway,Figure 15,GHh,H_ft=10,0.0,,0.679,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!H123
+Highway,Figure 15,GHh,H_ft=10,2.124,0.678134,0.678134,0.0,4.4e-05,PASS,spreadsheet_cell=Tables!H124
+Highway,Figure 15,GHh,H_ft=10,2.35,0.685798,0.685798,0.0,4.7e-05,PASS,spreadsheet_cell=Tables!H125
+Highway,Figure 15,GHh,H_ft=10,3.172,0.708519,0.708519,0.0,1e-06,PASS,spreadsheet_cell=Tables!H126
+Highway,Figure 15,GHh,H_ft=10,3.952,0.723409,0.723409,0.0,5e-05,PASS,spreadsheet_cell=Tables!H127
+Highway,Figure 15,GHh,H_ft=10,4.935,0.731013,0.731013,0.0,3.9e-05,PASS,spreadsheet_cell=Tables!H128
+Highway,Figure 15,GHh,H_ft=10,6.0,0.725416,0.725416,0.0,6.8e-05,PASS,spreadsheet_cell=Tables!H129
+Highway,Figure 15,GHh,H_ft=10,8.0,0.711339,0.711339,0.0,6.1e-05,PASS,spreadsheet_cell=Tables!H130
+Highway,Figure 15,GHh,H_ft=10,10.0,0.693973,0.693973,0.0,5.9e-05,PASS,spreadsheet_cell=Tables!H131
+Highway,Figure 15,GHh,H_ft=10,12.0,0.672224,0.672224,0.0,8e-06,PASS,spreadsheet_cell=Tables!H132
+Highway,Figure 15,GHh,H_ft=10,14.0,0.652151,0.652151,0.0,7e-06,PASS,spreadsheet_cell=Tables!H133
+Highway,Figure 15,GHh,H_ft=10,18.0,0.618651,0.618651,0.0,5.7e-05,PASS,spreadsheet_cell=Tables!H134
+Highway,Figure 15,GHh,H_ft=10,30.0,0.534641,0.534641,0.0,4e-05,PASS,spreadsheet_cell=Tables!H135
+Highway,Figure 15,GHh,H_ft=10,40.0,0.475601,0.475601,0.0,8.7e-05,PASS,spreadsheet_cell=Tables!H136
+Highway,Figure 15,GHh,H_ft=10,42.0,0.468122,0.468122,0.0,0.000102,PASS,spreadsheet_cell=Tables!H137
+Highway,Figure 15,GHh,H_ft=10,60.0,,0.469,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!H138
+Highway,Figure 16,KLh,Er_ksi=5,0.0,,14.659,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B244
+Highway,Figure 16,KLh,Er_ksi=5,0.0105,,14.659,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B245
+Highway,Figure 16,KLh,Er_ksi=5,0.015,14.961082,14.961082,0.0,0.0,PASS,spreadsheet_cell=Tables!B246
+Highway,Figure 16,KLh,Er_ksi=5,0.02,14.384148,14.384148,0.0,3e-06,PASS,spreadsheet_cell=Tables!B247
+Highway,Figure 16,KLh,Er_ksi=5,0.025,13.213695,13.213695,0.0,3e-06,PASS,spreadsheet_cell=Tables!B248
+Highway,Figure 16,KLh,Er_ksi=5,0.03,11.688348,11.688348,0.0,3e-06,PASS,spreadsheet_cell=Tables!B249
+Highway,Figure 16,KLh,Er_ksi=5,0.04,9.691049,9.691049,0.0,5e-06,PASS,spreadsheet_cell=Tables!B250
+Highway,Figure 16,KLh,Er_ksi=5,0.05,8.372618,8.372618,0.0,4e-06,PASS,spreadsheet_cell=Tables!B251
+Highway,Figure 16,KLh,Er_ksi=5,0.06,7.554918,7.554918,0.0,5e-06,PASS,spreadsheet_cell=Tables!B252
+Highway,Figure 16,KLh,Er_ksi=5,0.07,7.100218,7.100218,0.0,7e-06,PASS,spreadsheet_cell=Tables!B253
+Highway,Figure 16,KLh,Er_ksi=5,0.08,,6.941,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B254
+Highway,Figure 16,KLh,Er_ksi=5,5.0,,6.941,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!B255
+Highway,Figure 16,KLh,Er_ksi=10,0.0,,9.767,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D244
+Highway,Figure 16,KLh,Er_ksi=10,0.0105,9.866412,9.866412,0.0,3e-06,PASS,spreadsheet_cell=Tables!D245
+Highway,Figure 16,KLh,Er_ksi=10,0.015,10.053912,10.053912,0.0,0.0,PASS,spreadsheet_cell=Tables!D246
+Highway,Figure 16,KLh,Er_ksi=10,0.02,9.749911,9.749911,0.0,3e-06,PASS,spreadsheet_cell=Tables!D247
+Highway,Figure 16,KLh,Er_ksi=10,0.025,9.189622,9.189622,0.0,1e-06,PASS,spreadsheet_cell=Tables!D248
+Highway,Figure 16,KLh,Er_ksi=10,0.03,8.418391,8.418391,0.0,4e-06,PASS,spreadsheet_cell=Tables!D249
+Highway,Figure 16,KLh,Er_ksi=10,0.04,6.837899,6.837899,0.0,6e-06,PASS,spreadsheet_cell=Tables!D250
+Highway,Figure 16,KLh,Er_ksi=10,0.05,5.860413,5.860413,0.0,5e-06,PASS,spreadsheet_cell=Tables!D251
+Highway,Figure 16,KLh,Er_ksi=10,0.06,5.237903,5.237903,0.0,9e-06,PASS,spreadsheet_cell=Tables!D252
+Highway,Figure 16,KLh,Er_ksi=10,0.07,4.861585,4.861585,0.0,8e-06,PASS,spreadsheet_cell=Tables!D253
+Highway,Figure 16,KLh,Er_ksi=10,0.08,4.69134,4.69134,0.0,2e-06,PASS,spreadsheet_cell=Tables!D254
+Highway,Figure 16,KLh,Er_ksi=10,5.0,,4.646,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!D255
+Highway,Figure 16,KLh,Er_ksi=20,0.0,,6.099,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F244
+Highway,Figure 16,KLh,Er_ksi=20,0.0105,,6.099,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F245
+Highway,Figure 16,KLh,Er_ksi=20,0.015,6.554017,6.554017,0.0,1e-06,PASS,spreadsheet_cell=Tables!F246
+Highway,Figure 16,KLh,Er_ksi=20,0.02,6.600147,6.600147,0.0,2e-06,PASS,spreadsheet_cell=Tables!F247
+Highway,Figure 16,KLh,Er_ksi=20,0.025,6.320228,6.320228,0.0,7e-06,PASS,spreadsheet_cell=Tables!F248
+Highway,Figure 16,KLh,Er_ksi=20,0.03,5.781276,5.781276,0.0,5e-06,PASS,spreadsheet_cell=Tables!F249
+Highway,Figure 16,KLh,Er_ksi=20,0.04,4.809873,4.809873,0.0,2e-06,PASS,spreadsheet_cell=Tables!F250
+Highway,Figure 16,KLh,Er_ksi=20,0.05,3.986938,3.986938,0.0,7e-06,PASS,spreadsheet_cell=Tables!F251
+Highway,Figure 16,KLh,Er_ksi=20,0.06,3.392017,3.392017,0.0,1.2e-05,PASS,spreadsheet_cell=Tables!F252
+Highway,Figure 16,KLh,Er_ksi=20,0.07,3.035643,3.035643,0.0,1.5e-05,PASS,spreadsheet_cell=Tables!F253
+Highway,Figure 16,KLh,Er_ksi=20,0.08,,2.993,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F254
+Highway,Figure 16,KLh,Er_ksi=20,5.0,,2.993,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!F255
+Highway,Figure 17,GLh,H_ft=3_to_4,0.0,,2.592,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B260
+Highway,Figure 17,GLh,H_ft=3_to_4,2.297,,2.592,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!B261
+Highway,Figure 17,GLh,H_ft=3_to_4,2.753,2.243292,2.243292,0.0,1.1e-05,PASS,spreadsheet_cell=Tables!B262
+Highway,Figure 17,GLh,H_ft=3_to_4,3.408,2.032642,2.032642,0.0,1e-06,PASS,spreadsheet_cell=Tables!B263
+Highway,Figure 17,GLh,H_ft=3_to_4,4.0,1.895978,1.895978,0.0,2.4e-05,PASS,spreadsheet_cell=Tables!B264
+Highway,Figure 17,GLh,H_ft=3_to_4,4.932,1.72087,1.72087,0.0,2e-06,PASS,spreadsheet_cell=Tables!B265
+Highway,Figure 17,GLh,H_ft=3_to_4,6.0,1.561587,1.561587,0.0,2.2e-05,PASS,spreadsheet_cell=Tables!B266
+Highway,Figure 17,GLh,H_ft=3_to_4,8.0,1.344142,1.344142,0.0,4e-06,PASS,spreadsheet_cell=Tables!B267
+Highway,Figure 17,GLh,H_ft=3_to_4,10.0,1.235659,1.235659,0.0,1.5e-05,PASS,spreadsheet_cell=Tables!B268
+Highway,Figure 17,GLh,H_ft=3_to_4,12.0,1.167128,1.167128,0.0,1e-06,PASS,spreadsheet_cell=Tables!B269
+Highway,Figure 17,GLh,H_ft=3_to_4,14.0,1.119888,1.119888,0.0,1e-05,PASS,spreadsheet_cell=Tables!B270
+Highway,Figure 17,GLh,H_ft=3_to_4,16.0,1.100515,1.100515,0.0,1.3e-05,PASS,spreadsheet_cell=Tables!B271
+Highway,Figure 17,GLh,H_ft=3_to_4,28.0,0.972752,0.972752,0.0,2e-06,PASS,spreadsheet_cell=Tables!B272
+Highway,Figure 17,GLh,H_ft=3_to_4,42.0,0.777945,0.777945,0.0,5.6e-05,PASS,spreadsheet_cell=Tables!B273
+Highway,Figure 17,GLh,H_ft=3_to_4,60.0,,0.775,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!B274
+Highway,Figure 17,GLh,H_ft=6,0.0,,2.592,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D260
+Highway,Figure 17,GLh,H_ft=6,2.297,,2.592,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!D261
+Highway,Figure 17,GLh,H_ft=6,2.753,2.1806,2.1806,0.0,2e-05,PASS,spreadsheet_cell=Tables!D262
+Highway,Figure 17,GLh,H_ft=6,3.408,1.934294,1.934294,0.0,1.9e-05,PASS,spreadsheet_cell=Tables!D263
+Highway,Figure 17,GLh,H_ft=6,4.0,1.783035,1.783035,0.0,1.4e-05,PASS,spreadsheet_cell=Tables!D264
+Highway,Figure 17,GLh,H_ft=6,4.932,1.600855,1.600855,0.0,6e-06,PASS,spreadsheet_cell=Tables!D265
+Highway,Figure 17,GLh,H_ft=6,6.0,1.446723,1.446723,0.0,1.1e-05,PASS,spreadsheet_cell=Tables!D266
+Highway,Figure 17,GLh,H_ft=6,8.0,1.244834,1.244834,0.0,1e-05,PASS,spreadsheet_cell=Tables!D267
+Highway,Figure 17,GLh,H_ft=6,10.0,1.114981,1.114981,0.0,4e-05,PASS,spreadsheet_cell=Tables!D268
+Highway,Figure 17,GLh,H_ft=6,12.0,1.025331,1.025331,0.0,8e-06,PASS,spreadsheet_cell=Tables!D269
+Highway,Figure 17,GLh,H_ft=6,14.0,0.970243,0.970243,0.0,3e-06,PASS,spreadsheet_cell=Tables!D270
+Highway,Figure 17,GLh,H_ft=6,16.0,0.953188,0.953188,0.0,4.1e-05,PASS,spreadsheet_cell=Tables!D271
+Highway,Figure 17,GLh,H_ft=6,28.0,0.832307,0.832307,0.0,2.3e-05,PASS,spreadsheet_cell=Tables!D272
+Highway,Figure 17,GLh,H_ft=6,42.0,0.638361,0.638361,0.0,1e-05,PASS,spreadsheet_cell=Tables!D273
+Highway,Figure 17,GLh,H_ft=6,60.0,,0.632,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!D274
+Highway,Figure 17,GLh,H_ft=8,0.0,,2.592,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F260
+Highway,Figure 17,GLh,H_ft=8,2.297,,2.592,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!F261
+Highway,Figure 17,GLh,H_ft=8,2.753,2.187122,2.187122,0.0,1e-05,PASS,spreadsheet_cell=Tables!F262
+Highway,Figure 17,GLh,H_ft=8,3.408,1.901894,1.901894,0.0,9e-06,PASS,spreadsheet_cell=Tables!F263
+Highway,Figure 17,GLh,H_ft=8,4.0,1.734698,1.734698,0.0,2.2e-05,PASS,spreadsheet_cell=Tables!F264
+Highway,Figure 17,GLh,H_ft=8,4.932,1.536743,1.536743,0.0,1e-06,PASS,spreadsheet_cell=Tables!F265
+Highway,Figure 17,GLh,H_ft=8,6.0,1.370671,1.370671,0.0,1.4e-05,PASS,spreadsheet_cell=Tables!F266
+Highway,Figure 17,GLh,H_ft=8,8.0,1.15401,1.15401,0.0,1.7e-05,PASS,spreadsheet_cell=Tables!F267
+Highway,Figure 17,GLh,H_ft=8,10.0,1.014843,1.014843,0.0,4.7e-05,PASS,spreadsheet_cell=Tables!F268
+Highway,Figure 17,GLh,H_ft=8,12.0,0.919043,0.919043,0.0,3.7e-05,PASS,spreadsheet_cell=Tables!F269
+Highway,Figure 17,GLh,H_ft=8,14.0,0.863391,0.863391,0.0,3.4e-05,PASS,spreadsheet_cell=Tables!F270
+Highway,Figure 17,GLh,H_ft=8,16.0,0.844777,0.844777,0.0,4.8e-05,PASS,spreadsheet_cell=Tables!F271
+Highway,Figure 17,GLh,H_ft=8,28.0,0.718652,0.718652,0.0,1.7e-05,PASS,spreadsheet_cell=Tables!F272
+Highway,Figure 17,GLh,H_ft=8,42.0,0.551925,0.551925,0.0,2.1e-05,PASS,spreadsheet_cell=Tables!F273
+Highway,Figure 17,GLh,H_ft=8,60.0,,0.545,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!F274
+Highway,Figure 17,GLh,H_ft=10,0.0,,2.592,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!H260
+Highway,Figure 17,GLh,H_ft=10,2.297,,2.592,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. spreadsheet_cell=Tables!H261
+Highway,Figure 17,GLh,H_ft=10,2.753,2.075425,2.075425,0.0,0.0,PASS,spreadsheet_cell=Tables!H262
+Highway,Figure 17,GLh,H_ft=10,3.408,1.788156,1.788156,0.0,6e-06,PASS,spreadsheet_cell=Tables!H263
+Highway,Figure 17,GLh,H_ft=10,4.0,1.624652,1.624652,0.0,2e-05,PASS,spreadsheet_cell=Tables!H264
+Highway,Figure 17,GLh,H_ft=10,4.932,1.431857,1.431857,0.0,3.4e-05,PASS,spreadsheet_cell=Tables!H265
+Highway,Figure 17,GLh,H_ft=10,6.0,1.269881,1.269881,0.0,1.3e-05,PASS,spreadsheet_cell=Tables!H266
+Highway,Figure 17,GLh,H_ft=10,8.0,1.057069,1.057069,0.0,1.1e-05,PASS,spreadsheet_cell=Tables!H267
+Highway,Figure 17,GLh,H_ft=10,10.0,0.918893,0.918893,0.0,5.3e-05,PASS,spreadsheet_cell=Tables!H268
+Highway,Figure 17,GLh,H_ft=10,12.0,0.823827,0.823827,0.0,3.6e-05,PASS,spreadsheet_cell=Tables!H269
+Highway,Figure 17,GLh,H_ft=10,14.0,0.768601,0.768601,0.0,9e-06,PASS,spreadsheet_cell=Tables!H270
+Highway,Figure 17,GLh,H_ft=10,16.0,0.740637,0.740637,0.0,5.9e-05,PASS,spreadsheet_cell=Tables!H271
+Highway,Figure 17,GLh,H_ft=10,28.0,0.605588,0.605588,0.0,3e-06,PASS,spreadsheet_cell=Tables!H272
+Highway,Figure 17,GLh,H_ft=10,42.0,0.464465,0.464465,0.0,4.3e-05,PASS,spreadsheet_cell=Tables!H273
+Highway,Figure 17,GLh,H_ft=10,60.0,,0.457,,,REVIEW,Spreadsheet point is outside the digitized curve range or is nonnumeric; treated as guardrail/non-API-derived. Spreadsheet x-value is beyond graph axis maximum. spreadsheet_cell=Tables!H274

@@ -1,0 +1,3996 @@
+{
+  "03": {
+    "figure": "Figure 3",
+    "factor": "KHe",
+    "pdf_page": 19,
+    "api_page": 13,
+    "source_page": "PDF page 19 / API page 13",
+    "frame_pdf_points": [
+      112.45,
+      102.35,
+      551.59,
+      330.57
+    ],
+    "axis_x_range": [
+      0.0,
+      0.08
+    ],
+    "axis_y_range": [
+      0.0,
+      12000.0
+    ],
+    "calibration_supersedes": "first-pass endpoint-span affine calibration",
+    "axis_calibrations": {
+      "x": {
+        "axis_name": "x",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_x",
+        "source_label": "bottom primary tw/D visible ticks",
+        "ignored_secondary_axis": "top duplicate ticks",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 112.45,
+            "label": "0.0"
+          },
+          {
+            "value": 0.005,
+            "page_coord": 141.1,
+            "label": "0.005"
+          },
+          {
+            "value": 0.01,
+            "page_coord": 169.26,
+            "label": "0.01"
+          },
+          {
+            "value": 0.015,
+            "page_coord": 195.93,
+            "label": "0.015"
+          },
+          {
+            "value": 0.02,
+            "page_coord": 224.09,
+            "label": "0.02"
+          },
+          {
+            "value": 0.025,
+            "page_coord": 251.75,
+            "label": "0.025"
+          },
+          {
+            "value": 0.03,
+            "page_coord": 278.92,
+            "label": "0.03"
+          },
+          {
+            "value": 0.035,
+            "page_coord": 307.08,
+            "label": "0.035"
+          },
+          {
+            "value": 0.04,
+            "page_coord": 334.74,
+            "label": "0.04"
+          },
+          {
+            "value": 0.045,
+            "page_coord": 361.91,
+            "label": "0.045"
+          },
+          {
+            "value": 0.05,
+            "page_coord": 389.57,
+            "label": "0.05"
+          },
+          {
+            "value": 0.055,
+            "page_coord": 417.23,
+            "label": "0.055"
+          },
+          {
+            "value": 0.06,
+            "page_coord": 444.4,
+            "label": "0.06"
+          },
+          {
+            "value": 0.065,
+            "page_coord": 471.57,
+            "label": "0.065"
+          },
+          {
+            "value": 0.07,
+            "page_coord": 499.23,
+            "label": "0.07"
+          },
+          {
+            "value": 0.075,
+            "page_coord": 526.4,
+            "label": "0.075"
+          },
+          {
+            "value": 0.08,
+            "page_coord": 551.59,
+            "label": "0.08"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      },
+      "y": {
+        "axis_name": "y",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_y",
+        "source_label": "left primary KHe visible ticks",
+        "ignored_secondary_axis": "right-side duplicate or secondary ticks when present",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 330.57,
+            "label": "0.0"
+          },
+          {
+            "value": 1000.0,
+            "page_coord": 303.89,
+            "label": "1000.0"
+          },
+          {
+            "value": 2000.0,
+            "page_coord": 285.86,
+            "label": "2000.0"
+          },
+          {
+            "value": 3000.0,
+            "page_coord": 267.09,
+            "label": "3000.0"
+          },
+          {
+            "value": 4000.0,
+            "page_coord": 248.82,
+            "label": "4000.0"
+          },
+          {
+            "value": 5000.0,
+            "page_coord": 230.29,
+            "label": "5000.0"
+          },
+          {
+            "value": 6000.0,
+            "page_coord": 212.26,
+            "label": "6000.0"
+          },
+          {
+            "value": 7000.0,
+            "page_coord": 193.74,
+            "label": "7000.0"
+          },
+          {
+            "value": 8000.0,
+            "page_coord": 175.96,
+            "label": "8000.0"
+          },
+          {
+            "value": 9000.0,
+            "page_coord": 157.43,
+            "label": "9000.0"
+          },
+          {
+            "value": 10000.0,
+            "page_coord": 139.9,
+            "label": "10000.0"
+          },
+          {
+            "value": 11000.0,
+            "page_coord": 120.63,
+            "label": "11000.0"
+          },
+          {
+            "value": 12000.0,
+            "page_coord": 102.35,
+            "label": "12000.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      }
+    },
+    "orientation": "normal",
+    "x_units": "tw/D",
+    "y_units": "dimensionless",
+    "graph_note": "KHe curves converge; the single visible common tail is reused for upper E' curves after their unique strokes end.",
+    "curves": {
+      "E_prime_ksi=0.2": {
+        "drawing_parts": [
+          {
+            "drawing_id": 60,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": 57,
+        "curve_x_range": [
+          0.007456,
+          0.079804
+        ],
+        "curve_y_range": [
+          92.655119,
+          11621.499894
+        ],
+        "notes": "Shared common tail after curve convergence."
+      },
+      "E_prime_ksi=0.5": {
+        "drawing_parts": [
+          {
+            "drawing_id": 59,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": 57,
+        "curve_x_range": [
+          0.007281,
+          0.079804
+        ],
+        "curve_y_range": [
+          92.655119,
+          7639.088067
+        ],
+        "notes": "Shared common tail after curve convergence."
+      },
+      "E_prime_ksi=1.0": {
+        "drawing_parts": [
+          {
+            "drawing_id": 58,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": 57,
+        "curve_x_range": [
+          0.006902,
+          0.079804
+        ],
+        "curve_y_range": [
+          92.655119,
+          5755.188806
+        ],
+        "notes": "Shared common tail after curve convergence."
+      },
+      "E_prime_ksi=2.0": {
+        "drawing_parts": [
+          {
+            "drawing_id": 57,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          0.006842,
+          0.079804
+        ],
+        "curve_y_range": [
+          92.655119,
+          4440.098326
+        ],
+        "notes": ""
+      }
+    }
+  },
+  "04": {
+    "figure": "Figure 4",
+    "factor": "Be",
+    "pdf_page": 19,
+    "api_page": 13,
+    "source_page": "PDF page 19 / API page 13",
+    "frame_pdf_points": [
+      161.94,
+      422.13,
+      487.56,
+      665.24
+    ],
+    "axis_x_range": [
+      0.0,
+      32.0
+    ],
+    "axis_y_range": [
+      0.0,
+      1.5
+    ],
+    "calibration_supersedes": "first-pass endpoint-span affine calibration",
+    "axis_calibrations": {
+      "x": {
+        "axis_name": "x",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_x",
+        "source_label": "bottom primary H/Bd visible ticks",
+        "ignored_secondary_axis": "top duplicate ticks",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 161.94,
+            "label": "0.0"
+          },
+          {
+            "value": 2.0,
+            "page_coord": 182.85,
+            "label": "2.0"
+          },
+          {
+            "value": 4.0,
+            "page_coord": 203.47,
+            "label": "4.0"
+          },
+          {
+            "value": 6.0,
+            "page_coord": 223.82,
+            "label": "6.0"
+          },
+          {
+            "value": 8.0,
+            "page_coord": 243.9,
+            "label": "8.0"
+          },
+          {
+            "value": 10.0,
+            "page_coord": 263.98,
+            "label": "10.0"
+          },
+          {
+            "value": 12.0,
+            "page_coord": 284.6,
+            "label": "12.0"
+          },
+          {
+            "value": 14.0,
+            "page_coord": 305.23,
+            "label": "14.0"
+          },
+          {
+            "value": 16.0,
+            "page_coord": 325.58,
+            "label": "16.0"
+          },
+          {
+            "value": 18.0,
+            "page_coord": 345.93,
+            "label": "18.0"
+          },
+          {
+            "value": 20.0,
+            "page_coord": 366.56,
+            "label": "20.0"
+          },
+          {
+            "value": 22.0,
+            "page_coord": 386.63,
+            "label": "22.0"
+          },
+          {
+            "value": 24.0,
+            "page_coord": 406.98,
+            "label": "24.0"
+          },
+          {
+            "value": 26.0,
+            "page_coord": 427.34,
+            "label": "26.0"
+          },
+          {
+            "value": 28.0,
+            "page_coord": 447.69,
+            "label": "28.0"
+          },
+          {
+            "value": 30.0,
+            "page_coord": 468.31,
+            "label": "30.0"
+          },
+          {
+            "value": 32.0,
+            "page_coord": 487.56,
+            "label": "32.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      },
+      "y": {
+        "axis_name": "y",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_y",
+        "source_label": "left primary Be visible ticks",
+        "ignored_secondary_axis": "right-side duplicate or secondary ticks when present",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 665.24,
+            "label": "0.0"
+          },
+          {
+            "value": 0.1,
+            "page_coord": 649.16,
+            "label": "0.1"
+          },
+          {
+            "value": 0.2,
+            "page_coord": 633.07,
+            "label": "0.2"
+          },
+          {
+            "value": 0.3,
+            "page_coord": 616.85,
+            "label": "0.3"
+          },
+          {
+            "value": 0.4,
+            "page_coord": 600.48,
+            "label": "0.4"
+          },
+          {
+            "value": 0.5,
+            "page_coord": 583.98,
+            "label": "0.5"
+          },
+          {
+            "value": 0.6,
+            "page_coord": 567.48,
+            "label": "0.6"
+          },
+          {
+            "value": 0.7,
+            "page_coord": 550.98,
+            "label": "0.7"
+          },
+          {
+            "value": 0.8,
+            "page_coord": 534.89,
+            "label": "0.8"
+          },
+          {
+            "value": 0.9,
+            "page_coord": 518.67,
+            "label": "0.9"
+          },
+          {
+            "value": 1.0,
+            "page_coord": 502.58,
+            "label": "1.0"
+          },
+          {
+            "value": 1.1,
+            "page_coord": 486.62,
+            "label": "1.1"
+          },
+          {
+            "value": 1.2,
+            "page_coord": 470.81,
+            "label": "1.2"
+          },
+          {
+            "value": 1.3,
+            "page_coord": 454.31,
+            "label": "1.3"
+          },
+          {
+            "value": 1.4,
+            "page_coord": 438.36,
+            "label": "1.4"
+          },
+          {
+            "value": 1.5,
+            "page_coord": 422.13,
+            "label": "1.5"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      }
+    },
+    "orientation": "normal",
+    "x_units": "H/Bd",
+    "y_units": "dimensionless",
+    "graph_note": "",
+    "curves": {
+      "soil_type=A": {
+        "drawing_parts": [
+          {
+            "drawing_id": 404,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          0.120039,
+          30.1355
+        ],
+        "curve_y_range": [
+          0.003856,
+          1.360803
+        ],
+        "notes": ""
+      },
+      "soil_type=B": {
+        "drawing_parts": [
+          {
+            "drawing_id": 403,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          0.167863,
+          30.087003
+        ],
+        "curve_y_range": [
+          0.000746,
+          1.16988
+        ],
+        "notes": ""
+      }
+    }
+  },
+  "05": {
+    "figure": "Figure 5",
+    "factor": "Ee",
+    "pdf_page": 20,
+    "api_page": 14,
+    "source_page": "PDF page 20 / API page 14",
+    "frame_pdf_points": [
+      155.79,
+      136.97,
+      479.21,
+      356.43
+    ],
+    "axis_x_range": [
+      1.0,
+      1.3
+    ],
+    "axis_y_range": [
+      0.8,
+      1.4
+    ],
+    "calibration_supersedes": "first-pass endpoint-span affine calibration",
+    "axis_calibrations": {
+      "x": {
+        "axis_name": "x",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_x",
+        "source_label": "bottom primary Bd/D labeled ticks",
+        "ignored_secondary_axis": "none",
+        "ticks": [
+          {
+            "value": 1.0,
+            "page_coord": 155.79,
+            "label": "1.0"
+          },
+          {
+            "value": 1.05,
+            "page_coord": 208.06,
+            "label": "1.05"
+          },
+          {
+            "value": 1.1,
+            "page_coord": 262.44,
+            "label": "1.1"
+          },
+          {
+            "value": 1.15,
+            "page_coord": 317.94,
+            "label": "1.15"
+          },
+          {
+            "value": 1.2,
+            "page_coord": 373.44,
+            "label": "1.2"
+          },
+          {
+            "value": 1.25,
+            "page_coord": 427.94,
+            "label": "1.25"
+          },
+          {
+            "value": 1.3,
+            "page_coord": 479.21,
+            "label": "1.3"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      },
+      "y": {
+        "axis_name": "y",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_y",
+        "source_label": "left primary Ee labeled ticks",
+        "ignored_secondary_axis": "none",
+        "ticks": [
+          {
+            "value": 0.8,
+            "page_coord": 356.43,
+            "label": "0.8"
+          },
+          {
+            "value": 0.9,
+            "page_coord": 319.17,
+            "label": "0.9"
+          },
+          {
+            "value": 1.0,
+            "page_coord": 282.17,
+            "label": "1.0"
+          },
+          {
+            "value": 1.1,
+            "page_coord": 245.29,
+            "label": "1.1"
+          },
+          {
+            "value": 1.2,
+            "page_coord": 209.29,
+            "label": "1.2"
+          },
+          {
+            "value": 1.3,
+            "page_coord": 172.69,
+            "label": "1.3"
+          },
+          {
+            "value": 1.4,
+            "page_coord": 136.97,
+            "label": "1.4"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      }
+    },
+    "orientation": "normal",
+    "x_units": "Bd/D",
+    "y_units": "dimensionless",
+    "graph_note": "",
+    "curves": {
+      "Ee": {
+        "drawing_parts": [
+          {
+            "drawing_id": 5,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          1.000195,
+          1.298827
+        ],
+        "curve_y_range": [
+          0.830142,
+          1.397981
+        ],
+        "notes": ""
+      }
+    }
+  },
+  "07": {
+    "figure": "Figure 7",
+    "factor": "Fi",
+    "pdf_page": 22,
+    "api_page": 16,
+    "source_page": "PDF page 22 / API page 16",
+    "frame_pdf_points": [
+      195.69,
+      128.27,
+      406.35,
+      447.28
+    ],
+    "axis_x_range": [
+      1.0,
+      2.0
+    ],
+    "axis_y_range": [
+      0.0,
+      30.0
+    ],
+    "calibration_supersedes": "first-pass endpoint-span affine calibration",
+    "axis_calibrations": {
+      "x": {
+        "axis_name": "x",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_y",
+        "source_label": "left primary depth H feet labeled ticks",
+        "ignored_secondary_axis": "right metric depth axis",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 128.27,
+            "label": "0.0"
+          },
+          {
+            "value": 5.0,
+            "page_coord": 181.07,
+            "label": "5.0"
+          },
+          {
+            "value": 10.0,
+            "page_coord": 233.32,
+            "label": "10.0"
+          },
+          {
+            "value": 15.0,
+            "page_coord": 286.12,
+            "label": "15.0"
+          },
+          {
+            "value": 20.0,
+            "page_coord": 340.02,
+            "label": "20.0"
+          },
+          {
+            "value": 25.0,
+            "page_coord": 392.83,
+            "label": "25.0"
+          },
+          {
+            "value": 30.0,
+            "page_coord": 447.28,
+            "label": "30.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      },
+      "y": {
+        "axis_name": "y",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_x",
+        "source_label": "top primary Fi labeled ticks",
+        "ignored_secondary_axis": "none",
+        "ticks": [
+          {
+            "value": 1.0,
+            "page_coord": 195.69,
+            "label": "1.0"
+          },
+          {
+            "value": 1.25,
+            "page_coord": 249.05,
+            "label": "1.25"
+          },
+          {
+            "value": 1.5,
+            "page_coord": 302.4,
+            "label": "1.5"
+          },
+          {
+            "value": 1.75,
+            "page_coord": 354.1,
+            "label": "1.75"
+          },
+          {
+            "value": 2.0,
+            "page_coord": 406.35,
+            "label": "2.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      }
+    },
+    "orientation": "depth_on_y",
+    "x_units": "ft",
+    "y_units": "dimensionless",
+    "graph_note": "Graph plots Fi on the horizontal axis and depth on the vertical axis; CSV normalizes x as depth H.",
+    "curves": {
+      "crossing=highway": {
+        "drawing_parts": [
+          {
+            "drawing_id": 14,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          0.05161,
+          21.718897
+        ],
+        "curve_y_range": [
+          1.000019,
+          1.502573
+        ],
+        "notes": ""
+      },
+      "crossing=railroad": {
+        "drawing_parts": [
+          {
+            "drawing_id": 15,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          0.0,
+          29.999818
+        ],
+        "curve_y_range": [
+          1.000019,
+          1.750005
+        ],
+        "notes": ""
+      }
+    }
+  },
+  "08": {
+    "figure": "Figure 8",
+    "factor": "KHr",
+    "pdf_page": 23,
+    "api_page": 17,
+    "source_page": "PDF page 23 / API page 17",
+    "frame_pdf_points": [
+      161.41,
+      107.62,
+      475.76,
+      303.96
+    ],
+    "axis_x_range": [
+      0.0,
+      0.08
+    ],
+    "axis_y_range": [
+      0.0,
+      500.0
+    ],
+    "calibration_supersedes": "first-pass endpoint-span affine calibration",
+    "axis_calibrations": {
+      "x": {
+        "axis_name": "x",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_x",
+        "source_label": "bottom primary tw/D visible ticks",
+        "ignored_secondary_axis": "top duplicate ticks",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 161.41,
+            "label": "0.0"
+          },
+          {
+            "value": 0.005,
+            "page_coord": 182.56,
+            "label": "0.005"
+          },
+          {
+            "value": 0.01,
+            "page_coord": 201.62,
+            "label": "0.01"
+          },
+          {
+            "value": 0.015,
+            "page_coord": 220.94,
+            "label": "0.015"
+          },
+          {
+            "value": 0.02,
+            "page_coord": 240.0,
+            "label": "0.02"
+          },
+          {
+            "value": 0.025,
+            "page_coord": 260.63,
+            "label": "0.025"
+          },
+          {
+            "value": 0.03,
+            "page_coord": 279.69,
+            "label": "0.03"
+          },
+          {
+            "value": 0.035,
+            "page_coord": 299.53,
+            "label": "0.035"
+          },
+          {
+            "value": 0.04,
+            "page_coord": 318.59,
+            "label": "0.04"
+          },
+          {
+            "value": 0.045,
+            "page_coord": 339.22,
+            "label": "0.045"
+          },
+          {
+            "value": 0.05,
+            "page_coord": 358.28,
+            "label": "0.05"
+          },
+          {
+            "value": 0.055,
+            "page_coord": 377.34,
+            "label": "0.055"
+          },
+          {
+            "value": 0.06,
+            "page_coord": 396.4,
+            "label": "0.06"
+          },
+          {
+            "value": 0.065,
+            "page_coord": 417.54,
+            "label": "0.065"
+          },
+          {
+            "value": 0.07,
+            "page_coord": 436.6,
+            "label": "0.07"
+          },
+          {
+            "value": 0.075,
+            "page_coord": 456.71,
+            "label": "0.075"
+          },
+          {
+            "value": 0.08,
+            "page_coord": 475.76,
+            "label": "0.08"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      },
+      "y": {
+        "axis_name": "y",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_y",
+        "source_label": "left primary KHr visible ticks",
+        "ignored_secondary_axis": "right-side duplicate or secondary ticks when present",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 303.96,
+            "label": "0.0"
+          },
+          {
+            "value": 50.0,
+            "page_coord": 283.34,
+            "label": "50.0"
+          },
+          {
+            "value": 100.0,
+            "page_coord": 264.28,
+            "label": "100.0"
+          },
+          {
+            "value": 150.0,
+            "page_coord": 244.17,
+            "label": "150.0"
+          },
+          {
+            "value": 200.0,
+            "page_coord": 225.11,
+            "label": "200.0"
+          },
+          {
+            "value": 250.0,
+            "page_coord": 206.05,
+            "label": "250.0"
+          },
+          {
+            "value": 300.0,
+            "page_coord": 185.95,
+            "label": "300.0"
+          },
+          {
+            "value": 350.0,
+            "page_coord": 166.37,
+            "label": "350.0"
+          },
+          {
+            "value": 400.0,
+            "page_coord": 146.78,
+            "label": "400.0"
+          },
+          {
+            "value": 450.0,
+            "page_coord": 127.2,
+            "label": "450.0"
+          },
+          {
+            "value": 500.0,
+            "page_coord": 107.62,
+            "label": "500.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      }
+    },
+    "orientation": "normal",
+    "x_units": "tw/D",
+    "y_units": "dimensionless",
+    "graph_note": "",
+    "curves": {
+      "Er_ksi=5": {
+        "drawing_parts": [
+          {
+            "drawing_id": 59,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          0.010421,
+          0.079999
+        ],
+        "curve_y_range": [
+          45.683814,
+          474.129379
+        ],
+        "notes": ""
+      },
+      "Er_ksi=10": {
+        "drawing_parts": [
+          {
+            "drawing_id": 60,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          0.010295,
+          0.079999
+        ],
+        "curve_y_range": [
+          40.227872,
+          338.28391
+        ],
+        "notes": ""
+      },
+      "Er_ksi=20": {
+        "drawing_parts": [
+          {
+            "drawing_id": 61,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          0.010295,
+          0.079999
+        ],
+        "curve_y_range": [
+          34.772078,
+          241.112142
+        ],
+        "notes": ""
+      }
+    }
+  },
+  "09": {
+    "figure": "Figure 9",
+    "factor": "GHr",
+    "pdf_page": 24,
+    "api_page": 18,
+    "source_page": "PDF page 24 / API page 18",
+    "frame_pdf_points": [
+      171.59,
+      151.51,
+      471.29,
+      366.03
+    ],
+    "axis_x_range": [
+      0.0,
+      42.0
+    ],
+    "axis_y_range": [
+      0.0,
+      1.25
+    ],
+    "calibration_supersedes": "first-pass endpoint-span affine calibration",
+    "axis_calibrations": {
+      "x": {
+        "axis_name": "x",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_x",
+        "source_label": "bottom primary diameter D inches visible ticks",
+        "ignored_secondary_axis": "top metric diameter axis",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 171.59,
+            "label": "0.0"
+          },
+          {
+            "value": 2.0,
+            "page_coord": 185.1,
+            "label": "2.0"
+          },
+          {
+            "value": 4.0,
+            "page_coord": 199.64,
+            "label": "4.0"
+          },
+          {
+            "value": 6.0,
+            "page_coord": 213.66,
+            "label": "6.0"
+          },
+          {
+            "value": 8.0,
+            "page_coord": 228.21,
+            "label": "8.0"
+          },
+          {
+            "value": 10.0,
+            "page_coord": 242.75,
+            "label": "10.0"
+          },
+          {
+            "value": 12.0,
+            "page_coord": 256.78,
+            "label": "12.0"
+          },
+          {
+            "value": 14.0,
+            "page_coord": 271.32,
+            "label": "14.0"
+          },
+          {
+            "value": 16.0,
+            "page_coord": 285.86,
+            "label": "16.0"
+          },
+          {
+            "value": 18.0,
+            "page_coord": 299.37,
+            "label": "18.0"
+          },
+          {
+            "value": 20.0,
+            "page_coord": 313.91,
+            "label": "20.0"
+          },
+          {
+            "value": 22.0,
+            "page_coord": 328.45,
+            "label": "22.0"
+          },
+          {
+            "value": 24.0,
+            "page_coord": 343.0,
+            "label": "24.0"
+          },
+          {
+            "value": 26.0,
+            "page_coord": 357.02,
+            "label": "26.0"
+          },
+          {
+            "value": 28.0,
+            "page_coord": 371.57,
+            "label": "28.0"
+          },
+          {
+            "value": 30.0,
+            "page_coord": 385.96,
+            "label": "30.0"
+          },
+          {
+            "value": 32.0,
+            "page_coord": 400.13,
+            "label": "32.0"
+          },
+          {
+            "value": 34.0,
+            "page_coord": 414.68,
+            "label": "34.0"
+          },
+          {
+            "value": 36.0,
+            "page_coord": 429.22,
+            "label": "36.0"
+          },
+          {
+            "value": 38.0,
+            "page_coord": 443.76,
+            "label": "38.0"
+          },
+          {
+            "value": 40.0,
+            "page_coord": 458.3,
+            "label": "40.0"
+          },
+          {
+            "value": 42.0,
+            "page_coord": 471.29,
+            "label": "42.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      },
+      "y": {
+        "axis_name": "y",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_y",
+        "source_label": "left primary GHr labeled ticks",
+        "ignored_secondary_axis": "right-side duplicate or secondary ticks when present",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 366.03,
+            "label": "0.0"
+          },
+          {
+            "value": 0.25,
+            "page_coord": 322.4,
+            "label": "0.25"
+          },
+          {
+            "value": 0.5,
+            "page_coord": 279.29,
+            "label": "0.5"
+          },
+          {
+            "value": 0.75,
+            "page_coord": 236.7,
+            "label": "0.75"
+          },
+          {
+            "value": 1.0,
+            "page_coord": 194.62,
+            "label": "1.0"
+          },
+          {
+            "value": 1.25,
+            "page_coord": 151.51,
+            "label": "1.25"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      }
+    },
+    "orientation": "normal",
+    "x_units": "in",
+    "y_units": "dimensionless",
+    "graph_note": "",
+    "curves": {
+      "H_ft=6": {
+        "drawing_parts": [
+          {
+            "drawing_id": 53,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.312241,
+          42.0
+        ],
+        "curve_y_range": [
+          0.5737,
+          1.087431
+        ],
+        "notes": ""
+      },
+      "H_ft=10": {
+        "drawing_parts": [
+          {
+            "drawing_id": 51,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.188008,
+          42.0
+        ],
+        "curve_y_range": [
+          0.448114,
+          0.726262
+        ],
+        "notes": ""
+      },
+      "H_ft=14": {
+        "drawing_parts": [
+          {
+            "drawing_id": 52,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          1.96595,
+          42.0
+        ],
+        "curve_y_range": [
+          0.33503,
+          0.507716
+        ],
+        "notes": ""
+      }
+    }
+  },
+  "10": {
+    "figure": "Figure 10",
+    "factor": "NH",
+    "pdf_page": 25,
+    "api_page": 19,
+    "source_page": "PDF page 25 / API page 19",
+    "frame_pdf_points": [
+      163.51,
+      127.85,
+      477.62,
+      360.38
+    ],
+    "axis_x_range": [
+      0.0,
+      42.0
+    ],
+    "axis_y_range": [
+      0.5,
+      2.0
+    ],
+    "calibration_supersedes": "first-pass endpoint-span affine calibration",
+    "axis_calibrations": {
+      "x": {
+        "axis_name": "x",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_x",
+        "source_label": "bottom primary diameter D inches visible ticks",
+        "ignored_secondary_axis": "top metric diameter axis",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 163.51,
+            "label": "0.0"
+          },
+          {
+            "value": 2.0,
+            "page_coord": 179.31,
+            "label": "2.0"
+          },
+          {
+            "value": 4.0,
+            "page_coord": 194.61,
+            "label": "4.0"
+          },
+          {
+            "value": 6.0,
+            "page_coord": 210.04,
+            "label": "6.0"
+          },
+          {
+            "value": 8.0,
+            "page_coord": 224.57,
+            "label": "8.0"
+          },
+          {
+            "value": 10.0,
+            "page_coord": 239.48,
+            "label": "10.0"
+          },
+          {
+            "value": 12.0,
+            "page_coord": 254.4,
+            "label": "12.0"
+          },
+          {
+            "value": 14.0,
+            "page_coord": 269.44,
+            "label": "14.0"
+          },
+          {
+            "value": 16.0,
+            "page_coord": 284.74,
+            "label": "16.0"
+          },
+          {
+            "value": 18.0,
+            "page_coord": 299.27,
+            "label": "18.0"
+          },
+          {
+            "value": 20.0,
+            "page_coord": 314.06,
+            "label": "20.0"
+          },
+          {
+            "value": 22.0,
+            "page_coord": 329.36,
+            "label": "22.0"
+          },
+          {
+            "value": 24.0,
+            "page_coord": 344.15,
+            "label": "24.0"
+          },
+          {
+            "value": 26.0,
+            "page_coord": 358.68,
+            "label": "26.0"
+          },
+          {
+            "value": 28.0,
+            "page_coord": 373.85,
+            "label": "28.0"
+          },
+          {
+            "value": 30.0,
+            "page_coord": 388.39,
+            "label": "30.0"
+          },
+          {
+            "value": 32.0,
+            "page_coord": 403.94,
+            "label": "32.0"
+          },
+          {
+            "value": 34.0,
+            "page_coord": 419.11,
+            "label": "34.0"
+          },
+          {
+            "value": 36.0,
+            "page_coord": 433.51,
+            "label": "36.0"
+          },
+          {
+            "value": 38.0,
+            "page_coord": 448.94,
+            "label": "38.0"
+          },
+          {
+            "value": 40.0,
+            "page_coord": 463.86,
+            "label": "40.0"
+          },
+          {
+            "value": 42.0,
+            "page_coord": 477.62,
+            "label": "42.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      },
+      "y": {
+        "axis_name": "y",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_y",
+        "source_label": "left primary NH visible ticks",
+        "ignored_secondary_axis": "right-side duplicate or secondary ticks when present",
+        "ticks": [
+          {
+            "value": 0.5,
+            "page_coord": 360.38,
+            "label": "0.5"
+          },
+          {
+            "value": 0.6,
+            "page_coord": 346.62,
+            "label": "0.6"
+          },
+          {
+            "value": 0.7,
+            "page_coord": 331.44,
+            "label": "0.7"
+          },
+          {
+            "value": 0.8,
+            "page_coord": 315.25,
+            "label": "0.8"
+          },
+          {
+            "value": 0.9,
+            "page_coord": 299.83,
+            "label": "0.9"
+          },
+          {
+            "value": 1.0,
+            "page_coord": 284.15,
+            "label": "1.0"
+          },
+          {
+            "value": 1.1,
+            "page_coord": 268.59,
+            "label": "1.1"
+          },
+          {
+            "value": 1.2,
+            "page_coord": 252.4,
+            "label": "1.2"
+          },
+          {
+            "value": 1.3,
+            "page_coord": 236.6,
+            "label": "1.3"
+          },
+          {
+            "value": 1.4,
+            "page_coord": 220.53,
+            "label": "1.4"
+          },
+          {
+            "value": 1.5,
+            "page_coord": 204.98,
+            "label": "1.5"
+          },
+          {
+            "value": 1.6,
+            "page_coord": 189.17,
+            "label": "1.6"
+          },
+          {
+            "value": 1.7,
+            "page_coord": 173.49,
+            "label": "1.7"
+          },
+          {
+            "value": 1.8,
+            "page_coord": 157.81,
+            "label": "1.8"
+          },
+          {
+            "value": 1.9,
+            "page_coord": 142.13,
+            "label": "1.9"
+          },
+          {
+            "value": 2.0,
+            "page_coord": 127.85,
+            "label": "2.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      }
+    },
+    "orientation": "normal",
+    "x_units": "in",
+    "y_units": "dimensionless",
+    "graph_note": "",
+    "curves": {
+      "H_ft=6": {
+        "drawing_parts": [
+          {
+            "drawing_id": 65,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          1.871266,
+          41.999999
+        ],
+        "curve_y_range": [
+          1.063939,
+          1.258886
+        ],
+        "notes": ""
+      },
+      "H_ft=10": {
+        "drawing_parts": [
+          {
+            "drawing_id": 64,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.064936,
+          41.92587
+        ],
+        "curve_y_range": [
+          1.210481,
+          1.409009
+        ],
+        "notes": ""
+      },
+      "H_ft=14": {
+        "drawing_parts": [
+          {
+            "drawing_id": 63,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.129367,
+          41.999999
+        ],
+        "curve_y_range": [
+          1.357947,
+          1.5621
+        ],
+        "notes": ""
+      }
+    }
+  },
+  "11": {
+    "figure": "Figure 11",
+    "factor": "KLr",
+    "pdf_page": 25,
+    "api_page": 19,
+    "source_page": "PDF page 25 / API page 19",
+    "frame_pdf_points": [
+      167.15,
+      433.41,
+      497.72,
+      680.37
+    ],
+    "axis_x_range": [
+      0.0,
+      0.08
+    ],
+    "axis_y_range": [
+      0.0,
+      600.0
+    ],
+    "calibration_supersedes": "first-pass endpoint-span affine calibration",
+    "axis_calibrations": {
+      "x": {
+        "axis_name": "x",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_x",
+        "source_label": "bottom primary tw/D visible ticks",
+        "ignored_secondary_axis": "top duplicate ticks",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 167.15,
+            "label": "0.0"
+          },
+          {
+            "value": 0.005,
+            "page_coord": 188.05,
+            "label": "0.005"
+          },
+          {
+            "value": 0.01,
+            "page_coord": 208.54,
+            "label": "0.01"
+          },
+          {
+            "value": 0.015,
+            "page_coord": 229.03,
+            "label": "0.015"
+          },
+          {
+            "value": 0.02,
+            "page_coord": 249.52,
+            "label": "0.02"
+          },
+          {
+            "value": 0.025,
+            "page_coord": 270.56,
+            "label": "0.025"
+          },
+          {
+            "value": 0.03,
+            "page_coord": 291.05,
+            "label": "0.03"
+          },
+          {
+            "value": 0.035,
+            "page_coord": 311.81,
+            "label": "0.035"
+          },
+          {
+            "value": 0.04,
+            "page_coord": 332.3,
+            "label": "0.04"
+          },
+          {
+            "value": 0.045,
+            "page_coord": 353.61,
+            "label": "0.045"
+          },
+          {
+            "value": 0.05,
+            "page_coord": 374.1,
+            "label": "0.05"
+          },
+          {
+            "value": 0.055,
+            "page_coord": 394.86,
+            "label": "0.055"
+          },
+          {
+            "value": 0.06,
+            "page_coord": 415.35,
+            "label": "0.06"
+          },
+          {
+            "value": 0.065,
+            "page_coord": 436.12,
+            "label": "0.065"
+          },
+          {
+            "value": 0.07,
+            "page_coord": 456.61,
+            "label": "0.07"
+          },
+          {
+            "value": 0.075,
+            "page_coord": 477.92,
+            "label": "0.075"
+          },
+          {
+            "value": 0.08,
+            "page_coord": 497.72,
+            "label": "0.08"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      },
+      "y": {
+        "axis_name": "y",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_y",
+        "source_label": "left primary KLr visible ticks",
+        "ignored_secondary_axis": "right-side duplicate or secondary ticks when present",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 680.37,
+            "label": "0.0"
+          },
+          {
+            "value": 50.0,
+            "page_coord": 660.02,
+            "label": "50.0"
+          },
+          {
+            "value": 100.0,
+            "page_coord": 639.53,
+            "label": "100.0"
+          },
+          {
+            "value": 150.0,
+            "page_coord": 619.04,
+            "label": "150.0"
+          },
+          {
+            "value": 200.0,
+            "page_coord": 598.56,
+            "label": "200.0"
+          },
+          {
+            "value": 250.0,
+            "page_coord": 578.34,
+            "label": "250.0"
+          },
+          {
+            "value": 300.0,
+            "page_coord": 557.58,
+            "label": "300.0"
+          },
+          {
+            "value": 350.0,
+            "page_coord": 536.81,
+            "label": "350.0"
+          },
+          {
+            "value": 400.0,
+            "page_coord": 515.78,
+            "label": "400.0"
+          },
+          {
+            "value": 450.0,
+            "page_coord": 495.01,
+            "label": "450.0"
+          },
+          {
+            "value": 500.0,
+            "page_coord": 474.25,
+            "label": "500.0"
+          },
+          {
+            "value": 550.0,
+            "page_coord": 453.76,
+            "label": "550.0"
+          },
+          {
+            "value": 600.0,
+            "page_coord": 433.41,
+            "label": "600.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      }
+    },
+    "orientation": "normal",
+    "x_units": "tw/D",
+    "y_units": "dimensionless",
+    "graph_note": "",
+    "curves": {
+      "Er_ksi=5": {
+        "drawing_parts": [
+          {
+            "drawing_id": 134,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          0.010172,
+          0.08
+        ],
+        "curve_y_range": [
+          229.420272,
+          550.23092
+        ],
+        "notes": ""
+      },
+      "Er_ksi=10": {
+        "drawing_parts": [
+          {
+            "drawing_id": 135,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          0.01005,
+          0.08
+        ],
+        "curve_y_range": [
+          170.433559,
+          384.80978
+        ],
+        "notes": ""
+      },
+      "Er_ksi=20": {
+        "drawing_parts": [
+          {
+            "drawing_id": 136,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          0.010416,
+          0.08
+        ],
+        "curve_y_range": [
+          126.496284,
+          260.040895
+        ],
+        "notes": ""
+      }
+    }
+  },
+  "12": {
+    "figure": "Figure 12",
+    "factor": "GLr",
+    "pdf_page": 26,
+    "api_page": 20,
+    "source_page": "PDF page 26 / API page 20",
+    "frame_pdf_points": [
+      180.2,
+      132.66,
+      480.18,
+      347.99
+    ],
+    "axis_x_range": [
+      0.0,
+      42.0
+    ],
+    "axis_y_range": [
+      0.0,
+      2.5
+    ],
+    "calibration_supersedes": "first-pass endpoint-span affine calibration",
+    "axis_calibrations": {
+      "x": {
+        "axis_name": "x",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_x",
+        "source_label": "bottom primary diameter D inches visible ticks",
+        "ignored_secondary_axis": "top metric diameter axis",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 180.2,
+            "label": "0.0"
+          },
+          {
+            "value": 2.0,
+            "page_coord": 193.06,
+            "label": "2.0"
+          },
+          {
+            "value": 4.0,
+            "page_coord": 207.42,
+            "label": "4.0"
+          },
+          {
+            "value": 6.0,
+            "page_coord": 221.4,
+            "label": "6.0"
+          },
+          {
+            "value": 8.0,
+            "page_coord": 235.39,
+            "label": "8.0"
+          },
+          {
+            "value": 10.0,
+            "page_coord": 249.74,
+            "label": "10.0"
+          },
+          {
+            "value": 12.0,
+            "page_coord": 264.35,
+            "label": "12.0"
+          },
+          {
+            "value": 14.0,
+            "page_coord": 278.46,
+            "label": "14.0"
+          },
+          {
+            "value": 16.0,
+            "page_coord": 292.81,
+            "label": "16.0"
+          },
+          {
+            "value": 18.0,
+            "page_coord": 306.8,
+            "label": "18.0"
+          },
+          {
+            "value": 20.0,
+            "page_coord": 321.15,
+            "label": "20.0"
+          },
+          {
+            "value": 22.0,
+            "page_coord": 335.51,
+            "label": "22.0"
+          },
+          {
+            "value": 24.0,
+            "page_coord": 349.99,
+            "label": "24.0"
+          },
+          {
+            "value": 26.0,
+            "page_coord": 363.97,
+            "label": "26.0"
+          },
+          {
+            "value": 28.0,
+            "page_coord": 378.33,
+            "label": "28.0"
+          },
+          {
+            "value": 30.0,
+            "page_coord": 392.19,
+            "label": "30.0"
+          },
+          {
+            "value": 32.0,
+            "page_coord": 406.54,
+            "label": "32.0"
+          },
+          {
+            "value": 34.0,
+            "page_coord": 420.9,
+            "label": "34.0"
+          },
+          {
+            "value": 36.0,
+            "page_coord": 435.63,
+            "label": "36.0"
+          },
+          {
+            "value": 38.0,
+            "page_coord": 449.73,
+            "label": "38.0"
+          },
+          {
+            "value": 40.0,
+            "page_coord": 464.09,
+            "label": "40.0"
+          },
+          {
+            "value": 42.0,
+            "page_coord": 480.18,
+            "label": "42.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      },
+      "y": {
+        "axis_name": "y",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_y",
+        "source_label": "left primary GLr visible ticks",
+        "ignored_secondary_axis": "right-side duplicate or secondary ticks when present",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 347.99,
+            "label": "0.0"
+          },
+          {
+            "value": 0.25,
+            "page_coord": 323.86,
+            "label": "0.25"
+          },
+          {
+            "value": 0.5,
+            "page_coord": 304.8,
+            "label": "0.5"
+          },
+          {
+            "value": 0.75,
+            "page_coord": 283.77,
+            "label": "0.75"
+          },
+          {
+            "value": 1.0,
+            "page_coord": 262.36,
+            "label": "1.0"
+          },
+          {
+            "value": 1.25,
+            "page_coord": 241.5,
+            "label": "1.25"
+          },
+          {
+            "value": 1.5,
+            "page_coord": 219.79,
+            "label": "1.5"
+          },
+          {
+            "value": 1.75,
+            "page_coord": 198.43,
+            "label": "1.75"
+          },
+          {
+            "value": 2.0,
+            "page_coord": 176.97,
+            "label": "2.0"
+          },
+          {
+            "value": 2.25,
+            "page_coord": 155.43,
+            "label": "2.25"
+          },
+          {
+            "value": 2.5,
+            "page_coord": 132.66,
+            "label": "2.5"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      }
+    },
+    "orientation": "normal",
+    "x_units": "in",
+    "y_units": "dimensionless",
+    "graph_note": "",
+    "curves": {
+      "H_ft=6": {
+        "drawing_parts": [
+          {
+            "drawing_id": 60,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.067807,
+          41.978495
+        ],
+        "curve_y_range": [
+          0.389219,
+          2.274045
+        ],
+        "notes": ""
+      },
+      "H_ft=10": {
+        "drawing_parts": [
+          {
+            "drawing_id": 61,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          1.912287,
+          41.916344
+        ],
+        "curve_y_range": [
+          0.284273,
+          1.717088
+        ],
+        "notes": ""
+      },
+      "H_ft=14": {
+        "drawing_parts": [
+          {
+            "drawing_id": 62,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          1.912287,
+          41.978495
+        ],
+        "curve_y_range": [
+          0.204548,
+          1.252948
+        ],
+        "notes": ""
+      }
+    }
+  },
+  "13": {
+    "figure": "Figure 13",
+    "factor": "NL",
+    "pdf_page": 26,
+    "api_page": 20,
+    "source_page": "PDF page 26 / API page 20",
+    "frame_pdf_points": [
+      158.98,
+      446.18,
+      471.62,
+      687.91
+    ],
+    "axis_x_range": [
+      0.0,
+      42.0
+    ],
+    "axis_y_range": [
+      0.5,
+      2.0
+    ],
+    "calibration_supersedes": "first-pass endpoint-span affine calibration",
+    "axis_calibrations": {
+      "x": {
+        "axis_name": "x",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_x",
+        "source_label": "bottom primary diameter D inches visible ticks",
+        "ignored_secondary_axis": "top metric diameter axis",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 158.98,
+            "label": "0.0"
+          },
+          {
+            "value": 2.0,
+            "page_coord": 168.81,
+            "label": "2.0"
+          },
+          {
+            "value": 4.0,
+            "page_coord": 183.05,
+            "label": "4.0"
+          },
+          {
+            "value": 6.0,
+            "page_coord": 199.35,
+            "label": "6.0"
+          },
+          {
+            "value": 8.0,
+            "page_coord": 214.62,
+            "label": "8.0"
+          },
+          {
+            "value": 10.0,
+            "page_coord": 228.86,
+            "label": "10.0"
+          },
+          {
+            "value": 12.0,
+            "page_coord": 243.87,
+            "label": "12.0"
+          },
+          {
+            "value": 14.0,
+            "page_coord": 259.14,
+            "label": "14.0"
+          },
+          {
+            "value": 16.0,
+            "page_coord": 273.37,
+            "label": "16.0"
+          },
+          {
+            "value": 18.0,
+            "page_coord": 288.64,
+            "label": "18.0"
+          },
+          {
+            "value": 20.0,
+            "page_coord": 303.91,
+            "label": "20.0"
+          },
+          {
+            "value": 22.0,
+            "page_coord": 318.15,
+            "label": "22.0"
+          },
+          {
+            "value": 24.0,
+            "page_coord": 333.16,
+            "label": "24.0"
+          },
+          {
+            "value": 26.0,
+            "page_coord": 348.43,
+            "label": "26.0"
+          },
+          {
+            "value": 28.0,
+            "page_coord": 362.66,
+            "label": "28.0"
+          },
+          {
+            "value": 30.0,
+            "page_coord": 377.93,
+            "label": "30.0"
+          },
+          {
+            "value": 32.0,
+            "page_coord": 393.2,
+            "label": "32.0"
+          },
+          {
+            "value": 34.0,
+            "page_coord": 407.44,
+            "label": "34.0"
+          },
+          {
+            "value": 36.0,
+            "page_coord": 422.45,
+            "label": "36.0"
+          },
+          {
+            "value": 38.0,
+            "page_coord": 437.72,
+            "label": "38.0"
+          },
+          {
+            "value": 40.0,
+            "page_coord": 451.95,
+            "label": "40.0"
+          },
+          {
+            "value": 42.0,
+            "page_coord": 471.62,
+            "label": "42.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      },
+      "y": {
+        "axis_name": "y",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_y",
+        "source_label": "left primary NL visible ticks",
+        "ignored_secondary_axis": "right-side duplicate or secondary ticks when present",
+        "ticks": [
+          {
+            "value": 0.5,
+            "page_coord": 687.91,
+            "label": "0.5"
+          },
+          {
+            "value": 0.6,
+            "page_coord": 672.26,
+            "label": "0.6"
+          },
+          {
+            "value": 0.7,
+            "page_coord": 656.86,
+            "label": "0.7"
+          },
+          {
+            "value": 0.8,
+            "page_coord": 640.94,
+            "label": "0.8"
+          },
+          {
+            "value": 0.9,
+            "page_coord": 624.89,
+            "label": "0.9"
+          },
+          {
+            "value": 1.0,
+            "page_coord": 609.5,
+            "label": "1.0"
+          },
+          {
+            "value": 1.1,
+            "page_coord": 593.32,
+            "label": "1.1"
+          },
+          {
+            "value": 1.2,
+            "page_coord": 577.92,
+            "label": "1.2"
+          },
+          {
+            "value": 1.3,
+            "page_coord": 562.0,
+            "label": "1.3"
+          },
+          {
+            "value": 1.4,
+            "page_coord": 545.96,
+            "label": "1.4"
+          },
+          {
+            "value": 1.5,
+            "page_coord": 529.78,
+            "label": "1.5"
+          },
+          {
+            "value": 1.6,
+            "page_coord": 514.77,
+            "label": "1.6"
+          },
+          {
+            "value": 1.7,
+            "page_coord": 499.37,
+            "label": "1.7"
+          },
+          {
+            "value": 1.8,
+            "page_coord": 483.46,
+            "label": "1.8"
+          },
+          {
+            "value": 1.9,
+            "page_coord": 467.41,
+            "label": "1.9"
+          },
+          {
+            "value": 2.0,
+            "page_coord": 446.18,
+            "label": "2.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      }
+    },
+    "orientation": "normal",
+    "x_units": "in",
+    "y_units": "dimensionless",
+    "graph_note": "",
+    "curves": {
+      "H_ft=6": {
+        "drawing_parts": [
+          {
+            "drawing_id": 125,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.29101,
+          42.0
+        ],
+        "curve_y_range": [
+          1.008059,
+          1.29275
+        ],
+        "notes": ""
+      },
+      "H_ft=10": {
+        "drawing_parts": [
+          {
+            "drawing_id": 124,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.21099,
+          41.998374
+        ],
+        "curve_y_range": [
+          1.033653,
+          1.454413
+        ],
+        "notes": ""
+      },
+      "H_ft=14": {
+        "drawing_parts": [
+          {
+            "drawing_id": 123,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.218398,
+          41.998374
+        ],
+        "curve_y_range": [
+          1.13113,
+          1.496162
+        ],
+        "notes": ""
+      }
+    }
+  },
+  "14": {
+    "figure": "Figure 14",
+    "factor": "KHh",
+    "pdf_page": 27,
+    "api_page": 21,
+    "source_page": "PDF page 27 / API page 21",
+    "frame_pdf_points": [
+      175.96,
+      182.42,
+      488.08,
+      377.81
+    ],
+    "axis_x_range": [
+      0.0,
+      0.08
+    ],
+    "axis_y_range": [
+      0.0,
+      25.0
+    ],
+    "calibration_supersedes": "first-pass endpoint-span affine calibration",
+    "axis_calibrations": {
+      "x": {
+        "axis_name": "x",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_x",
+        "source_label": "bottom primary tw/D visible ticks",
+        "ignored_secondary_axis": "top duplicate ticks",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 175.96,
+            "label": "0.0"
+          },
+          {
+            "value": 0.005,
+            "page_coord": 195.0,
+            "label": "0.005"
+          },
+          {
+            "value": 0.01,
+            "page_coord": 214.79,
+            "label": "0.01"
+          },
+          {
+            "value": 0.015,
+            "page_coord": 233.83,
+            "label": "0.015"
+          },
+          {
+            "value": 0.02,
+            "page_coord": 254.12,
+            "label": "0.02"
+          },
+          {
+            "value": 0.025,
+            "page_coord": 273.15,
+            "label": "0.025"
+          },
+          {
+            "value": 0.03,
+            "page_coord": 292.69,
+            "label": "0.03"
+          },
+          {
+            "value": 0.035,
+            "page_coord": 311.73,
+            "label": "0.035"
+          },
+          {
+            "value": 0.04,
+            "page_coord": 331.52,
+            "label": "0.04"
+          },
+          {
+            "value": 0.045,
+            "page_coord": 350.56,
+            "label": "0.045"
+          },
+          {
+            "value": 0.05,
+            "page_coord": 370.85,
+            "label": "0.05"
+          },
+          {
+            "value": 0.055,
+            "page_coord": 389.89,
+            "label": "0.055"
+          },
+          {
+            "value": 0.06,
+            "page_coord": 409.68,
+            "label": "0.06"
+          },
+          {
+            "value": 0.065,
+            "page_coord": 428.72,
+            "label": "0.065"
+          },
+          {
+            "value": 0.07,
+            "page_coord": 448.51,
+            "label": "0.07"
+          },
+          {
+            "value": 0.075,
+            "page_coord": 467.54,
+            "label": "0.075"
+          },
+          {
+            "value": 0.08,
+            "page_coord": 488.08,
+            "label": "0.08"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      },
+      "y": {
+        "axis_name": "y",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_y",
+        "source_label": "left primary KHh visible ticks",
+        "ignored_secondary_axis": "right-side duplicate or secondary ticks when present",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 377.81,
+            "label": "0.0"
+          },
+          {
+            "value": 2.5,
+            "page_coord": 358.27,
+            "label": "2.5"
+          },
+          {
+            "value": 5.0,
+            "page_coord": 339.23,
+            "label": "5.0"
+          },
+          {
+            "value": 7.5,
+            "page_coord": 319.32,
+            "label": "7.5"
+          },
+          {
+            "value": 10.0,
+            "page_coord": 300.28,
+            "label": "10.0"
+          },
+          {
+            "value": 12.5,
+            "page_coord": 279.74,
+            "label": "12.5"
+          },
+          {
+            "value": 15.0,
+            "page_coord": 260.7,
+            "label": "15.0"
+          },
+          {
+            "value": 17.5,
+            "page_coord": 240.91,
+            "label": "17.5"
+          },
+          {
+            "value": 20.0,
+            "page_coord": 221.87,
+            "label": "20.0"
+          },
+          {
+            "value": 22.5,
+            "page_coord": 201.96,
+            "label": "22.5"
+          },
+          {
+            "value": 25.0,
+            "page_coord": 182.42,
+            "label": "25.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      }
+    },
+    "orientation": "normal",
+    "x_units": "tw/D",
+    "y_units": "dimensionless",
+    "graph_note": "",
+    "curves": {
+      "Er_ksi=5": {
+        "drawing_parts": [
+          {
+            "drawing_id": 60,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          0.010612,
+          0.08
+        ],
+        "curve_y_range": [
+          1.890518,
+          20.718017
+        ],
+        "notes": ""
+      },
+      "Er_ksi=10": {
+        "drawing_parts": [
+          {
+            "drawing_id": 61,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          0.01021,
+          0.079952
+        ],
+        "curve_y_range": [
+          1.60197,
+          14.760549
+        ],
+        "notes": ""
+      },
+      "Er_ksi=20": {
+        "drawing_parts": [
+          {
+            "drawing_id": 62,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          0.01021,
+          0.08
+        ],
+        "curve_y_range": [
+          1.282862,
+          9.581203
+        ],
+        "notes": ""
+      }
+    }
+  },
+  "15": {
+    "figure": "Figure 15",
+    "factor": "GHh",
+    "pdf_page": 28,
+    "api_page": 22,
+    "source_page": "PDF page 28 / API page 22",
+    "frame_pdf_points": [
+      158.93,
+      146.1,
+      472.18,
+      369.4
+    ],
+    "axis_x_range": [
+      0.0,
+      42.0
+    ],
+    "axis_y_range": [
+      0.0,
+      2.0
+    ],
+    "calibration_supersedes": "first-pass endpoint-span affine calibration",
+    "axis_calibrations": {
+      "x": {
+        "axis_name": "x",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_x",
+        "source_label": "bottom primary diameter D inches visible ticks",
+        "ignored_secondary_axis": "top metric diameter axis",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 158.93,
+            "label": "0.0"
+          },
+          {
+            "value": 2.0,
+            "page_coord": 173.31,
+            "label": "2.0"
+          },
+          {
+            "value": 4.0,
+            "page_coord": 187.69,
+            "label": "4.0"
+          },
+          {
+            "value": 6.0,
+            "page_coord": 202.6,
+            "label": "6.0"
+          },
+          {
+            "value": 8.0,
+            "page_coord": 217.5,
+            "label": "8.0"
+          },
+          {
+            "value": 10.0,
+            "page_coord": 231.88,
+            "label": "10.0"
+          },
+          {
+            "value": 12.0,
+            "page_coord": 246.79,
+            "label": "12.0"
+          },
+          {
+            "value": 14.0,
+            "page_coord": 262.74,
+            "label": "14.0"
+          },
+          {
+            "value": 16.0,
+            "page_coord": 277.12,
+            "label": "16.0"
+          },
+          {
+            "value": 18.0,
+            "page_coord": 292.02,
+            "label": "18.0"
+          },
+          {
+            "value": 20.0,
+            "page_coord": 306.93,
+            "label": "20.0"
+          },
+          {
+            "value": 22.0,
+            "page_coord": 321.31,
+            "label": "22.0"
+          },
+          {
+            "value": 24.0,
+            "page_coord": 336.22,
+            "label": "24.0"
+          },
+          {
+            "value": 26.0,
+            "page_coord": 351.9,
+            "label": "26.0"
+          },
+          {
+            "value": 28.0,
+            "page_coord": 366.29,
+            "label": "28.0"
+          },
+          {
+            "value": 30.0,
+            "page_coord": 381.19,
+            "label": "30.0"
+          },
+          {
+            "value": 32.0,
+            "page_coord": 396.62,
+            "label": "32.0"
+          },
+          {
+            "value": 34.0,
+            "page_coord": 411.0,
+            "label": "34.0"
+          },
+          {
+            "value": 36.0,
+            "page_coord": 425.91,
+            "label": "36.0"
+          },
+          {
+            "value": 38.0,
+            "page_coord": 441.59,
+            "label": "38.0"
+          },
+          {
+            "value": 40.0,
+            "page_coord": 455.98,
+            "label": "40.0"
+          },
+          {
+            "value": 42.0,
+            "page_coord": 472.18,
+            "label": "42.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      },
+      "y": {
+        "axis_name": "y",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_y",
+        "source_label": "left primary GHh labeled ticks",
+        "ignored_secondary_axis": "right-side duplicate or secondary ticks when present",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 369.4,
+            "label": "0.0"
+          },
+          {
+            "value": 0.5,
+            "page_coord": 315.02,
+            "label": "0.5"
+          },
+          {
+            "value": 1.0,
+            "page_coord": 259.06,
+            "label": "1.0"
+          },
+          {
+            "value": 1.5,
+            "page_coord": 203.37,
+            "label": "1.5"
+          },
+          {
+            "value": 2.0,
+            "page_coord": 146.1,
+            "label": "2.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      }
+    },
+    "orientation": "normal",
+    "x_units": "in",
+    "y_units": "dimensionless",
+    "graph_note": "",
+    "curves": {
+      "H_ft=3_to_4": {
+        "drawing_parts": [
+          {
+            "drawing_id": 52,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.338664,
+          42.0
+        ],
+        "curve_y_range": [
+          0.944428,
+          1.490035
+        ],
+        "notes": ""
+      },
+      "H_ft=6": {
+        "drawing_parts": [
+          {
+            "drawing_id": 53,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.164812,
+          41.978641
+        ],
+        "curve_y_range": [
+          0.712053,
+          1.163084
+        ],
+        "notes": ""
+      },
+      "H_ft=8": {
+        "drawing_parts": [
+          {
+            "drawing_id": 51,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.164812,
+          41.978641
+        ],
+        "curve_y_range": [
+          0.57802,
+          0.899156
+        ],
+        "notes": ""
+      },
+      "H_ft=10": {
+        "drawing_parts": [
+          {
+            "drawing_id": 41,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.10918,
+          42.0
+        ],
+        "curve_y_range": [
+          0.468122,
+          0.731029
+        ],
+        "notes": ""
+      }
+    }
+  },
+  "16": {
+    "figure": "Figure 16",
+    "factor": "KLh",
+    "pdf_page": 29,
+    "api_page": 23,
+    "source_page": "PDF page 29 / API page 23",
+    "frame_pdf_points": [
+      170.23,
+      112.66,
+      485.64,
+      310.1
+    ],
+    "axis_x_range": [
+      0.0,
+      0.08
+    ],
+    "axis_y_range": [
+      0.0,
+      25.0
+    ],
+    "calibration_supersedes": "first-pass endpoint-span affine calibration",
+    "axis_calibrations": {
+      "x": {
+        "axis_name": "x",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_x",
+        "source_label": "bottom primary tw/D visible ticks",
+        "ignored_secondary_axis": "top duplicate ticks",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 170.23,
+            "label": "0.0"
+          },
+          {
+            "value": 0.005,
+            "page_coord": 189.47,
+            "label": "0.005"
+          },
+          {
+            "value": 0.01,
+            "page_coord": 209.47,
+            "label": "0.01"
+          },
+          {
+            "value": 0.015,
+            "page_coord": 228.71,
+            "label": "0.015"
+          },
+          {
+            "value": 0.02,
+            "page_coord": 249.21,
+            "label": "0.02"
+          },
+          {
+            "value": 0.025,
+            "page_coord": 268.45,
+            "label": "0.025"
+          },
+          {
+            "value": 0.03,
+            "page_coord": 288.2,
+            "label": "0.03"
+          },
+          {
+            "value": 0.035,
+            "page_coord": 307.43,
+            "label": "0.035"
+          },
+          {
+            "value": 0.04,
+            "page_coord": 327.43,
+            "label": "0.04"
+          },
+          {
+            "value": 0.045,
+            "page_coord": 346.67,
+            "label": "0.045"
+          },
+          {
+            "value": 0.05,
+            "page_coord": 367.17,
+            "label": "0.05"
+          },
+          {
+            "value": 0.055,
+            "page_coord": 386.41,
+            "label": "0.055"
+          },
+          {
+            "value": 0.06,
+            "page_coord": 406.41,
+            "label": "0.06"
+          },
+          {
+            "value": 0.065,
+            "page_coord": 425.65,
+            "label": "0.065"
+          },
+          {
+            "value": 0.07,
+            "page_coord": 445.65,
+            "label": "0.07"
+          },
+          {
+            "value": 0.075,
+            "page_coord": 464.89,
+            "label": "0.075"
+          },
+          {
+            "value": 0.08,
+            "page_coord": 485.64,
+            "label": "0.08"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      },
+      "y": {
+        "axis_name": "y",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_y",
+        "source_label": "left primary KLh visible ticks",
+        "ignored_secondary_axis": "right-side duplicate or secondary ticks when present",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 310.1,
+            "label": "0.0"
+          },
+          {
+            "value": 2.5,
+            "page_coord": 290.36,
+            "label": "2.5"
+          },
+          {
+            "value": 5.0,
+            "page_coord": 271.12,
+            "label": "5.0"
+          },
+          {
+            "value": 7.5,
+            "page_coord": 251.0,
+            "label": "7.5"
+          },
+          {
+            "value": 10.0,
+            "page_coord": 231.76,
+            "label": "10.0"
+          },
+          {
+            "value": 12.5,
+            "page_coord": 211.0,
+            "label": "12.5"
+          },
+          {
+            "value": 15.0,
+            "page_coord": 191.76,
+            "label": "15.0"
+          },
+          {
+            "value": 17.5,
+            "page_coord": 171.76,
+            "label": "17.5"
+          },
+          {
+            "value": 20.0,
+            "page_coord": 152.53,
+            "label": "20.0"
+          },
+          {
+            "value": 22.5,
+            "page_coord": 132.4,
+            "label": "22.5"
+          },
+          {
+            "value": 25.0,
+            "page_coord": 112.66,
+            "label": "25.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      }
+    },
+    "orientation": "normal",
+    "x_units": "tw/D",
+    "y_units": "dimensionless",
+    "graph_note": "",
+    "curves": {
+      "Er_ksi=5": {
+        "drawing_parts": [
+          {
+            "drawing_id": 14,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          0.010559,
+          0.079998
+        ],
+        "curve_y_range": [
+          6.940032,
+          14.96844
+        ],
+        "notes": ""
+      },
+      "Er_ksi=10": {
+        "drawing_parts": [
+          {
+            "drawing_id": 12,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          0.010163,
+          0.08
+        ],
+        "curve_y_range": [
+          4.691331,
+          10.060599
+        ],
+        "notes": ""
+      },
+      "Er_ksi=20": {
+        "drawing_parts": [
+          {
+            "drawing_id": 13,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          0.010559,
+          0.079998
+        ],
+        "curve_y_range": [
+          2.960973,
+          6.631273
+        ],
+        "notes": ""
+      }
+    }
+  },
+  "17": {
+    "figure": "Figure 17",
+    "factor": "GLh",
+    "pdf_page": 29,
+    "api_page": 23,
+    "source_page": "PDF page 29 / API page 23",
+    "frame_pdf_points": [
+      166.19,
+      434.62,
+      479.18,
+      657.73
+    ],
+    "axis_x_range": [
+      0.0,
+      42.0
+    ],
+    "axis_y_range": [
+      0.0,
+      3.0
+    ],
+    "calibration_supersedes": "first-pass endpoint-span affine calibration",
+    "axis_calibrations": {
+      "x": {
+        "axis_name": "x",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_x",
+        "source_label": "bottom primary diameter D inches visible ticks",
+        "ignored_secondary_axis": "top metric diameter axis",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 166.19,
+            "label": "0.0"
+          },
+          {
+            "value": 2.0,
+            "page_coord": 180.56,
+            "label": "2.0"
+          },
+          {
+            "value": 4.0,
+            "page_coord": 194.93,
+            "label": "4.0"
+          },
+          {
+            "value": 6.0,
+            "page_coord": 209.82,
+            "label": "6.0"
+          },
+          {
+            "value": 8.0,
+            "page_coord": 224.71,
+            "label": "8.0"
+          },
+          {
+            "value": 10.0,
+            "page_coord": 239.08,
+            "label": "10.0"
+          },
+          {
+            "value": 12.0,
+            "page_coord": 253.98,
+            "label": "12.0"
+          },
+          {
+            "value": 14.0,
+            "page_coord": 269.91,
+            "label": "14.0"
+          },
+          {
+            "value": 16.0,
+            "page_coord": 284.28,
+            "label": "16.0"
+          },
+          {
+            "value": 18.0,
+            "page_coord": 299.17,
+            "label": "18.0"
+          },
+          {
+            "value": 20.0,
+            "page_coord": 314.07,
+            "label": "20.0"
+          },
+          {
+            "value": 22.0,
+            "page_coord": 328.44,
+            "label": "22.0"
+          },
+          {
+            "value": 24.0,
+            "page_coord": 343.33,
+            "label": "24.0"
+          },
+          {
+            "value": 26.0,
+            "page_coord": 359.01,
+            "label": "26.0"
+          },
+          {
+            "value": 28.0,
+            "page_coord": 373.38,
+            "label": "28.0"
+          },
+          {
+            "value": 30.0,
+            "page_coord": 388.27,
+            "label": "30.0"
+          },
+          {
+            "value": 32.0,
+            "page_coord": 403.68,
+            "label": "32.0"
+          },
+          {
+            "value": 34.0,
+            "page_coord": 418.05,
+            "label": "34.0"
+          },
+          {
+            "value": 36.0,
+            "page_coord": 432.95,
+            "label": "36.0"
+          },
+          {
+            "value": 38.0,
+            "page_coord": 448.62,
+            "label": "38.0"
+          },
+          {
+            "value": 40.0,
+            "page_coord": 462.99,
+            "label": "40.0"
+          },
+          {
+            "value": 42.0,
+            "page_coord": 479.18,
+            "label": "42.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      },
+      "y": {
+        "axis_name": "y",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_y",
+        "source_label": "left primary GLh labeled ticks",
+        "ignored_secondary_axis": "right-side duplicate or secondary ticks when present",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 657.73,
+            "label": "0.0"
+          },
+          {
+            "value": 0.5,
+            "page_coord": 621.15,
+            "label": "0.5"
+          },
+          {
+            "value": 1.0,
+            "page_coord": 583.53,
+            "label": "1.0"
+          },
+          {
+            "value": 1.5,
+            "page_coord": 545.91,
+            "label": "1.5"
+          },
+          {
+            "value": 2.0,
+            "page_coord": 508.29,
+            "label": "2.0"
+          },
+          {
+            "value": 2.5,
+            "page_coord": 470.67,
+            "label": "2.5"
+          },
+          {
+            "value": 3.0,
+            "page_coord": 434.62,
+            "label": "3.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      }
+    },
+    "orientation": "normal",
+    "x_units": "in",
+    "y_units": "dimensionless",
+    "graph_note": "",
+    "curves": {
+      "H_ft=3_to_4": {
+        "drawing_parts": [
+          {
+            "drawing_id": 65,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.321502,
+          42.0
+        ],
+        "curve_y_range": [
+          0.777945,
+          2.582066
+        ],
+        "notes": ""
+      },
+      "H_ft=6": {
+        "drawing_parts": [
+          {
+            "drawing_id": 66,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.347669,
+          42.0
+        ],
+        "curve_y_range": [
+          0.638361,
+          2.523994
+        ],
+        "notes": ""
+      },
+      "H_ft=8": {
+        "drawing_parts": [
+          {
+            "drawing_id": 67,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.460681,
+          42.0
+        ],
+        "curve_y_range": [
+          0.551925,
+          2.445733
+        ],
+        "notes": ""
+      },
+      "H_ft=10": {
+        "drawing_parts": [
+          {
+            "drawing_id": 68,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.321502,
+          42.0
+        ],
+        "curve_y_range": [
+          0.464465,
+          2.572538
+        ],
+        "notes": ""
+      }
+    }
+  },
+  "18A": {
+    "figure": "Figure 18-A",
+    "factor": "RF",
+    "pdf_page": 34,
+    "api_page": 28,
+    "source_page": "PDF page 34 / API page 28",
+    "frame_pdf_points": [
+      154.29,
+      128.59,
+      478.26,
+      357.95
+    ],
+    "axis_x_range": [
+      0.0,
+      42.0
+    ],
+    "axis_y_range": [
+      0.0,
+      1.0
+    ],
+    "calibration_supersedes": "first-pass endpoint-span affine calibration",
+    "axis_calibrations": {
+      "x": {
+        "axis_name": "x",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_x",
+        "source_label": "bottom primary diameter D inches visible ticks",
+        "ignored_secondary_axis": "top metric diameter axis",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 154.29,
+            "label": "0.0"
+          },
+          {
+            "value": 2.0,
+            "page_coord": 169.96,
+            "label": "2.0"
+          },
+          {
+            "value": 4.0,
+            "page_coord": 184.81,
+            "label": "4.0"
+          },
+          {
+            "value": 6.0,
+            "page_coord": 200.76,
+            "label": "6.0"
+          },
+          {
+            "value": 8.0,
+            "page_coord": 216.44,
+            "label": "8.0"
+          },
+          {
+            "value": 10.0,
+            "page_coord": 231.29,
+            "label": "10.0"
+          },
+          {
+            "value": 12.0,
+            "page_coord": 247.24,
+            "label": "12.0"
+          },
+          {
+            "value": 14.0,
+            "page_coord": 262.09,
+            "label": "14.0"
+          },
+          {
+            "value": 16.0,
+            "page_coord": 276.94,
+            "label": "16.0"
+          },
+          {
+            "value": 18.0,
+            "page_coord": 292.89,
+            "label": "18.0"
+          },
+          {
+            "value": 20.0,
+            "page_coord": 308.29,
+            "label": "20.0"
+          },
+          {
+            "value": 22.0,
+            "page_coord": 323.14,
+            "label": "22.0"
+          },
+          {
+            "value": 24.0,
+            "page_coord": 339.1,
+            "label": "24.0"
+          },
+          {
+            "value": 26.0,
+            "page_coord": 353.95,
+            "label": "26.0"
+          },
+          {
+            "value": 28.0,
+            "page_coord": 368.8,
+            "label": "28.0"
+          },
+          {
+            "value": 30.0,
+            "page_coord": 384.75,
+            "label": "30.0"
+          },
+          {
+            "value": 32.0,
+            "page_coord": 400.15,
+            "label": "32.0"
+          },
+          {
+            "value": 34.0,
+            "page_coord": 415.0,
+            "label": "34.0"
+          },
+          {
+            "value": 36.0,
+            "page_coord": 430.95,
+            "label": "36.0"
+          },
+          {
+            "value": 38.0,
+            "page_coord": 446.63,
+            "label": "38.0"
+          },
+          {
+            "value": 40.0,
+            "page_coord": 462.3,
+            "label": "40.0"
+          },
+          {
+            "value": 42.0,
+            "page_coord": 478.26,
+            "label": "42.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      },
+      "y": {
+        "axis_name": "y",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_y",
+        "source_label": "left primary RF visible ticks",
+        "ignored_secondary_axis": "right-side duplicate or secondary ticks when present",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 357.95,
+            "label": "0.0"
+          },
+          {
+            "value": 0.1,
+            "page_coord": 335.54,
+            "label": "0.1"
+          },
+          {
+            "value": 0.2,
+            "page_coord": 312.44,
+            "label": "0.2"
+          },
+          {
+            "value": 0.3,
+            "page_coord": 289.06,
+            "label": "0.3"
+          },
+          {
+            "value": 0.4,
+            "page_coord": 266.51,
+            "label": "0.4"
+          },
+          {
+            "value": 0.5,
+            "page_coord": 243.0,
+            "label": "0.5"
+          },
+          {
+            "value": 0.6,
+            "page_coord": 220.03,
+            "label": "0.6"
+          },
+          {
+            "value": 0.7,
+            "page_coord": 196.93,
+            "label": "0.7"
+          },
+          {
+            "value": 0.8,
+            "page_coord": 173.55,
+            "label": "0.8"
+          },
+          {
+            "value": 0.9,
+            "page_coord": 151.0,
+            "label": "0.9"
+          },
+          {
+            "value": 1.0,
+            "page_coord": 128.59,
+            "label": "1.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      }
+    },
+    "orientation": "normal",
+    "x_units": "in",
+    "y_units": "dimensionless",
+    "graph_note": "For 5 ft <= LG < 10 ft.",
+    "curves": {
+      "H_ft=6": {
+        "drawing_parts": [
+          {
+            "drawing_id": 54,
+            "item_indices": [
+              2,
+              3
+            ]
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.131972,
+          42.0
+        ],
+        "curve_y_range": [
+          0.476627,
+          0.853033
+        ],
+        "notes": ""
+      },
+      "H_ft=10": {
+        "drawing_parts": [
+          {
+            "drawing_id": 54,
+            "item_indices": [
+              0,
+              1
+            ]
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.119082,
+          42.0
+        ],
+        "curve_y_range": [
+          0.662498,
+          0.853033
+        ],
+        "notes": ""
+      },
+      "H_ft=14": {
+        "drawing_parts": [
+          {
+            "drawing_id": 53,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.106446,
+          41.930702
+        ],
+        "curve_y_range": [
+          0.801809,
+          0.879862
+        ],
+        "notes": ""
+      }
+    }
+  },
+  "18B": {
+    "figure": "Figure 18-B",
+    "factor": "RF",
+    "pdf_page": 34,
+    "api_page": 28,
+    "source_page": "PDF page 34 / API page 28",
+    "frame_pdf_points": [
+      144.37,
+      461.63,
+      468.33,
+      690.99
+    ],
+    "axis_x_range": [
+      0.0,
+      42.0
+    ],
+    "axis_y_range": [
+      0.0,
+      1.0
+    ],
+    "calibration_supersedes": "first-pass endpoint-span affine calibration",
+    "axis_calibrations": {
+      "x": {
+        "axis_name": "x",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_x",
+        "source_label": "bottom primary diameter D inches visible ticks",
+        "ignored_secondary_axis": "top metric diameter axis",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 144.37,
+            "label": "0.0"
+          },
+          {
+            "value": 2.0,
+            "page_coord": 160.03,
+            "label": "2.0"
+          },
+          {
+            "value": 4.0,
+            "page_coord": 174.88,
+            "label": "4.0"
+          },
+          {
+            "value": 6.0,
+            "page_coord": 190.84,
+            "label": "6.0"
+          },
+          {
+            "value": 8.0,
+            "page_coord": 206.51,
+            "label": "8.0"
+          },
+          {
+            "value": 10.0,
+            "page_coord": 221.36,
+            "label": "10.0"
+          },
+          {
+            "value": 12.0,
+            "page_coord": 237.31,
+            "label": "12.0"
+          },
+          {
+            "value": 14.0,
+            "page_coord": 252.16,
+            "label": "14.0"
+          },
+          {
+            "value": 16.0,
+            "page_coord": 267.02,
+            "label": "16.0"
+          },
+          {
+            "value": 18.0,
+            "page_coord": 282.97,
+            "label": "18.0"
+          },
+          {
+            "value": 20.0,
+            "page_coord": 298.37,
+            "label": "20.0"
+          },
+          {
+            "value": 22.0,
+            "page_coord": 313.22,
+            "label": "22.0"
+          },
+          {
+            "value": 24.0,
+            "page_coord": 329.17,
+            "label": "24.0"
+          },
+          {
+            "value": 26.0,
+            "page_coord": 344.02,
+            "label": "26.0"
+          },
+          {
+            "value": 28.0,
+            "page_coord": 358.87,
+            "label": "28.0"
+          },
+          {
+            "value": 30.0,
+            "page_coord": 374.82,
+            "label": "30.0"
+          },
+          {
+            "value": 32.0,
+            "page_coord": 390.23,
+            "label": "32.0"
+          },
+          {
+            "value": 34.0,
+            "page_coord": 405.08,
+            "label": "34.0"
+          },
+          {
+            "value": 36.0,
+            "page_coord": 421.03,
+            "label": "36.0"
+          },
+          {
+            "value": 38.0,
+            "page_coord": 436.7,
+            "label": "38.0"
+          },
+          {
+            "value": 40.0,
+            "page_coord": 452.38,
+            "label": "40.0"
+          },
+          {
+            "value": 42.0,
+            "page_coord": 468.33,
+            "label": "42.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      },
+      "y": {
+        "axis_name": "y",
+        "calibration_method": "piecewise_linear_labeled_ticks",
+        "page_coordinate": "page_y",
+        "source_label": "left primary RF visible ticks",
+        "ignored_secondary_axis": "right-side duplicate or secondary ticks when present",
+        "ticks": [
+          {
+            "value": 0.0,
+            "page_coord": 690.99,
+            "label": "0.0"
+          },
+          {
+            "value": 0.1,
+            "page_coord": 668.58,
+            "label": "0.1"
+          },
+          {
+            "value": 0.2,
+            "page_coord": 645.48,
+            "label": "0.2"
+          },
+          {
+            "value": 0.3,
+            "page_coord": 622.1,
+            "label": "0.3"
+          },
+          {
+            "value": 0.4,
+            "page_coord": 599.55,
+            "label": "0.4"
+          },
+          {
+            "value": 0.5,
+            "page_coord": 576.04,
+            "label": "0.5"
+          },
+          {
+            "value": 0.6,
+            "page_coord": 553.07,
+            "label": "0.6"
+          },
+          {
+            "value": 0.7,
+            "page_coord": 529.97,
+            "label": "0.7"
+          },
+          {
+            "value": 0.8,
+            "page_coord": 506.6,
+            "label": "0.8"
+          },
+          {
+            "value": 0.9,
+            "page_coord": 484.05,
+            "label": "0.9"
+          },
+          {
+            "value": 1.0,
+            "page_coord": 461.63,
+            "label": "1.0"
+          }
+        ],
+        "max_page_coord_residual": 0.0,
+        "max_value_residual": 0.0
+      }
+    },
+    "orientation": "normal",
+    "x_units": "in",
+    "y_units": "dimensionless",
+    "graph_note": "For LG >= 10 ft.",
+    "curves": {
+      "H_ft=6": {
+        "drawing_parts": [
+          {
+            "drawing_id": 107,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.016093,
+          42.0
+        ],
+        "curve_y_range": [
+          0.301224,
+          0.389033
+        ],
+        "notes": ""
+      },
+      "H_ft=10": {
+        "drawing_parts": [
+          {
+            "drawing_id": 106,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.054405,
+          41.948587
+        ],
+        "curve_y_range": [
+          0.398835,
+          0.469022
+        ],
+        "notes": ""
+      },
+      "H_ft=14": {
+        "drawing_parts": [
+          {
+            "drawing_id": 105,
+            "item_indices": null
+          }
+        ],
+        "tail_drawing_id": null,
+        "curve_x_range": [
+          2.028861,
+          42.0
+        ],
+        "curve_y_range": [
+          0.492416,
+          0.576047
+        ],
+        "notes": ""
+      }
+    }
+  }
+}

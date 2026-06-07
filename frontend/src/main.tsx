@@ -6,6 +6,7 @@ import {
   Calculator,
   Car,
   Copy,
+  Crosshair,
   Database,
   Download,
   FileDown,
@@ -14,7 +15,9 @@ import {
   FolderOpen,
   FolderPlus,
   Gauge,
+  Image as ImageIcon,
   Layers,
+  LineChart,
   Plus,
   Printer,
   RailSymbol,
@@ -45,6 +48,67 @@ import "./styles.css";
 
 type StandardsPayload = Record<string, any>;
 type LoadingMode = "highway" | "railroad";
+type GraphLayer = "underlay" | "overlay";
+type GraphReadoutMode = "all" | "nearest";
+
+type GraphTick = {
+  value: number;
+  page_coord: number;
+  label: string;
+};
+
+type GraphCalibration = {
+  axis_name: string;
+  calibration_method: string;
+  page_coordinate: "page_x" | "page_y";
+  source_label: string;
+  ticks: GraphTick[];
+};
+
+type DigitizedGraphPoint = {
+  x_value: number;
+  y_value: number;
+  point_type: string;
+  notes: string;
+};
+
+type DigitizedGraphCurve = {
+  curve_name: string;
+  point_count: number;
+  x_range: [number, number];
+  y_range: [number, number];
+  notes: string;
+  points: DigitizedGraphPoint[];
+};
+
+type DigitizedGraphFigure = {
+  id: string;
+  figure: string;
+  factor: string;
+  source_page: string;
+  x_units: string;
+  y_units: string;
+  orientation: string;
+  frame_pdf_points: [number, number, number, number];
+  axis_x_range: [number, number];
+  axis_y_range: [number, number];
+  clip_pdf_points: [number, number, number, number];
+  render_scale: number;
+  image_size_px: [number, number];
+  underlay_url: string;
+  overlay_url: string;
+  calibrations: {
+    x: GraphCalibration;
+    y: GraphCalibration;
+  };
+  curves: DigitizedGraphCurve[];
+};
+
+type DigitizedGraphsPayload = {
+  source: string;
+  digitization_method: string;
+  figures: DigitizedGraphFigure[];
+};
 
 const statusOptions = ["Draft", "For Review", "Reviewed", "Issued", "Superseded", "Void", "Archive"];
 const projectStatuses = ["Active", "On Hold", "Complete", "Archived"];
@@ -485,6 +549,7 @@ function App() {
         <ReportPreview calc={activeCalc} project={projects.find((item) => item.id === activeCalc.project_id) || activeProject} scenario={activeScenario} onBack={() => setPage("workspace")} />
       ) : null}
       {page === "standards" ? <Standards /> : null}
+      {page === "graphViewer" ? <GraphViewer /> : null}
       {page === "references" ? <References /> : null}
       {page === "about" ? <About /> : null}
     </AppShell>
@@ -529,7 +594,7 @@ function Dashboard({
 
       <Panel className="tip-panel">
         <span>
-          <strong>Tip:</strong> This app uses portable project files for storage. An example project is loaded by default so you can explore the tool.
+          <strong>Tip:</strong> This app uses portable project files for storage. One example project with sample highway and railroad calculations is loaded by default so you can explore the tool.
           When you finish a work session, open any project and use <em>Export Project</em> to save a <code>.hdr1102.json</code> file.
           Re-import the file next session from the Dashboard or Projects page to pick up exactly where you left off.
         </span>
@@ -1355,7 +1420,6 @@ function Standards() {
   return (
     <div className="screen-stack">
       <PageTitle title="Standards & Lookup Tables" subtitle="Read-only engineering data used by the calculation engine." />
-      <Panel className="tip-panel"><strong>Standards tables are read-only in the app.</strong> Updates require code changes, validation testing, and a version release.</Panel>
       <StandardsBlock icon={<Ruler size={18} />} title="Pipe Dimensions">
         <StandardsTable
           columns={["NPS", "D (in)", "tw Options (in)"]}
@@ -1473,6 +1537,174 @@ function StandardsTable({ columns, rows }: { columns: string[]; rows: React.Reac
           )}
         </tbody>
       </table>
+    </div>
+  );
+}
+
+function GraphViewer() {
+  const [payload, setPayload] = useState<DigitizedGraphsPayload | null>(null);
+  const [figureId, setFigureId] = useState("03");
+  const [layer, setLayer] = useState<GraphLayer>("underlay");
+  const [readoutMode, setReadoutMode] = useState<GraphReadoutMode>("all");
+  const [typedX, setTypedX] = useState("");
+  const [cursor, setCursor] = useState<{ xValue: number; visualYValue: number | null; imageX: number; imageY: number } | null>(null);
+
+  useEffect(() => {
+    api<DigitizedGraphsPayload>("/digitized-graphs").then((data) => {
+      setPayload(data);
+      setFigureId(data.figures[0]?.id || "03");
+    }).catch(console.error);
+  }, []);
+
+  const figure = useMemo(() => payload?.figures.find((item) => item.id === figureId) || payload?.figures[0] || null, [payload, figureId]);
+  const typedNumber = Number(typedX);
+  const currentX = Number.isFinite(typedNumber) && typedX.trim() !== "" ? typedNumber : cursor?.xValue ?? null;
+  const allReadouts = useMemo(() => {
+    if (!figure || currentX === null) return [];
+    const rows = figure.curves.map((curve, index) => {
+      const yValue = interpolateGraphCurve(curve.points, currentX);
+      const marker = yValue === null ? null : graphPointToImage(figure, currentX, yValue);
+      const distance = marker && cursor
+        ? Math.hypot(marker.imageX - cursor.imageX, marker.imageY - cursor.imageY)
+        : marker
+          ? Math.abs(marker.imageY - figure.image_size_px[1] / 2)
+          : Number.POSITIVE_INFINITY;
+      return { curve, index, yValue, marker, distance };
+    });
+    return rows;
+  }, [figure, currentX, cursor]);
+  const nearestReadout = useMemo(() => {
+    return allReadouts.filter((row) => row.yValue !== null).sort((a, b) => a.distance - b.distance)[0] || null;
+  }, [allReadouts]);
+  const displayedReadouts = useMemo(() => {
+    if (readoutMode === "nearest") return nearestReadout ? [nearestReadout] : [];
+    return allReadouts;
+  }, [allReadouts, nearestReadout, readoutMode]);
+
+  function onGraphMove(event: React.MouseEvent<HTMLDivElement>) {
+    if (!figure) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const imageX = (event.clientX - rect.left) * (figure.image_size_px[0] / rect.width);
+    const imageY = (event.clientY - rect.top) * (figure.image_size_px[1] / rect.height);
+    const pageCoord = imagePointToPageCoord(figure, imageX, imageY, figure.calibrations.x.page_coordinate);
+    const xValue = pageToGraphValue(figure.calibrations.x, pageCoord);
+    const visualYValue = graphVisualYValue(figure, imageX, imageY);
+    if (xValue === null) return;
+    setCursor({ xValue, visualYValue, imageX, imageY });
+  }
+
+  if (!payload || !figure) {
+    return (
+      <div className="screen-stack">
+        <PageTitle title="Graph Viewer" subtitle="Loading digitized API 1102 graphs." />
+        <Panel>Loading graph package...</Panel>
+      </div>
+    );
+  }
+
+  const imageUrl = layer === "underlay" ? figure.underlay_url : figure.overlay_url;
+  const activeAxisMarker = currentX === null || figure.orientation === "depth_on_y" ? null : axisValueToImageLine(figure, currentX);
+  const cursorHorizontalPct = cursor ? cursor.imageY / figure.image_size_px[1] * 100 : null;
+  const cursorVerticalPct = cursor ? cursor.imageX / figure.image_size_px[0] * 100 : null;
+  const floatingReadout = nearestReadout || (currentX !== null ? { curve: null, index: 0, yValue: null, marker: null, distance: 0 } : null);
+  const floatingPosition = floatingReadout ? floatingReadoutPosition(figure, cursor, floatingReadout.marker) : null;
+
+  return (
+    <div className="screen-stack">
+      <PageTitle
+        title="Graph Viewer"
+        subtitle="Inspect tick-calibrated API 1102 graph values against the source graph images."
+      />
+      <Panel className="graph-viewer-panel">
+        <div className="graph-toolbar">
+          <Field
+            label="Figure"
+            value={figure.id}
+            select
+            options={payload.figures.map((item) => item.id)}
+            helpText={`Select the API 1102 graph to inspect. Current graph: ${figure.figure} ${figure.factor}.`}
+            onChange={(value) => {
+              setFigureId(value);
+              setTypedX("");
+              setCursor(null);
+            }}
+          />
+          <Field
+            label={`Typed x (${figure.x_units})`}
+            value={typedX}
+            onChange={setTypedX}
+            helpText={`Optional exact lookup x-value. Accepted range: ${formatGraphNumber(figure.axis_x_range[0])} to ${formatGraphNumber(figure.axis_x_range[1])} ${figure.x_units}.`}
+          />
+          <div className="segmented-control" aria-label="Graph layer">
+            <button title="Show the clean cropped API graph image without digitized QA points." className={layer === "underlay" ? "active" : ""} onClick={() => setLayer("underlay")}><ImageIcon size={15} /> Clean</button>
+            <button title="Show the QA overlay with digitized points and calibration tick controls." className={layer === "overlay" ? "active" : ""} onClick={() => setLayer("overlay")}><Layers size={15} /> QA</button>
+          </div>
+          <div className="segmented-control" aria-label="Readout mode">
+            <button title="Show markers for every curve at the active x-value." className={readoutMode === "all" ? "active" : ""} onClick={() => setReadoutMode("all")}><LineChart size={15} /> All curves</button>
+            <button title="Show only the marker nearest to the cursor at the active x-value." className={readoutMode === "nearest" ? "active" : ""} onClick={() => setReadoutMode("nearest")}><Crosshair size={15} /> Nearest</button>
+          </div>
+        </div>
+        <div className="graph-viewer-grid">
+          <div>
+            <div
+              className="graph-stage"
+              style={{
+                aspectRatio: `${figure.image_size_px[0]} / ${figure.image_size_px[1]}`,
+                maxWidth: `min(100%, ${(figure.image_size_px[0] / figure.image_size_px[1] * 68).toFixed(2)}vh, ${(figure.image_size_px[0] / figure.image_size_px[1] * 760).toFixed(0)}px)`,
+              }}
+              onMouseMove={onGraphMove}
+              onMouseLeave={() => {
+                if (typedX.trim() === "") setCursor(null);
+              }}
+            >
+              <img src={imageUrl} alt={`${figure.figure} ${figure.factor}`} draggable={false} />
+              {activeAxisMarker ? (
+                activeAxisMarker.kind === "vertical"
+                  ? <div className="graph-axis-line vertical" style={{ left: `${activeAxisMarker.positionPct}%` }} />
+                  : <div className="graph-axis-line horizontal" style={{ top: `${activeAxisMarker.positionPct}%` }} />
+              ) : null}
+              {figure.orientation === "depth_on_y" && cursorVerticalPct !== null ? (
+                <div className="graph-axis-line vertical" style={{ left: `${cursorVerticalPct}%` }} />
+              ) : null}
+              {cursorHorizontalPct !== null ? (
+                <div className="graph-cursor-line horizontal" style={{ top: `${cursorHorizontalPct}%` }} />
+              ) : null}
+              {displayedReadouts.map((row) => row.marker ? (
+                <span
+                  key={row.curve.curve_name}
+                  className={`graph-marker marker-${row.index % 6}`}
+                  style={{ left: `${row.marker.imageX / figure.image_size_px[0] * 100}%`, top: `${row.marker.imageY / figure.image_size_px[1] * 100}%` }}
+                  title={`${row.curve.curve_name}: x ${formatGraphNumber(currentX)} ${figure.x_units}, y ${formatGraphNumber(row.yValue)} ${figure.y_units}, ${row.yValue === null ? "out of range" : "digitized graph interpolation"}`}
+                />
+              ) : null)}
+              {floatingReadout && floatingPosition ? (
+                <div className="graph-floating-readout" style={{ left: `${floatingPosition.leftPct}%`, top: `${floatingPosition.topPct}%`, transform: floatingPosition.transform }}>
+                  <div className="floating-kicker">{figure.figure} {figure.factor}</div>
+                  <div><strong>x</strong> {formatGraphNumber(currentX)} {figure.x_units}</div>
+                  <div><strong>cursor y</strong> {cursor?.visualYValue !== null && cursor?.visualYValue !== undefined ? formatGraphNumber(cursor.visualYValue) : "-"}</div>
+                  <div className="floating-curve">
+                    {nearestReadout ? (
+                      <>
+                        <span className={`curve-dot marker-${nearestReadout.index % 6}`} />
+                        <span>{nearestReadout.curve.curve_name}</span>
+                      </>
+                    ) : (
+                      <span>No curve in range</span>
+                    )}
+                  </div>
+                  <div><strong>curve y</strong> {nearestReadout?.yValue === null || nearestReadout?.yValue === undefined ? "-" : `${formatGraphNumber(nearestReadout.yValue)} ${figure.y_units}`}</div>
+                </div>
+              ) : null}
+            </div>
+            <div className="graph-meta-row">
+              <StatusPill value={figure.figure} />
+              <span>{figure.factor}</span>
+              <span>{figure.source_page}</span>
+              <span>{figure.orientation === "depth_on_y" ? "Depth axis normalized for lookup" : "Standard x/y axes"}</span>
+            </div>
+          </div>
+        </div>
+      </Panel>
     </div>
   );
 }
@@ -1718,6 +1950,127 @@ function fmt(value: any, digits = 1) {
 function numeric(value: any) {
   const number = Number(value);
   return Number.isNaN(number) ? value : number;
+}
+
+function interpolateGraphCurve(points: DigitizedGraphPoint[], xValue: number) {
+  if (!points.length) return null;
+  const sorted = [...points].sort((a, b) => a.x_value - b.x_value);
+  if (xValue < sorted[0].x_value || xValue > sorted[sorted.length - 1].x_value) return null;
+  for (let index = 0; index < sorted.length; index += 1) {
+    if (Math.abs(sorted[index].x_value - xValue) < 1e-10) return sorted[index].y_value;
+  }
+  for (let index = 0; index < sorted.length - 1; index += 1) {
+    const left = sorted[index];
+    const right = sorted[index + 1];
+    if (left.x_value <= xValue && xValue <= right.x_value) {
+      const ratio = (xValue - left.x_value) / (right.x_value - left.x_value);
+      return left.y_value + ratio * (right.y_value - left.y_value);
+    }
+  }
+  return null;
+}
+
+function pageToGraphValue(calibration: GraphCalibration, pageCoord: number) {
+  const ticks = [...calibration.ticks].sort((a, b) => a.page_coord - b.page_coord);
+  if (pageCoord < ticks[0].page_coord || pageCoord > ticks[ticks.length - 1].page_coord) return null;
+  for (let index = 0; index < ticks.length; index += 1) {
+    if (Math.abs(ticks[index].page_coord - pageCoord) < 1e-8) return ticks[index].value;
+  }
+  for (let index = 0; index < ticks.length - 1; index += 1) {
+    const left = ticks[index];
+    const right = ticks[index + 1];
+    if (left.page_coord <= pageCoord && pageCoord <= right.page_coord) {
+      const ratio = (pageCoord - left.page_coord) / (right.page_coord - left.page_coord);
+      return left.value + ratio * (right.value - left.value);
+    }
+  }
+  return null;
+}
+
+function graphValueToPage(calibration: GraphCalibration, value: number) {
+  const ticks = [...calibration.ticks].sort((a, b) => a.value - b.value);
+  if (value < ticks[0].value || value > ticks[ticks.length - 1].value) return null;
+  for (let index = 0; index < ticks.length; index += 1) {
+    if (Math.abs(ticks[index].value - value) < 1e-10) return ticks[index].page_coord;
+  }
+  for (let index = 0; index < ticks.length - 1; index += 1) {
+    const left = ticks[index];
+    const right = ticks[index + 1];
+    if (left.value <= value && value <= right.value) {
+      const ratio = (value - left.value) / (right.value - left.value);
+      return left.page_coord + ratio * (right.page_coord - left.page_coord);
+    }
+  }
+  return null;
+}
+
+function imagePointToPageCoord(figure: DigitizedGraphFigure, imageX: number, imageY: number, pageCoordinate: "page_x" | "page_y") {
+  const [clipX0, clipY0] = figure.clip_pdf_points;
+  const pageX = clipX0 + imageX / figure.render_scale;
+  const pageY = clipY0 + imageY / figure.render_scale;
+  return pageCoordinate === "page_x" ? pageX : pageY;
+}
+
+function graphVisualYValue(figure: DigitizedGraphFigure, imageX: number, imageY: number) {
+  const pageY = imagePointToPageCoord(figure, imageX, imageY, "page_y");
+  const visualYAxisCalibration = figure.calibrations.y.page_coordinate === "page_y"
+    ? figure.calibrations.y
+    : figure.calibrations.x.page_coordinate === "page_y"
+      ? figure.calibrations.x
+      : null;
+  return visualYAxisCalibration ? pageToGraphValue(visualYAxisCalibration, pageY) : null;
+}
+
+function graphPointToImage(figure: DigitizedGraphFigure, xValue: number, yValue: number) {
+  const xPageCoord = graphValueToPage(figure.calibrations.x, xValue);
+  const yPageCoord = graphValueToPage(figure.calibrations.y, yValue);
+  if (xPageCoord === null || yPageCoord === null) return null;
+  let pageX = 0;
+  let pageY = 0;
+  if (figure.calibrations.x.page_coordinate === "page_x") pageX = xPageCoord;
+  else pageY = xPageCoord;
+  if (figure.calibrations.y.page_coordinate === "page_y") pageY = yPageCoord;
+  else pageX = yPageCoord;
+  const [clipX0, clipY0] = figure.clip_pdf_points;
+  return {
+    imageX: (pageX - clipX0) * figure.render_scale,
+    imageY: (pageY - clipY0) * figure.render_scale,
+  };
+}
+
+function axisValueToImageLine(figure: DigitizedGraphFigure, xValue: number) {
+  const pageCoord = graphValueToPage(figure.calibrations.x, xValue);
+  if (pageCoord === null) return null;
+  const [clipX0, clipY0] = figure.clip_pdf_points;
+  if (figure.calibrations.x.page_coordinate === "page_x") {
+    return { kind: "vertical" as const, positionPct: ((pageCoord - clipX0) * figure.render_scale / figure.image_size_px[0]) * 100 };
+  }
+  return { kind: "horizontal" as const, positionPct: ((pageCoord - clipY0) * figure.render_scale / figure.image_size_px[1]) * 100 };
+}
+
+function floatingReadoutPosition(
+  figure: DigitizedGraphFigure,
+  cursor: { imageX: number; imageY: number } | null,
+  marker: { imageX: number; imageY: number } | null
+) {
+  const anchor = cursor || marker;
+  if (!anchor) return null;
+  const leftPct = anchor.imageX / figure.image_size_px[0] * 100;
+  const topPct = anchor.imageY / figure.image_size_px[1] * 100;
+  const xShift = leftPct > 72 ? "calc(-100% - 16px)" : "16px";
+  const yShift = topPct > 70 ? "calc(-100% - 16px)" : "16px";
+  return {
+    leftPct: Math.max(1, Math.min(99, leftPct)),
+    topPct: Math.max(1, Math.min(99, topPct)),
+    transform: `translate(${xShift}, ${yShift})`,
+  };
+}
+
+function formatGraphNumber(value: number | null) {
+  if (value === null || !Number.isFinite(value)) return "-";
+  const abs = Math.abs(value);
+  const digits = abs >= 100 ? 1 : abs >= 10 ? 3 : 5;
+  return Number(value.toFixed(digits)).toLocaleString(undefined, { maximumFractionDigits: digits });
 }
 
 function labelize(value: string) {

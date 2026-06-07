@@ -11,6 +11,10 @@ from openpyxl import load_workbook
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 TESTING_SHEET = "Testing"
+TESTING_WORKBOOKS = {
+    "highway": REPO_ROOT / "Refs" / "API 1102 Highway_260606.xlsx",
+    "railroad": REPO_ROOT / "Refs" / "API 1102 Railroad_260606.xlsx",
+}
 CACHED_FORMULA_MESSAGE = (
     "The Testing tab formula results are not cached. Open the workbook in Excel, "
     "recalculate, save, and rerun tests. openpyxl cannot evaluate Excel formulas by itself."
@@ -78,8 +82,13 @@ def normalize_header(value: Any) -> str:
 
 
 def locate_testing_workbook(mode: str) -> Path:
+    preferred = TESTING_WORKBOOKS.get(mode.lower())
+    if preferred and preferred.exists():
+        return preferred
     matches: list[Path] = []
     for path in REPO_ROOT.rglob("*.xlsx"):
+        if ".bak_" in path.name:
+            continue
         workbook = load_workbook(path, data_only=True, read_only=True)
         try:
             if TESTING_SHEET not in workbook.sheetnames:

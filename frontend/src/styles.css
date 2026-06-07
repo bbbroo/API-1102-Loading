@@ -1601,6 +1601,208 @@ button {
   line-height: 1.35;
 }
 
+.graph-viewer-panel {
+  padding: 18px;
+}
+
+.graph-toolbar {
+  display: grid;
+  grid-template-columns: minmax(140px, 180px) minmax(160px, 220px) max-content max-content;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+
+.segmented-control {
+  width: max-content;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.segmented-control button {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  border-right: 1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+  padding: 0 11px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.segmented-control button:last-child {
+  border-right: 0;
+}
+
+.segmented-control button.active {
+  background: var(--hdr-navy);
+  color: #fff;
+}
+
+.graph-viewer-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.graph-stage {
+  position: relative;
+  width: 100%;
+  max-height: min(68vh, 760px);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  cursor: crosshair;
+  user-select: none;
+}
+
+@media (min-width: 1180px) {
+  .graph-stage {
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+
+.graph-stage img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+}
+
+.graph-axis-line {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  background: rgba(27, 48, 65, 0.64);
+}
+
+.graph-axis-line.vertical {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+.graph-axis-line.horizontal {
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+.graph-cursor-line {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  background: rgba(194, 65, 58, 0.78);
+}
+
+.graph-cursor-line.horizontal {
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+.graph-marker {
+  position: absolute;
+  z-index: 3;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(17, 24, 39, 0.35);
+  pointer-events: none;
+}
+
+.curve-dot {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: -1px;
+}
+
+.marker-0 { background: #d62728; }
+.marker-1 { background: #1f77b4; }
+.marker-2 { background: #2ca02c; }
+.marker-3 { background: #9467bd; }
+.marker-4 { background: #b45f06; }
+.marker-5 { background: #0f7c8a; }
+
+.graph-meta-row {
+  min-height: 34px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.graph-floating-readout {
+  position: absolute;
+  z-index: 4;
+  min-width: 190px;
+  max-width: 280px;
+  padding: 10px 12px;
+  border: 1px solid rgba(15, 23, 42, 0.24);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #111827;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.18);
+  backdrop-filter: blur(5px);
+  pointer-events: none;
+  font-size: 13px;
+  line-height: 1.38;
+}
+
+.graph-floating-readout strong {
+  display: inline-block;
+  min-width: 62px;
+  color: var(--hdr-navy);
+}
+
+.floating-kicker {
+  margin-bottom: 4px;
+  color: #394655;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.floating-curve {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 6px 0 2px;
+  font-weight: 800;
+}
+
+.floating-status {
+  margin-top: 6px;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
 .reference-list {
   display: flex;
   flex-direction: column;
@@ -1901,8 +2103,13 @@ button {
   .report-lower-grid,
   .project-card-grid,
   .table-toolbar,
+  .graph-toolbar,
   .projects-action-bar {
     grid-template-columns: 1fr;
+  }
+
+  .graph-toolbar .segmented-control {
+    width: 100%;
   }
 
   .report-page {

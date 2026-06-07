@@ -12,8 +12,8 @@ from app.calculations.railroad import calculate_railroad
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 REFS = REPO_ROOT / "Refs"
-HIGHWAY_WORKBOOK = REFS / "Copy of API 1102 Highway.xlsx"
-RAILROAD_WORKBOOK = REFS / "Copy of API 1102 Railroad.xlsx"
+HIGHWAY_WORKBOOK = REFS / "API 1102 Highway_260606.xlsx"
+RAILROAD_WORKBOOK = REFS / "API 1102 Railroad_260606.xlsx"
 STRESS_ABS_TOLERANCE_PSI = 0.5
 RELATIVE_TOLERANCE = 0.001
 HIGHWAY_MAPPING = {"SHi": "C44", "SHe": "C50", "SHh": "C58", "SLh": "C61", "Seff": "C67", "Barlow": "C78", "Effective": "C79", "Girth": "C80", "Longitudinal": "C81"}

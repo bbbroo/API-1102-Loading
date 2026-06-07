@@ -14,20 +14,20 @@ def seed_if_empty(db: Session) -> None:
     if db.query(Project).count():
         return
     project = Project(
-        project_name="Example Project - Woodside Drive Crossing",
+        project_name="Example Project - Highway and Railroad Crossings",
         project_number="EX-1102-001",
         client="HDR Internal",
         location="Rosemont, IL",
-        description="Example project loaded for API RP 1102 loading calculator validation.",
+        description="Single first-run example project with one sample highway crossing calculation and one sample railroad crossing calculation.",
     )
     db.add(project)
     db.flush()
     highway = Calculation(
         project_id=project.id,
         calc_number="CALC-1102-001",
-        crossing_name="Woodside Drive Crossing",
+        crossing_name="Sample Highway Crossing",
         calculation_type="Highway",
-        road_highway="Woodside Drive",
+        road_highway="Sample Highway",
         prepared_by="Example Engineer",
         checked_by="Example Checker",
         reviewer="",
@@ -38,9 +38,9 @@ def seed_if_empty(db: Session) -> None:
     railroad = Calculation(
         project_id=project.id,
         calc_number="CALC-1102-002",
-        crossing_name="Railroad Route Crossing",
+        crossing_name="Sample Railroad Crossing",
         calculation_type="Railroad",
-        railroad_route="Example Rail Route",
+        railroad_route="Sample Railroad Route",
         prepared_by="Example Engineer",
         checked_by="Example Checker",
         date=date.today(),

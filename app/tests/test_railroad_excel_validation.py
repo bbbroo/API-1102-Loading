@@ -10,7 +10,7 @@ def test_railroad_default_matches_excel_if_workbook_available():
     assert result.controlling_check == "Girth Weld Stress"
     assert result.warnings == []
     assert RAILROAD_WORKBOOK.parent.name == "Refs"
-    assert RAILROAD_WORKBOOK.name.startswith("Copy of")
+    assert RAILROAD_WORKBOOK.name == "API 1102 Railroad_260606.xlsx"
     if RAILROAD_WORKBOOK.exists():
         pytest.xfail("Legacy Railroad Loading sheet parity is superseded by the workbook Testing tab source of truth.")
         assert_within_tolerance(compare_default_railroad())

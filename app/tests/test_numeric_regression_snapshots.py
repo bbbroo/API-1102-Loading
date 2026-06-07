@@ -12,25 +12,25 @@ from app.tests.helpers import rounded_values
 SNAPSHOT_KEYS = ["SHi", "SHe", "SHh", "SLh", "SHr", "SLr", "Seff", "allowable_hoop", "allowable_effective", "Khe", "Be", "Ee", "Fi"]
 
 HIGHWAY_SNAPSHOTS = {
-    "default": {"SHi": 25500.0, "SHe": 2907.641411, "SHh": 1480.924005, "SLh": 1005.647653, "Seff": 26754.361091, "allowable_hoop": 46800.0, "allowable_effective": 46800.0, "Khe": 2790.529412, "Be": 1.065847, "Ee": 1.104108, "Fi": 1.47622},
-    "shallow_cover": {"SHi": 25500.0, "SHe": 712.426475, "SHh": 1855.353013, "SLh": 1176.653777, "Seff": 25127.503485, "allowable_hoop": 46800.0, "allowable_effective": 46800.0, "Khe": 2790.529412, "Be": 0.261153, "Ee": 1.104108, "Fi": 1.5},
-    "high_pressure": {"SHi": 76500.0, "SHe": 2907.641411, "SHh": 1480.924005, "SLh": 1005.647653, "Seff": 72675.980263, "allowable_hoop": 46800.0, "allowable_effective": 46800.0, "Khe": 2790.529412, "Be": 1.065847, "Ee": 1.104108, "Fi": 1.47622},
-    "rigid_single_axle": {"SHi": 25500.0, "SHe": 2907.641411, "SHh": 1039.608651, "SLh": 705.964652, "Seff": 26393.047705, "allowable_hoop": 46800.0, "allowable_effective": 46800.0, "Khe": 2790.529412, "Be": 1.065847, "Ee": 1.104108, "Fi": 1.47622},
-    "no_pavement_shallow_cover": {"SHi": 25500.0, "SHe": 1997.272456, "SHh": 2040.888314, "SLh": 1294.319155, "Seff": 26421.852934, "allowable_hoop": 46800.0, "allowable_effective": 46800.0, "Khe": 2790.529412, "Be": 0.732136, "Ee": 1.104108, "Fi": 1.5},
-    "nps24_thick_wall": {"SHi": 12793.176972, "SHe": 867.608399, "SHh": 699.207773, "SLh": 621.996419, "Seff": 13002.817823, "allowable_hoop": 46800.0, "allowable_effective": 46800.0, "Khe": 674.45, "Be": 0.797846, "Ee": 0.9674, "Fi": 1.47622},
-    "dense_soil": {"SHi": 25500.0, "SHe": 2216.265532, "SHh": 988.711684, "SLh": 676.647767, "Seff": 25736.448318, "allowable_hoop": 46800.0, "allowable_effective": 46800.0, "Khe": 1897.960784, "Be": 0.955576, "Ee": 1.104108, "Fi": 1.47622},
-    "soft_soil": {"SHi": 25500.0, "SHe": 2727.50359, "SHh": 2040.398257, "SLh": 1483.325703, "Seff": 27036.937527, "allowable_hoop": 46800.0, "allowable_effective": 46800.0, "Khe": 3141.176471, "Be": 1.065847, "Ee": 1.104108, "Fi": 1.47622},
+    "default": {"SHi": 25500.0, "SHe": 2859.010936, "SHh": 1476.289403, "SLh": 1008.41028, "Seff": 26706.321139, "allowable_hoop": 46800.0, "allowable_effective": 46800.0, "Khe": 2744.387442, "Be": 1.068711, "Ee": 1.100937, "Fi": 1.478814},
+    "shallow_cover": {"SHi": 25500.0, "SHe": 727.236876, "SHh": 1848.114123, "SLh": 1170.601225, "Seff": 25134.903282, "allowable_hoop": 46800.0, "allowable_effective": 46800.0, "Khe": 2744.387442, "Be": 0.271844, "Ee": 1.100937, "Fi": 1.500493},
+    "high_pressure": {"SHi": 76500.0, "SHe": 2859.010936, "SHh": 1476.289403, "SLh": 1008.41028, "Seff": 72627.878079, "allowable_hoop": 46800.0, "allowable_effective": 46800.0, "Khe": 2744.387442, "Be": 1.068711, "Ee": 1.100937, "Fi": 1.478814},
+    "rigid_single_axle": {"SHi": 25500.0, "SHe": 2859.010936, "SHh": 1036.355161, "SLh": 707.904017, "Seff": 26346.429534, "allowable_hoop": 46800.0, "allowable_effective": 46800.0, "Khe": 2744.387442, "Be": 1.068711, "Ee": 1.100937, "Fi": 1.478814},
+    "no_pavement_shallow_cover": {"SHi": 25500.0, "SHe": 1958.038084, "SHh": 2034.261167, "SLh": 1288.507341, "Seff": 26381.812749, "allowable_hoop": 46800.0, "allowable_effective": 46800.0, "Khe": 2744.387442, "Be": 0.731923, "Ee": 1.100937, "Fi": 1.501479},
+    "nps24_thick_wall": {"SHi": 12793.176972, "SHe": 869.572194, "SHh": 701.980939, "SLh": 625.741358, "Seff": 13006.597085, "allowable_hoop": 46800.0, "allowable_effective": 46800.0, "Khe": 674.991357, "Be": 0.800989, "Ee": 0.96501, "Fi": 1.478814},
+    "dense_soil": {"SHi": 25500.0, "SHe": 2204.689152, "SHh": 996.191103, "SLh": 680.599028, "Seff": 25732.494112, "allowable_hoop": 46800.0, "allowable_effective": 46800.0, "Khe": 1892.854638, "Be": 0.955894, "Ee": 1.100937, "Fi": 1.478814},
+    "soft_soil": {"SHi": 25500.0, "SHe": 2705.71158, "SHh": 2038.526788, "SLh": 1488.757819, "Seff": 27014.923821, "allowable_hoop": 46800.0, "allowable_effective": 46800.0, "Khe": 3116.680998, "Be": 1.068711, "Ee": 1.100937, "Fi": 1.478814},
 }
 
 RAILROAD_SNAPSHOTS = {
-    "default": {"SHi": 20400.0, "SHe": 3273.004308, "SHr": 11885.98005, "SLr": 11066.189118, "Seff": 31153.505099, "allowable_hoop": 30240.0, "allowable_effective": 30240.0, "Khe": 3141.176471, "Be": 1.065847, "Ee": 1.104108, "Fi": 1.726392},
-    "high_surface_pressure": {"SHi": 20400.0, "SHe": 3273.004308, "SHr": 25653.194354, "SLr": 23883.861406, "Seff": 43598.134752, "allowable_hoop": 30240.0, "allowable_effective": 30240.0, "Khe": 3141.176471, "Be": 1.065847, "Ee": 1.104108, "Fi": 1.726392},
-    "low_cover": {"SHi": 20400.0, "SHe": 801.947211, "SHr": 12048.516243, "SLr": 11217.514986, "Seff": 29177.360694, "allowable_hoop": 30240.0, "allowable_effective": 30240.0, "Khe": 3141.176471, "Be": 0.261153, "Ee": 1.104108, "Fi": 1.75},
-    "nps24_thick_wall": {"SHi": 10234.541578, "SHe": 867.608399, "SHr": 4799.70594, "SLr": 6623.019786, "Seff": 14334.464129, "allowable_hoop": 30240.0, "allowable_effective": 30240.0, "Khe": 674.45, "Be": 0.797846, "Ee": 0.9674, "Fi": 1.726392},
-    "soft_soil": {"SHi": 20400.0, "SHe": 2727.50359, "SHr": 11885.98005, "SLr": 11066.189118, "Seff": 30684.556568, "allowable_hoop": 30240.0, "allowable_effective": 30240.0, "Khe": 3141.176471, "Be": 1.065847, "Ee": 1.104108, "Fi": 1.726392},
-    "dense_soil": {"SHi": 20400.0, "SHe": 2216.265532, "SHr": 6414.307253, "SLr": 5170.505837, "Seff": 25572.347342, "allowable_hoop": 30240.0, "allowable_effective": 30240.0, "Khe": 1897.960784, "Be": 0.955576, "Ee": 1.104108, "Fi": 1.726392},
-    "one_track": {"SHi": 20400.0, "SHe": 3273.004308, "SHr": 11885.98005, "SLr": 11066.189118, "Seff": 31153.505099, "allowable_hoop": 30240.0, "allowable_effective": 30240.0, "Khe": 3141.176471, "Be": 1.065847, "Ee": 1.104108, "Fi": 1.726392},
-    "two_track": {"SHi": 20400.0, "SHe": 3273.004308, "SHr": 11885.98005, "SLr": 11066.189118, "Seff": 31153.505099, "allowable_hoop": 30240.0, "allowable_effective": 30240.0, "Khe": 3141.176471, "Be": 1.065847, "Ee": 1.104108, "Fi": 1.726392},
+    "default": {"SHi": 20400.0, "SHe": 3246.853896, "SHr": 11618.32183, "SLr": 11122.400176, "Seff": 30905.264695, "allowable_hoop": 30240.0, "allowable_effective": 30240.0, "Khe": 3116.680998, "Be": 1.068711, "Ee": 1.100937, "Fi": 1.726397},
+    "high_surface_pressure": {"SHi": 20400.0, "SHe": 3246.853896, "SHr": 25075.514741, "SLr": 24005.180237, "Seff": 43149.224806, "allowable_hoop": 30240.0, "allowable_effective": 30240.0, "Khe": 3116.680998, "Be": 1.068711, "Ee": 1.100937, "Fi": 1.726397},
+    "low_cover": {"SHi": 20400.0, "SHe": 825.891169, "SHr": 11777.198514, "SLr": 11274.495296, "Seff": 28973.28988, "allowable_hoop": 30240.0, "allowable_effective": 30240.0, "Khe": 3116.680998, "Be": 0.271844, "Ee": 1.100937, "Fi": 1.750005},
+    "nps24_thick_wall": {"SHi": 10234.541578, "SHe": 869.572194, "SHr": 4538.697948, "SLr": 6830.750883, "Seff": 14176.901025, "allowable_hoop": 30240.0, "allowable_effective": 30240.0, "Khe": 674.991357, "Be": 0.800989, "Ee": 0.96501, "Fi": 1.726397},
+    "soft_soil": {"SHi": 20400.0, "SHe": 2705.71158, "SHr": 11618.32183, "SLr": 11122.400176, "Seff": 30440.878823, "allowable_hoop": 30240.0, "allowable_effective": 30240.0, "Khe": 3116.680998, "Be": 1.068711, "Ee": 1.100937, "Fi": 1.726397},
+    "dense_soil": {"SHi": 20400.0, "SHe": 2204.689152, "SHr": 6304.269062, "SLr": 5237.609668, "Seff": 25457.515747, "allowable_hoop": 30240.0, "allowable_effective": 30240.0, "Khe": 1892.854638, "Be": 0.955894, "Ee": 1.100937, "Fi": 1.726397},
+    "one_track": {"SHi": 20400.0, "SHe": 3246.853896, "SHr": 11618.32183, "SLr": 11122.400176, "Seff": 30905.264695, "allowable_hoop": 30240.0, "allowable_effective": 30240.0, "Khe": 3116.680998, "Be": 1.068711, "Ee": 1.100937, "Fi": 1.726397},
+    "two_track": {"SHi": 20400.0, "SHe": 3246.853896, "SHr": 11618.32183, "SLr": 11122.400176, "Seff": 30905.264695, "allowable_hoop": 30240.0, "allowable_effective": 30240.0, "Khe": 3116.680998, "Be": 1.068711, "Ee": 1.100937, "Fi": 1.726397},
 }
 
 
