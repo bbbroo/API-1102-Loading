@@ -199,11 +199,18 @@ try {
     throw new Error("Excluded acknowledgment text is visible");
   }
   await page.getByRole("button", { name: "Detailed", exact: true }).click();
-  await page.getByText("Formula Trace").waitFor({ timeout: 8000 });
+  await page.getByLabel("Formula Trace").waitFor({ timeout: 8000 });
+  await page.locator(".detailed-pdf-frame").waitFor({ timeout: 15000 });
+  if (await page.locator(".report-page").count()) {
+    throw new Error("Detailed report type still renders the simplified report body");
+  }
+  await page.getByLabel("Formula Trace").uncheck();
+  await page.locator(".detailed-pdf-frame").waitFor({ timeout: 15000 });
+  await page.getByLabel("Formula Trace").check();
   const detailedDownloadPromise = page.waitForEvent("download", { timeout: 15000 });
-  await page.getByRole("button", { name: "Generate Detailed PDF", exact: true }).click();
+  await page.locator(".detailed-report-panel").getByRole("button", { name: "Download Detailed PDF", exact: true }).click();
   const detailedDownload = await detailedDownloadPromise;
-  if (!detailedDownload.suggestedFilename().includes("detailed")) {
+  if (!detailedDownload.suggestedFilename().toLowerCase().endsWith(".pdf")) {
     throw new Error(`Detailed PDF download filename is unexpected: ${detailedDownload.suggestedFilename()}`);
   }
   checks.push("Detailed backend PDF generates for the selected scenario");
@@ -215,7 +222,7 @@ try {
   await page.locator(".warning-callout", { hasText: "Operating pressure cannot be below 0 psia" }).waitFor({ timeout: 8000 });
   await page.getByRole("button", { name: "Report", exact: true }).click();
   await page.getByRole("button", { name: "Detailed", exact: true }).click();
-  await page.getByRole("button", { name: "Generate Detailed PDF", exact: true }).click();
+  await page.locator(".detailed-report-panel").getByRole("button", { name: "Download Detailed PDF", exact: true }).click();
   await page.locator(".detailed-report-error", { hasText: "Detailed PDF generation is blocked" }).waitFor({ timeout: 12000 });
   await page.getByRole("button", { name: "Recalculate Scenario", exact: true }).waitFor({ timeout: 8000 });
   checks.push("Detailed report generation blocks invalid selected scenarios with recovery action");

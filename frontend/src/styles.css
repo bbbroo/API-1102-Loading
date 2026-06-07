@@ -1983,6 +1983,95 @@ button {
   font-weight: 800;
 }
 
+.detailed-report-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.detailed-preview-state {
+  color: #667085;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.detailed-preview-state.current {
+  color: #027a48;
+}
+
+.detailed-preview-state.stale {
+  color: #b54708;
+}
+
+.detailed-pdf-preview {
+  width: 925px;
+  min-height: 1180px;
+  margin: 18px auto;
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--line), 0 8px 30px rgba(16, 24, 40, 0.12);
+  padding: 14px;
+}
+
+.detailed-pdf-frame-wrap {
+  position: relative;
+}
+
+.detailed-pdf-frame {
+  display: block;
+  width: 100%;
+  height: min(82vh, 1120px);
+  min-height: 720px;
+  border: 1px solid #d0d5dd;
+  background: #f8fafc;
+}
+
+.detailed-pdf-loading,
+.detailed-pdf-empty {
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px solid #d0d5dd;
+  background: #f8fafc;
+  color: #667085;
+  font-weight: 900;
+}
+
+.detailed-pdf-empty {
+  background: #fff;
+}
+
+.detailed-pdf-empty button {
+  margin-top: 8px;
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 7px 10px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.detailed-pdf-empty div {
+  display: grid;
+  gap: 3px;
+}
+
+.detailed-pdf-stale {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  background: #fffaeb;
+  border: 1px solid #fedf89;
+  color: #b54708;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 900;
+  box-shadow: 0 4px 14px rgba(16, 24, 40, 0.1);
+}
+
 .ack-text {
   color: #a4123f;
   font-size: 15px;
@@ -2216,6 +2305,16 @@ button {
     padding: 24px;
   }
 
+  .detailed-pdf-preview {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .detailed-pdf-frame {
+    height: 76vh;
+    min-height: 520px;
+  }
+
   .footer-meta {
     flex-direction: column;
     gap: 6px;
@@ -2240,6 +2339,7 @@ button {
   .hdr-shell,
   .report-toolbar,
   .detailed-report-panel,
+  .detailed-pdf-preview,
   .app-footer {
     display: none !important;
   }

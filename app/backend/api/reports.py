@@ -14,25 +14,9 @@ router = APIRouter(prefix="/reports", tags=["reports"])
 @router.post("/scenario/{scenario_id}/detailed.pdf")
 def detailed_scenario_pdf(scenario_id: int, payload: dict, db: Session = Depends(get_db)):
     try:
-        options = ReportOptions.from_payload(payload.get("report_options"))
-        data = build_detailed_report_data(
-            db,
-            scenario_id,
-            project_id=int(payload.get("project_id")),
-            calculation_id=int(payload.get("calculation_id")),
-            options=options,
-        )
+        data = _build_report_data(db, scenario_id, payload)
     except (TypeError, ValueError) as exc:
-        if isinstance(exc, DetailedReportBlocked):
-            raise HTTPException(
-                status_code=409,
-                detail={
-                    "message": "Detailed PDF generation is blocked.",
-                    "issues": [issue.__dict__ for issue in exc.issues],
-                    "recovery_action": "Recalculate Scenario",
-                },
-            )
-        raise HTTPException(status_code=400, detail=str(exc))
+        _raise_report_exception(exc)
     except LookupError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
     except PermissionError as exc:
@@ -44,3 +28,27 @@ def detailed_scenario_pdf(scenario_id: int, payload: dict, db: Session = Depends
         media_type="application/pdf",
         headers={"Content-Disposition": f"attachment; filename={filename}"},
     )
+
+
+def _build_report_data(db: Session, scenario_id: int, payload: dict):
+    options = ReportOptions.from_payload(payload.get("report_options"))
+    return build_detailed_report_data(
+        db,
+        scenario_id,
+        project_id=int(payload.get("project_id")),
+        calculation_id=int(payload.get("calculation_id")),
+        options=options,
+    )
+
+
+def _raise_report_exception(exc: Exception) -> None:
+    if isinstance(exc, DetailedReportBlocked):
+        raise HTTPException(
+            status_code=409,
+            detail={
+                "message": "Detailed PDF generation is blocked.",
+                "issues": [issue.__dict__ for issue in exc.issues],
+                "recovery_action": "Recalculate Scenario",
+            },
+        )
+    raise HTTPException(status_code=400, detail=str(exc))

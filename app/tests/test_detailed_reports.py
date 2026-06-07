@@ -6,16 +6,18 @@ from fastapi.testclient import TestClient
 from app.backend.database.models import Scenario
 from app.backend.database.session import SessionLocal
 from app.backend.main import app
+from app.backend.reporting.models import ReportOptions
 from app.backend.reporting.pdf import HDR_LOGO_SVG, PipelineSchematic
 from app.backend.reporting.plots import build_plot, factor_for_trace, figure_for_trace
+from app.backend.reporting.service import build_detailed_report_data
 from app.backend.services.helpers import dumps, loads
 
 
-def create_report_fixture(client: TestClient):
+def create_report_fixture(client: TestClient, calculation_type: str = "Highway"):
     project = client.post("/api/projects", json={"project_name": "Detailed Report Project", "project_number": "DR-001", "status": "Active"}).json()
     calc = client.post(
         "/api/calculations",
-        json={"project_id": project["id"], "calc_number": "DR-CALC-001", "crossing_name": "Detailed Crossing", "calculation_type": "Highway", "status": "Draft"},
+        json={"project_id": project["id"], "calc_number": "DR-CALC-001", "crossing_name": "Detailed Crossing", "calculation_type": calculation_type, "status": "Draft"},
     ).json()
     scenario = client.get(f"/api/scenarios?calculation_id={calc['id']}").json()[0]
     return project, calc, scenario
@@ -33,6 +35,12 @@ def detailed_payload(project, calc):
             "include_warnings": True,
         },
     }
+
+
+def detailed_payload_with_options(project, calc, **options):
+    payload = detailed_payload(project, calc)
+    payload["report_options"].update(options)
+    return payload
 
 
 def pdf_text(content: bytes) -> str:
@@ -139,6 +147,41 @@ def test_detailed_pdf_export_alias_returns_pdf():
         assert response.status_code == 200
         assert response.headers["content-type"] == "application/pdf"
         assert response.content.startswith(b"%PDF")
+
+
+def test_detailed_pdf_options_control_optional_sections():
+    with TestClient(app) as client:
+        project, calc, scenario = create_report_fixture(client)
+        response = client.post(
+            f"/api/reports/scenario/{scenario['id']}/detailed.pdf",
+            json=detailed_payload_with_options(
+                project,
+                calc,
+                include_formula_trace=False,
+                include_intermediates=False,
+                include_plots=False,
+                include_appendix_plots=False,
+            ),
+        )
+        assert response.status_code == 200
+        upper = pdf_text(response.content).upper()
+        assert "DETAILED FORMULA TRACE" not in upper
+        assert "INTERMEDIATE VALUES" not in upper
+        assert "COEFFICIENT LOOKUP SUMMARY" not in upper
+        assert "APPENDIX FULL-SIZE PLOTS" not in upper
+
+
+def test_detailed_report_data_has_equation_traces_and_plots_for_modes():
+    with TestClient(app) as client:
+        for calculation_type, prefix in [("Highway", "HWY"), ("Railroad", "RR")]:
+            project, calc, scenario = create_report_fixture(client, calculation_type)
+            with SessionLocal() as db:
+                data = build_detailed_report_data(db, scenario["id"], project["id"], calc["id"], ReportOptions())
+            assert data.equations
+            assert any(equation.equation_id.startswith("GEN-EQ") for equation in data.equations)
+            assert any(equation.equation_id.startswith(f"{prefix}-EQ") for equation in data.equations)
+            assert data.results.get("interpolation")
+            assert data.plots
 
 
 def test_detailed_pdf_blocks_not_calculated():

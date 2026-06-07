@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
   AlertTriangle,
@@ -555,7 +555,16 @@ function App() {
         />
       ) : null}
       {page === "report" && activeCalc && activeScenario ? (
-        <ReportPreview calc={activeCalc} project={projects.find((item) => item.id === activeCalc.project_id) || activeProject} scenario={activeScenario} onBack={() => setPage("workspace")} />
+        <ReportPreview
+          calc={activeCalc}
+          project={projects.find((item) => item.id === activeCalc.project_id) || activeProject}
+          scenario={activeScenario}
+          onBack={() => setPage("workspace")}
+          onScenarioUpdate={(updated) => {
+            setActiveScenario(updated);
+            setScenarios((items) => items.map((item) => (item.id === updated.id ? updated : item)));
+          }}
+        />
       ) : null}
       {page === "standards" ? <Standards /> : null}
       {page === "graphViewer" ? <GraphViewer /> : null}
@@ -1767,7 +1776,19 @@ function About() {
   );
 }
 
-function ReportPreview({ calc, project, scenario, onBack }: { calc: Calculation; project: Project | null; scenario: Scenario; onBack: () => void }) {
+function ReportPreview({
+  calc,
+  project,
+  scenario,
+  onBack,
+  onScenarioUpdate
+}: {
+  calc: Calculation;
+  project: Project | null;
+  scenario: Scenario;
+  onBack: () => void;
+  onScenarioUpdate: (scenario: Scenario) => void;
+}) {
   const values = firstIntermediate(scenario.intermediate_values);
   const checks = scenario.results?.checks || [];
   const loadingType = `${calc.calculation_type} Loading`;
@@ -1782,57 +1803,149 @@ function ReportPreview({ calc, project, scenario, onBack }: { calc: Calculation;
   const [detailedBusy, setDetailedBusy] = useState(false);
   const [detailedError, setDetailedError] = useState<{ message: string; issues: Array<Record<string, any>> } | null>(null);
   const [detailedNotice, setDetailedNotice] = useState("");
+  const [detailedPdfUrl, setDetailedPdfUrl] = useState<string | null>(null);
+  const [detailedPdfBlob, setDetailedPdfBlob] = useState<Blob | null>(null);
+  const [detailedPreviewLoading, setDetailedPreviewLoading] = useState(false);
+  const [detailedPreviewStale, setDetailedPreviewStale] = useState(false);
+  const detailedPdfUrlRef = useRef<string | null>(null);
+  const detailedPreviewRequestRef = useRef(0);
+  const detailedOptionsKey = JSON.stringify(reportOptions);
+
+  useEffect(() => {
+    if (reportType !== "detailed") return;
+    refreshDetailedPreview();
+  }, [reportType, scenario.id, calc.id, project?.id, detailedOptionsKey]);
+
+  useEffect(() => {
+    return () => {
+      revokeDetailedPdfUrl();
+    };
+  }, []);
 
   function toggleReportOption(key: keyof DetailedReportOptions) {
+    setDetailedPreviewStale(true);
     setReportOptions((current) => ({ ...current, [key]: !current[key] }));
   }
 
-  async function generateDetailedPdf() {
-    setDetailedBusy(true);
-    setDetailedError(null);
-    setDetailedNotice("");
-    try {
-      const requestBody = JSON.stringify({
-        project_id: project?.id ?? calc.project_id,
-        calculation_id: calc.id,
-        report_options: reportOptions
-      });
-      let response = await fetch(`/api/reports/scenario/${scenario.id}/detailed.pdf`, {
+  function buildDetailedRequestBody() {
+    return JSON.stringify({
+      project_id: project?.id ?? calc.project_id,
+      calculation_id: calc.id,
+      report_options: reportOptions
+    });
+  }
+
+  function revokeDetailedPdfUrl() {
+    if (detailedPdfUrlRef.current) {
+      URL.revokeObjectURL(detailedPdfUrlRef.current);
+      detailedPdfUrlRef.current = null;
+    }
+  }
+
+  function replaceDetailedPdfBlob(blob: Blob) {
+    revokeDetailedPdfUrl();
+    const url = URL.createObjectURL(blob);
+    detailedPdfUrlRef.current = url;
+    setDetailedPdfBlob(blob);
+    setDetailedPdfUrl(url);
+    setDetailedPreviewStale(false);
+    return url;
+  }
+
+  function clearDetailedPdfPreview() {
+    revokeDetailedPdfUrl();
+    setDetailedPdfBlob(null);
+    setDetailedPdfUrl(null);
+  }
+
+  async function requestDetailedPdfBlob() {
+    const requestBody = buildDetailedRequestBody();
+    let response = await fetch(`/api/reports/scenario/${scenario.id}/detailed.pdf`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: requestBody
+    });
+    let payload = !response.ok ? await response.clone().json().catch(() => null) : null;
+    if (response.status === 404 && responseNotFound(payload)) {
+      response = await fetch(`/api/exports/scenario/${scenario.id}/detailed.pdf`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: requestBody
       });
-      let payload = !response.ok ? await response.clone().json().catch(() => null) : null;
-      if (response.status === 404 && responseNotFound(payload)) {
-        response = await fetch(`/api/exports/scenario/${scenario.id}/detailed.pdf`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: requestBody
-        });
-        payload = !response.ok ? await response.clone().json().catch(() => null) : null;
+      payload = !response.ok ? await response.clone().json().catch(() => null) : null;
+    }
+    if (!response.ok) {
+      throw detailedErrorFromResponse(response.status, payload);
+    }
+    return response.blob();
+  }
+
+  async function refreshDetailedPreview() {
+    const requestId = detailedPreviewRequestRef.current + 1;
+    detailedPreviewRequestRef.current = requestId;
+    setDetailedPreviewLoading(true);
+    setDetailedError(null);
+    setDetailedNotice("");
+    try {
+      const blob = await requestDetailedPdfBlob();
+      if (detailedPreviewRequestRef.current !== requestId) return false;
+      replaceDetailedPdfBlob(blob);
+      return true;
+    } catch (error: any) {
+      if (detailedPreviewRequestRef.current !== requestId) return false;
+      clearDetailedPdfPreview();
+      setDetailedError(normalizeDetailedError(error, "Detailed PDF preview could not be generated."));
+      return false;
+    } finally {
+      if (detailedPreviewRequestRef.current === requestId) setDetailedPreviewLoading(false);
+    }
+  }
+
+  async function downloadDetailedPdf() {
+    setDetailedBusy(true);
+    setDetailedError(null);
+    setDetailedNotice("");
+    try {
+      let blob = detailedPdfBlob;
+      if (!blob || !detailedPdfUrl || detailedPreviewStale) {
+        blob = await requestDetailedPdfBlob();
+        replaceDetailedPdfBlob(blob);
       }
-      if (!response.ok) {
-        const detail = payload?.detail;
-        const detailObject = typeof detail === "object" && detail !== null ? detail : {};
-        const issues = detailObject.issues || payload?.issues || [];
-        setDetailedError({
-          message: detailObject.message || payload?.message || (typeof detail === "string" ? detail : "Detailed PDF generation is blocked."),
-          issues: issues.length ? issues : [fallbackDetailedIssue(response.status, detail)]
-        });
-        return;
-      }
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
+      const fileName = `scenario-${scenario.id}-detailed.pdf`;
+      const downloadFile = new File([blob], fileName, { type: "application/pdf" });
+      const url = URL.createObjectURL(downloadFile);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `scenario-${scenario.id}-detailed.pdf`;
+      link.download = fileName;
       document.body.appendChild(link);
       link.click();
-      link.remove();
-      URL.revokeObjectURL(url);
+      window.setTimeout(() => {
+        link.remove();
+        URL.revokeObjectURL(url);
+      }, 1000);
+    } catch (error: any) {
+      setDetailedError(normalizeDetailedError(error, "Detailed PDF generation is blocked."));
     } finally {
       setDetailedBusy(false);
     }
+  }
+
+  function detailedErrorFromResponse(status: number, payload: any) {
+    const detail = payload?.detail;
+    const detailObject = typeof detail === "object" && detail !== null ? detail : {};
+    const issues = detailObject.issues || payload?.issues || [];
+    return {
+      message: detailObject.message || payload?.message || (typeof detail === "string" ? detail : "Detailed PDF generation is blocked."),
+      issues: issues.length ? issues : [fallbackDetailedIssue(status, detail)]
+    };
+  }
+
+  function normalizeDetailedError(error: any, fallbackMessage: string) {
+    if (error?.issues) return error;
+    return {
+      message: error?.message || fallbackMessage,
+      issues: [{ code: "preview_unavailable", message: error?.message || fallbackMessage, input_anchor: "results" }]
+    };
   }
 
   function responseNotFound(payload: any) {
@@ -1858,9 +1971,13 @@ function ReportPreview({ calc, project, scenario, onBack }: { calc: Calculation;
     setDetailedBusy(true);
     setDetailedNotice("");
     try {
-      await api<Scenario>(`/scenarios/${scenario.id}/calculate`, { method: "POST" });
+      const updated = await api<Scenario>(`/scenarios/${scenario.id}/calculate`, { method: "POST" });
+      onScenarioUpdate(updated);
       setDetailedError(null);
-      setDetailedNotice("Scenario recalculated. Generate the detailed PDF again when ready.");
+      setDetailedPreviewStale(true);
+      setDetailedNotice("Scenario recalculated. Refreshing detailed PDF preview.");
+      const refreshed = await refreshDetailedPreview();
+      setDetailedNotice(refreshed ? "Scenario recalculated and detailed PDF preview refreshed." : "Scenario recalculated. Resolve the listed report issue, then refresh the preview.");
     } finally {
       setDetailedBusy(false);
     }
@@ -1885,7 +2002,7 @@ function ReportPreview({ calc, project, scenario, onBack }: { calc: Calculation;
               <Button variant="primary" icon={<Printer size={16} />} onClick={() => window.print()}>Print / PDF</Button>
             </>
           ) : (
-            <Button variant="primary" icon={<FileDown size={16} />} onClick={generateDetailedPdf}>{detailedBusy ? "Generating..." : "Generate Detailed PDF"}</Button>
+            <Button variant="primary" icon={<FileDown size={16} />} onClick={downloadDetailedPdf}>{detailedBusy ? "Downloading..." : "Download Detailed PDF"}</Button>
           )}
         </div>
       </div>
@@ -1904,6 +2021,13 @@ function ReportPreview({ calc, project, scenario, onBack }: { calc: Calculation;
                 <span>{label}</span>
               </label>
             ))}
+          </div>
+          <div className="detailed-report-actions">
+            <Button icon={<FileText size={16} />} onClick={refreshDetailedPreview}>{detailedPreviewLoading ? "Refreshing..." : "Refresh Preview"}</Button>
+            <Button variant="primary" icon={<FileDown size={16} />} onClick={downloadDetailedPdf}>{detailedBusy ? "Downloading..." : "Download Detailed PDF"}</Button>
+            <span className={`detailed-preview-state ${detailedPreviewStale ? "stale" : detailedPdfUrl ? "current" : ""}`}>
+              {detailedPreviewLoading ? "Generating PDF preview..." : detailedPreviewStale ? "Preview will refresh with current options" : detailedPdfUrl ? "Detailed PDF preview is current" : "PDF preview not generated"}
+            </span>
           </div>
           {detailedError ? (
             <div className="detailed-report-error">
@@ -1924,86 +2048,163 @@ function ReportPreview({ calc, project, scenario, onBack }: { calc: Calculation;
           {detailedNotice ? <div className="detailed-report-notice">{detailedNotice}</div> : null}
         </div>
       ) : null}
-      <article className="report-page">
-        <header className="report-header">
-          <div className="report-logo-block">
-            <img src={hdrLogo} alt="HDR" />
-            <span>API RP 1102 {calc.calculation_type} Loading Calculator</span>
-            <small>Gas Pipeline - Technical Tool</small>
-          </div>
-          <div>
-            <small>Engineering Calculation Package</small>
-            <h1>API RP 1102 {calc.calculation_type} Loading Analysis</h1>
-            <p>Calc {calc.calc_number} - Rev {calc.revision || "0"} - {calc.date || "2026-05-24"} - {calc.status}</p>
-          </div>
-        </header>
-        <div className="report-grid">
-          <ReportBox title="Project & Calculation" rows={[
-            ["Project", project?.project_name || `Project ${calc.project_id}`],
-            ["Project No.", project?.project_number || "-"],
-            ["Client", project?.client || "-"],
-            ["Location", project?.location || "-"],
-            ["Crossing", calc.crossing_name],
-            ["Calc No.", calc.calc_number],
-            ["Date", calc.date || "-"],
-            ["Crossing Type", calc.calculation_type],
-            ["Scenario", scenario.scenario_name || "Base Case"],
-            ["Prepared By", calc.prepared_by || "-"],
-            ["Checked By", calc.checked_by || "-"],
-            ["Status", calc.status]
-          ]} />
-          <ReportBox title="Purpose & References" rows={[
-            ["Basis", "API RP 1102, 7th Ed. (2007, R2024)"],
-            ["Purpose", `Check combined stress of buried gas pipeline crossing under internal pressure and external ${calc.calculation_type.toLowerCase()} loading.`],
-            ["References", "49 CFR Part 192, ASME B31.8, source workbooks"],
-            ["Notes", calc.notes || "Allowables per API RP 1102 tables and ASME B31.8 design factor."]
-          ]} />
-          <ReportBox id="inputs" title="Inputs & Assumptions" rows={[
-            ["NPS", values.nps || "12"],
-            ["O.D. D (in)", fmt(values.outside_diameter || 12.75, 2)],
-            ["Wall tw (in)", fmt(values.wall_thickness || 0.25, 3)],
-            ["Cover H (ft)", fmt(values.cover_depth || 6, 2)],
-            ["Bd/D", fmt(values.bd_d || 1.157, 3)],
-            ["H/Bd", fmt(values.h_bd || 4.881, 3)],
-            ["Spec / Grade", `${values.pipe_specification || "API 5L"} / ${values.pipe_grade || "X65"}`],
-            ["SMYS (psi)", fmt(values.smys || 65000)],
-            ["Joint Factor E", fmt(values.joint_factor || 1, 3)],
-            ["Pressure P (psig)", fmt(values.operating_pressure || 1000)],
-            ["Soil Type", values.soil_type || "Loose sands and gravels"],
-            [calc.calculation_type === "Railroad" ? "Surface Pressure w (psi)" : "Design Wheel Load W (lb)", fmt(calc.calculation_type === "Railroad" ? values.surface_pressure || 13.9 : values.design_wheel_load || 10000, calc.calculation_type === "Railroad" ? 1 : 0)]
-          ]} />
-          <ReportBox title="Intermediate Calculations" rows={[
-            ["Sh Hoop (Barlow)", `${fmt(values.SHi)} psi`],
-            ["Allowable Hoop", `${fmt(values.allowable_hoop)} psi`],
-            ["Khe", fmt(values.Khe, 3)],
-            ["Be", fmt(values.Be, 3)],
-            ["Ee", fmt(values.Ee, 3)],
-            ["SHe", `${fmt(values.SHe)} psi`],
-            ["Fi", fmt(values.Fi, 3)],
-            ["S1 / S2 / S3", `${fmt(values.S1)} / ${fmt(values.S2)} / ${fmt(values.S3)}`],
-            ["Seff", `${fmt(values.Seff)} psi`],
-            ["Allowable Effective", `${fmt(values.allowable_effective)} psi`],
-            ["Allow. Girth / Long.", `${fmt(values.allowable_girth)} / ${fmt(values.allowable_longitudinal)} psi`]
-          ]} />
-        </div>
-        <div className="report-lower-grid">
-          <section className="report-schematic">
-            <h2>Pipeline Cross-Section Schematic</h2>
-            <div className="report-diagram-frame">
-              <CrossSectionDiagram mode={calc.calculation_type === "Railroad" ? "railroad" : "highway"} values={values} compact />
-            </div>
-          </section>
-          <section className="report-results-section" id="results">
-            <h2 className="report-section-title">Results Summary</h2>
-            <table className="report-results">
-              <thead><tr><th>Check</th><th>Calculated</th><th>Allowable</th><th>Utilization</th><th>Result</th></tr></thead>
-              <tbody>{checks.map((check: any) => <tr key={check.name}><td>{check.name}</td><td>{fmt(check.calculated_psi)}</td><td>{fmt(check.allowable_psi)}</td><td>{(check.utilization * 100).toFixed(1)}%</td><td><ResultBadge value={check.result} /></td></tr>)}</tbody>
-            </table>
-          </section>
-        </div>
-        <p className="report-disclaimer">Engineering Disclaimer: This tool supports engineering calculations and documentation. It does not replace engineering judgment, applicable codes, standards, client requirements, or independent checking.</p>
-      </article>
+      {reportType === "simplified" ? (
+        <SimplifiedReportPreview calc={calc} project={project} scenario={scenario} values={values} checks={checks} />
+      ) : (
+        <DetailedReportPreview
+          pdfUrl={detailedPdfUrl}
+          loading={detailedPreviewLoading}
+          stale={detailedPreviewStale}
+          error={detailedError}
+          onRefresh={refreshDetailedPreview}
+        />
+      )}
     </div>
+  );
+}
+
+function SimplifiedReportPreview({
+  calc,
+  project,
+  scenario,
+  values,
+  checks
+}: {
+  calc: Calculation;
+  project: Project | null;
+  scenario: Scenario;
+  values: Record<string, any>;
+  checks: Array<Record<string, any>>;
+}) {
+  return (
+    <article className="report-page">
+      <header className="report-header">
+        <div className="report-logo-block">
+          <img src={hdrLogo} alt="HDR" />
+          <span>API RP 1102 {calc.calculation_type} Loading Calculator</span>
+          <small>Gas Pipeline - Technical Tool</small>
+        </div>
+        <div>
+          <small>Engineering Calculation Package</small>
+          <h1>API RP 1102 {calc.calculation_type} Loading Analysis</h1>
+          <p>Calc {calc.calc_number} - Rev {calc.revision || "0"} - {calc.date || "2026-05-24"} - {calc.status}</p>
+        </div>
+      </header>
+      <div className="report-grid">
+        <ReportBox title="Project & Calculation" rows={[
+          ["Project", project?.project_name || `Project ${calc.project_id}`],
+          ["Project No.", project?.project_number || "-"],
+          ["Client", project?.client || "-"],
+          ["Location", project?.location || "-"],
+          ["Crossing", calc.crossing_name],
+          ["Calc No.", calc.calc_number],
+          ["Date", calc.date || "-"],
+          ["Crossing Type", calc.calculation_type],
+          ["Scenario", scenario.scenario_name || "Base Case"],
+          ["Prepared By", calc.prepared_by || "-"],
+          ["Checked By", calc.checked_by || "-"],
+          ["Status", calc.status]
+        ]} />
+        <ReportBox title="Purpose & References" rows={[
+          ["Basis", "API RP 1102, 7th Ed. (2007, R2024)"],
+          ["Purpose", `Check combined stress of buried gas pipeline crossing under internal pressure and external ${calc.calculation_type.toLowerCase()} loading.`],
+          ["References", "49 CFR Part 192, ASME B31.8, source workbooks"],
+          ["Notes", calc.notes || "Allowables per API RP 1102 tables and ASME B31.8 design factor."]
+        ]} />
+        <ReportBox id="inputs" title="Inputs & Assumptions" rows={[
+          ["NPS", values.nps || "12"],
+          ["O.D. D (in)", fmt(values.outside_diameter || 12.75, 2)],
+          ["Wall tw (in)", fmt(values.wall_thickness || 0.25, 3)],
+          ["Cover H (ft)", fmt(values.cover_depth || 6, 2)],
+          ["Bd/D", fmt(values.bd_d || 1.157, 3)],
+          ["H/Bd", fmt(values.h_bd || 4.881, 3)],
+          ["Spec / Grade", `${values.pipe_specification || "API 5L"} / ${values.pipe_grade || "X65"}`],
+          ["SMYS (psi)", fmt(values.smys || 65000)],
+          ["Joint Factor E", fmt(values.joint_factor || 1, 3)],
+          ["Pressure P (psig)", fmt(values.operating_pressure || 1000)],
+          ["Soil Type", values.soil_type || "Loose sands and gravels"],
+          [calc.calculation_type === "Railroad" ? "Surface Pressure w (psi)" : "Design Wheel Load W (lb)", fmt(calc.calculation_type === "Railroad" ? values.surface_pressure || 13.9 : values.design_wheel_load || 10000, calc.calculation_type === "Railroad" ? 1 : 0)]
+        ]} />
+        <ReportBox title="Intermediate Calculations" rows={[
+          ["Sh Hoop (Barlow)", `${fmt(values.SHi)} psi`],
+          ["Allowable Hoop", `${fmt(values.allowable_hoop)} psi`],
+          ["Khe", fmt(values.Khe, 3)],
+          ["Be", fmt(values.Be, 3)],
+          ["Ee", fmt(values.Ee, 3)],
+          ["SHe", `${fmt(values.SHe)} psi`],
+          ["Fi", fmt(values.Fi, 3)],
+          ["S1 / S2 / S3", `${fmt(values.S1)} / ${fmt(values.S2)} / ${fmt(values.S3)}`],
+          ["Seff", `${fmt(values.Seff)} psi`],
+          ["Allowable Effective", `${fmt(values.allowable_effective)} psi`],
+          ["Allow. Girth / Long.", `${fmt(values.allowable_girth)} / ${fmt(values.allowable_longitudinal)} psi`]
+        ]} />
+      </div>
+      <div className="report-lower-grid">
+        <section className="report-schematic">
+          <h2>Pipeline Cross-Section Schematic</h2>
+          <div className="report-diagram-frame">
+            <CrossSectionDiagram mode={calc.calculation_type === "Railroad" ? "railroad" : "highway"} values={values} compact />
+          </div>
+        </section>
+        <section className="report-results-section" id="results">
+          <h2 className="report-section-title">Results Summary</h2>
+          <table className="report-results">
+            <thead><tr><th>Check</th><th>Calculated</th><th>Allowable</th><th>Utilization</th><th>Result</th></tr></thead>
+            <tbody>{checks.map((check: any) => <tr key={check.name}><td>{check.name}</td><td>{fmt(check.calculated_psi)}</td><td>{fmt(check.allowable_psi)}</td><td>{(check.utilization * 100).toFixed(1)}%</td><td><ResultBadge value={check.result} /></td></tr>)}</tbody>
+          </table>
+        </section>
+      </div>
+      <p className="report-disclaimer">Engineering Disclaimer: This tool supports engineering calculations and documentation. It does not replace engineering judgment, applicable codes, standards, client requirements, or independent checking.</p>
+    </article>
+  );
+}
+
+function DetailedReportPreview({
+  pdfUrl,
+  loading,
+  stale,
+  error,
+  onRefresh
+}: {
+  pdfUrl: string | null;
+  loading: boolean;
+  stale: boolean;
+  error: { message: string; issues: Array<Record<string, any>> } | null;
+  onRefresh: () => void;
+}) {
+  return (
+    <section className="detailed-pdf-preview" id="results">
+      {loading ? (
+        <div className="detailed-pdf-loading">
+          <FileText size={26} />
+          <span>Generating detailed PDF preview...</span>
+        </div>
+      ) : null}
+      {error && !pdfUrl ? (
+        <div className="detailed-pdf-empty">
+          <AlertTriangle size={24} />
+          <div>
+            <strong>Detailed PDF preview is blocked.</strong>
+            <span>Use the issue list above, then recalculate or refresh the preview.</span>
+          </div>
+        </div>
+      ) : null}
+      {!loading && !error && !pdfUrl ? (
+        <div className="detailed-pdf-empty">
+          <FileText size={24} />
+          <div>
+            <strong>No detailed PDF preview is loaded.</strong>
+            <button type="button" onClick={onRefresh}>Refresh Preview</button>
+          </div>
+        </div>
+      ) : null}
+      {pdfUrl ? (
+        <div className="detailed-pdf-frame-wrap">
+          {stale ? <div className="detailed-pdf-stale">Preview is refreshing with the latest selected options.</div> : null}
+          <iframe className="detailed-pdf-frame" title="Detailed PDF report preview" src={pdfUrl} />
+        </div>
+      ) : null}
+    </section>
   );
 }
 
