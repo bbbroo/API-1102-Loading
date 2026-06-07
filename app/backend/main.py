@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from app.backend.api import calculations, dashboard, digitized_graphs, exports, projects, scenarios, standards
+from app.backend.api import calculations, dashboard, digitized_graphs, exports, projects, reports, scenarios, standards
 from app.backend.database.models import Base
 from app.backend.database.seed import seed_if_empty
 from app.backend.database.session import SessionLocal, engine
@@ -33,6 +33,7 @@ app.include_router(scenarios.router, prefix="/api")
 app.include_router(standards.router, prefix="/api")
 app.include_router(exports.router, prefix="/api")
 app.include_router(digitized_graphs.router, prefix="/api")
+app.include_router(reports.router, prefix="/api")
 
 
 @app.on_event("startup")

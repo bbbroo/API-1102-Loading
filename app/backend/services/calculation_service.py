@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+import hashlib
+import json
+from typing import Any
+
 from sqlalchemy.orm import Session
 
 from app.backend.database.models import Calculation, Scenario
@@ -36,6 +40,12 @@ def run_scenario(db: Session, scenario: Scenario) -> Scenario:
     else:
         result = calculate_highway(shared, highway_inputs)
     payload = result.to_dict()
+    payload["input_fingerprint"] = scenario_input_fingerprint(
+        calc.calculation_type if calc else payload.get("calculation_type", "Highway"),
+        shared,
+        highway_inputs,
+        railroad_inputs,
+    )
     scenario.results_json = dumps(payload)
     scenario.intermediate_values_json = dumps(payload["intermediate_values"])
     scenario.warnings_json = dumps(payload["warnings"])
@@ -87,3 +97,19 @@ def _controlling_utilization(result: dict) -> float:
     failed = [check for check in checks if check.get("result") == "Fail"]
     controlling_checks = failed or checks
     return max(float(check.get("utilization") or 0.0) for check in controlling_checks)
+
+
+def scenario_input_fingerprint(
+    calculation_type: str,
+    shared_inputs: dict[str, Any],
+    highway_inputs: dict[str, Any],
+    railroad_inputs: dict[str, Any],
+) -> str:
+    mode = "Railroad" if calculation_type == "Railroad" else "Highway"
+    payload = {
+        "calculation_type": mode,
+        "shared_inputs": shared_inputs,
+        "mode_inputs": railroad_inputs if mode == "Railroad" else highway_inputs,
+    }
+    normalized = json.dumps(payload, sort_keys=True, separators=(",", ":"), default=str)
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()

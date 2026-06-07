@@ -403,11 +403,17 @@ button {
 }
 
 .result-badge.pass,
-.status-pill.pass,
-.controlling-badge {
+.status-pill.pass {
   background: var(--green);
   border-color: var(--green);
   color: #fff;
+  text-transform: none;
+}
+
+.controlling-badge {
+  background: #ecfdf3;
+  border-color: #abefc6;
+  color: #027a48;
   text-transform: none;
 }
 
@@ -419,12 +425,27 @@ button {
 }
 
 .result-badge.needs-review,
-.status-pill.needs-review,
+.status-pill.needs-review {
+  background: #fffaeb;
+  border-color: #fedf89;
+  color: #b54708;
+  text-transform: none;
+}
+
 .result-badge.not-calculated,
 .status-pill.not-calculated {
   background: #f6f7f8;
   border-color: var(--line);
   color: #344054;
+  text-transform: none;
+}
+
+.report-results .result-badge,
+.results-table .result-badge,
+.scenario-row .result-badge,
+.result-head-actions .result-badge,
+.result-head-actions .controlling-badge {
+  font-weight: 900;
 }
 
 .project-card-grid {
@@ -714,6 +735,16 @@ button {
   color: #fff;
   font-size: 14px;
   text-transform: none;
+}
+
+.scenario-pill {
+  gap: 8px;
+}
+
+.scenario-pill .result-badge {
+  min-height: 20px;
+  padding: 2px 6px;
+  font-size: 10px;
 }
 
 .loading-tabs {
@@ -1884,6 +1915,74 @@ button {
   text-transform: none;
 }
 
+.report-type-control {
+  min-height: 34px;
+}
+
+.report-type-control button {
+  min-height: 34px;
+}
+
+.detailed-report-panel {
+  max-width: 925px;
+  margin: 12px auto 0;
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 12px 14px;
+}
+
+.report-option-grid {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.report-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #344054;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.report-option input {
+  width: 16px;
+  height: 16px;
+}
+
+.detailed-report-error {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  border: 1px solid #fecdca;
+  background: #fff1f0;
+  color: #912018;
+  padding: 11px;
+}
+
+.detailed-report-error ul {
+  margin: 7px 0 10px;
+  padding-left: 18px;
+}
+
+.detailed-report-error a {
+  color: #7a271a;
+  font-weight: 900;
+}
+
+.detailed-report-notice {
+  margin-top: 12px;
+  border: 1px solid #abefc6;
+  background: #ecfdf3;
+  color: #027a48;
+  padding: 10px 11px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
 .ack-text {
   color: #a4123f;
   font-size: 15px;
@@ -2140,6 +2239,7 @@ button {
 
   .hdr-shell,
   .report-toolbar,
+  .detailed-report-panel,
   .app-footer {
     display: none !important;
   }

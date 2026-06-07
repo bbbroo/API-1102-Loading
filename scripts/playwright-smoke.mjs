@@ -23,7 +23,7 @@ async function screenshot(page, name) {
 const beforeProjects = await fetch(`${apiUrl}/projects`).then((response) => response.json());
 const maxProjectIdBefore = Math.max(0, ...beforeProjects.map((project) => project.id));
 const browser = await chromium.launch({ headless: true });
-const page = await browser.newPage({ viewport: { width: viewportWidth, height: viewportHeight } });
+const page = await browser.newPage({ viewport: { width: viewportWidth, height: viewportHeight }, acceptDownloads: true });
 const checks = [];
 
 try {
@@ -198,8 +198,27 @@ try {
   if (await page.getByText("Acknowledgment required to finalize").count()) {
     throw new Error("Excluded acknowledgment text is visible");
   }
+  await page.getByRole("button", { name: "Detailed", exact: true }).click();
+  await page.getByText("Formula Trace").waitFor({ timeout: 8000 });
+  const detailedDownloadPromise = page.waitForEvent("download", { timeout: 15000 });
+  await page.getByRole("button", { name: "Generate Detailed PDF", exact: true }).click();
+  const detailedDownload = await detailedDownloadPromise;
+  if (!detailedDownload.suggestedFilename().includes("detailed")) {
+    throw new Error(`Detailed PDF download filename is unexpected: ${detailedDownload.suggestedFilename()}`);
+  }
+  checks.push("Detailed backend PDF generates for the selected scenario");
   await screenshot(page, "report-preview");
   checks.push("Report preview opens with print-ready schematic and paper layout");
+
+  await page.getByRole("button", { name: "Back to Calculation", exact: true }).click();
+  await page.locator("label.field", { hasText: "Operating Pressure P" }).locator("input").fill("-20");
+  await page.locator(".warning-callout", { hasText: "Operating pressure cannot be below 0 psia" }).waitFor({ timeout: 8000 });
+  await page.getByRole("button", { name: "Report", exact: true }).click();
+  await page.getByRole("button", { name: "Detailed", exact: true }).click();
+  await page.getByRole("button", { name: "Generate Detailed PDF", exact: true }).click();
+  await page.locator(".detailed-report-error", { hasText: "Detailed PDF generation is blocked" }).waitFor({ timeout: 12000 });
+  await page.getByRole("button", { name: "Recalculate Scenario", exact: true }).waitFor({ timeout: 8000 });
+  checks.push("Detailed report generation blocks invalid selected scenarios with recovery action");
 
   await page.getByRole("button", { name: "Back to Calculation", exact: true }).click();
   await page.getByRole("button", { name: "Back", exact: true }).click();

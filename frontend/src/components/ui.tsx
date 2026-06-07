@@ -4,6 +4,7 @@ import {
   BookOpen,
   CheckCircle2,
   ChevronDown,
+  CircleX,
   Database,
   FileDown,
   FolderKanban,
@@ -316,17 +317,25 @@ export function Field({
 
 export function StatusPill({ value }: { value: string }) {
   const normalized = (value || "Not Calculated").toLowerCase().replaceAll(" ", "-");
-  return <span className={`status-pill ${normalized}`}>{value || "Not Calculated"}</span>;
+  const Icon = statusIcon(value);
+  return <span className={`status-pill ${normalized}`}><Icon size={13} />{value || "Not Calculated"}</span>;
 }
 
 export function ResultBadge({ value }: { value: string }) {
-  const Icon = value === "Fail" ? AlertTriangle : value === "Pass" ? CheckCircle2 : Info;
+  const Icon = statusIcon(value);
   return (
     <span className={`result-badge ${(value || "not-calculated").toLowerCase().replaceAll(" ", "-")}`}>
       <Icon size={13} />
       {value || "Not Calculated"}
     </span>
   );
+}
+
+function statusIcon(value: string) {
+  if (value === "Pass") return CheckCircle2;
+  if (value === "Fail") return CircleX;
+  if (value === "Needs Review") return AlertTriangle;
+  return Info;
 }
 
 export function UtilizationBar({ value }: { value: number }) {

@@ -50,6 +50,15 @@ type StandardsPayload = Record<string, any>;
 type LoadingMode = "highway" | "railroad";
 type GraphLayer = "underlay" | "overlay";
 type GraphReadoutMode = "all" | "nearest";
+type ReportType = "simplified" | "detailed";
+
+type DetailedReportOptions = {
+  include_formula_trace: boolean;
+  include_intermediates: boolean;
+  include_plots: boolean;
+  include_appendix_plots: boolean;
+  include_warnings: boolean;
+};
 
 type GraphTick = {
   value: number;
@@ -1038,6 +1047,7 @@ function ScenarioBar({
         {scenarios.map((item) => (
           <button key={item.id} className={`scenario-pill ${item.id === scenario.id ? "active" : ""}`} onClick={() => onSelect(item)}>
             {item.scenario_name || "Base Case"}
+            <ResultBadge value={item.results?.overall_result || "Not Calculated"} />
           </button>
         ))}
         <Button icon={<Plus size={16} />} onClick={onCreate}>Add Scenario</Button>
@@ -1761,19 +1771,159 @@ function ReportPreview({ calc, project, scenario, onBack }: { calc: Calculation;
   const values = firstIntermediate(scenario.intermediate_values);
   const checks = scenario.results?.checks || [];
   const loadingType = `${calc.calculation_type} Loading`;
+  const [reportType, setReportType] = useState<ReportType>("simplified");
+  const [reportOptions, setReportOptions] = useState<DetailedReportOptions>({
+    include_formula_trace: true,
+    include_intermediates: true,
+    include_plots: true,
+    include_appendix_plots: true,
+    include_warnings: true
+  });
+  const [detailedBusy, setDetailedBusy] = useState(false);
+  const [detailedError, setDetailedError] = useState<{ message: string; issues: Array<Record<string, any>> } | null>(null);
+  const [detailedNotice, setDetailedNotice] = useState("");
+
+  function toggleReportOption(key: keyof DetailedReportOptions) {
+    setReportOptions((current) => ({ ...current, [key]: !current[key] }));
+  }
+
+  async function generateDetailedPdf() {
+    setDetailedBusy(true);
+    setDetailedError(null);
+    setDetailedNotice("");
+    try {
+      const requestBody = JSON.stringify({
+        project_id: project?.id ?? calc.project_id,
+        calculation_id: calc.id,
+        report_options: reportOptions
+      });
+      let response = await fetch(`/api/reports/scenario/${scenario.id}/detailed.pdf`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: requestBody
+      });
+      let payload = !response.ok ? await response.clone().json().catch(() => null) : null;
+      if (response.status === 404 && responseNotFound(payload)) {
+        response = await fetch(`/api/exports/scenario/${scenario.id}/detailed.pdf`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: requestBody
+        });
+        payload = !response.ok ? await response.clone().json().catch(() => null) : null;
+      }
+      if (!response.ok) {
+        const detail = payload?.detail;
+        const detailObject = typeof detail === "object" && detail !== null ? detail : {};
+        const issues = detailObject.issues || payload?.issues || [];
+        setDetailedError({
+          message: detailObject.message || payload?.message || (typeof detail === "string" ? detail : "Detailed PDF generation is blocked."),
+          issues: issues.length ? issues : [fallbackDetailedIssue(response.status, detail)]
+        });
+        return;
+      }
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `scenario-${scenario.id}-detailed.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    } finally {
+      setDetailedBusy(false);
+    }
+  }
+
+  function responseNotFound(payload: any) {
+    return payload?.detail === "Not Found";
+  }
+
+  function fallbackDetailedIssue(status: number, detail: any) {
+    if (status === 404 && detail === "Not Found") {
+      return {
+        code: "report_route_missing",
+        message: "The running backend does not have the detailed report endpoint loaded. Restart the backend server, then try again.",
+        input_anchor: "results"
+      };
+    }
+    return {
+      code: "blocked",
+      message: "The backend did not return a specific issue. Recalculate the scenario, then try generating the detailed PDF again.",
+      input_anchor: "results"
+    };
+  }
+
+  async function recalculateScenario() {
+    setDetailedBusy(true);
+    setDetailedNotice("");
+    try {
+      await api<Scenario>(`/scenarios/${scenario.id}/calculate`, { method: "POST" });
+      setDetailedError(null);
+      setDetailedNotice("Scenario recalculated. Generate the detailed PDF again when ready.");
+    } finally {
+      setDetailedBusy(false);
+    }
+  }
+
   return (
     <div className="report-screen">
       <div className="report-toolbar">
         <Button icon={<ArrowLeft size={16} />} onClick={onBack}>Back to Calculation</Button>
         <div className="report-toolbar-center">
           <span className="report-type-chip">{loadingType}</span>
+          <div className="segmented-control report-type-control" aria-label="Report type">
+            <button className={reportType === "simplified" ? "active" : ""} onClick={() => setReportType("simplified")}><Printer size={15} /> Simplified</button>
+            <button className={reportType === "detailed" ? "active" : ""} onClick={() => setReportType("detailed")}><FileText size={15} /> Detailed</button>
+          </div>
         </div>
         <div className="toolbar-actions">
-          <Button href={`/api/exports/calculation/${calc.id}.csv`} icon={<FileDown size={16} />}>Export CSV</Button>
-          <Button href={`/api/exports/calculation/${calc.id}.json`} icon={<FileDown size={16} />}>Export JSON</Button>
-          <Button variant="primary" icon={<Printer size={16} />} onClick={() => window.print()}>Print / PDF</Button>
+          {reportType === "simplified" ? (
+            <>
+              <Button href={`/api/exports/calculation/${calc.id}.csv`} icon={<FileDown size={16} />}>Export CSV</Button>
+              <Button href={`/api/exports/calculation/${calc.id}.json`} icon={<FileDown size={16} />}>Export JSON</Button>
+              <Button variant="primary" icon={<Printer size={16} />} onClick={() => window.print()}>Print / PDF</Button>
+            </>
+          ) : (
+            <Button variant="primary" icon={<FileDown size={16} />} onClick={generateDetailedPdf}>{detailedBusy ? "Generating..." : "Generate Detailed PDF"}</Button>
+          )}
         </div>
       </div>
+      {reportType === "detailed" ? (
+        <div className="detailed-report-panel">
+          <div className="report-option-grid">
+            {([
+              ["include_formula_trace", "Formula Trace"],
+              ["include_intermediates", "Intermediates"],
+              ["include_plots", "Plots"],
+              ["include_appendix_plots", "Plot Appendix"],
+              ["include_warnings", "Warnings"]
+            ] as Array<[keyof DetailedReportOptions, string]>).map(([key, label]) => (
+              <label className="report-option" key={key}>
+                <input type="checkbox" checked={reportOptions[key]} onChange={() => toggleReportOption(key)} />
+                <span>{label}</span>
+              </label>
+            ))}
+          </div>
+          {detailedError ? (
+            <div className="detailed-report-error">
+              <AlertTriangle size={18} />
+              <div>
+                <strong>{detailedError.message}</strong>
+                <ul>
+                  {detailedError.issues.map((issue, index) => (
+                    <li key={`${issue.code || "issue"}-${index}`}>
+                      <a href={`#${issue.input_anchor || "results"}`}>{issue.code || "issue"}</a>: {issue.message}
+                    </li>
+                  ))}
+                </ul>
+                <Button icon={<Calculator size={16} />} onClick={recalculateScenario}>{detailedBusy ? "Recalculating..." : "Recalculate Scenario"}</Button>
+              </div>
+            </div>
+          ) : null}
+          {detailedNotice ? <div className="detailed-report-notice">{detailedNotice}</div> : null}
+        </div>
+      ) : null}
       <article className="report-page">
         <header className="report-header">
           <div className="report-logo-block">
@@ -1808,7 +1958,7 @@ function ReportPreview({ calc, project, scenario, onBack }: { calc: Calculation;
             ["References", "49 CFR Part 192, ASME B31.8, source workbooks"],
             ["Notes", calc.notes || "Allowables per API RP 1102 tables and ASME B31.8 design factor."]
           ]} />
-          <ReportBox title="Inputs & Assumptions" rows={[
+          <ReportBox id="inputs" title="Inputs & Assumptions" rows={[
             ["NPS", values.nps || "12"],
             ["O.D. D (in)", fmt(values.outside_diameter || 12.75, 2)],
             ["Wall tw (in)", fmt(values.wall_thickness || 0.25, 3)],
@@ -1843,11 +1993,11 @@ function ReportPreview({ calc, project, scenario, onBack }: { calc: Calculation;
               <CrossSectionDiagram mode={calc.calculation_type === "Railroad" ? "railroad" : "highway"} values={values} compact />
             </div>
           </section>
-          <section className="report-results-section">
+          <section className="report-results-section" id="results">
             <h2 className="report-section-title">Results Summary</h2>
             <table className="report-results">
               <thead><tr><th>Check</th><th>Calculated</th><th>Allowable</th><th>Utilization</th><th>Result</th></tr></thead>
-              <tbody>{checks.map((check: any) => <tr key={check.name}><td>{check.name}</td><td>{fmt(check.calculated_psi)}</td><td>{fmt(check.allowable_psi)}</td><td>{(check.utilization * 100).toFixed(1)}%</td><td>{check.result}</td></tr>)}</tbody>
+              <tbody>{checks.map((check: any) => <tr key={check.name}><td>{check.name}</td><td>{fmt(check.calculated_psi)}</td><td>{fmt(check.allowable_psi)}</td><td>{(check.utilization * 100).toFixed(1)}%</td><td><ResultBadge value={check.result} /></td></tr>)}</tbody>
             </table>
           </section>
         </div>
@@ -1857,9 +2007,9 @@ function ReportPreview({ calc, project, scenario, onBack }: { calc: Calculation;
   );
 }
 
-function ReportBox({ title, rows }: { title: string; rows: string[][] }) {
+function ReportBox({ title, rows, id }: { title: string; rows: string[][]; id?: string }) {
   return (
-    <section className="report-box">
+    <section className="report-box" id={id}>
       <h2>{title}</h2>
       <table>
         <tbody>{rows.map(([label, value]) => <tr key={label}><th>{label}</th><td>{value}</td></tr>)}</tbody>

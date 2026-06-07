@@ -5,7 +5,7 @@ Generated from Refs/API 1102 Railroad_260606.xlsx by tools/sync_standards_tables
 
 from app.standards.highway_tables import EARTH_KHE_BY_E_PRIME, BURIAL_A_BY_H_BD, BURIAL_B_BY_H_BD, EXCAVATION_BY_BD_D
 
-IMPACT_BY_COVER = {0.0: 1.750005, 5.22: 1.750005, 30.0: 1.0, 100.0: 1.0}
+IMPACT_BY_COVER = {0.0: 1.75, 5.0: 1.75, 30.0: 1.0, 100.0: 1.0}
 
 KH_BY_ER = {5000.0: {0.0: 457.128641,
           0.01058: 457.128641,

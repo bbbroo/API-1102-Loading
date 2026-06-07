@@ -14,7 +14,7 @@ DEFAULT_RAILROAD_INPUTS = {"number_of_tracks": 2, "surface_pressure": 13.9}
 def _depth_band_rail(cover: float) -> str:
     if cover <= 6:
         return "6"
-    if cover <= 8:
+    if cover <= 10:
         return "10"
     return "14"
 
@@ -58,13 +58,17 @@ def calculate_railroad(shared_inputs: dict[str, Any] | None = None, railroad_inp
     traces.append(t)
     glr, t = _railroad_glr(shared, band)
     traces.append(t)
-    double_track_band = "6" if shared["cover_depth"] <= 6 else ("10" if shared["cover_depth"] <= 10 else "14")
-    nh_table = {key: value for key, value in tables.NH_BY_DEPTH[double_track_band].items() if key <= 42}
-    nh, t = linear_clamped("Railroad Nh factor", nh_table, shared["outside_diameter"])
-    traces.append(t)
-    nl_table = {key: value for key, value in tables.NL_BY_DEPTH[double_track_band].items() if key <= 42}
-    nl, t = linear_clamped("Railroad NL factor", nl_table, shared["outside_diameter"])
-    traces.append(t)
+    if number_of_tracks == 2:
+        double_track_band = "6" if shared["cover_depth"] <= 6 else ("10" if shared["cover_depth"] <= 10 else "14")
+        nh_table = {key: value for key, value in tables.NH_BY_DEPTH[double_track_band].items() if key <= 42}
+        nh, t = linear_clamped("Railroad Nh factor", nh_table, shared["outside_diameter"])
+        traces.append(t)
+        nl_table = {key: value for key, value in tables.NL_BY_DEPTH[double_track_band].items() if key <= 42}
+        nl, t = linear_clamped("Railroad NL factor", nl_table, shared["outside_diameter"])
+        traces.append(t)
+    else:
+        nh = 1.0
+        nl = 1.0
     w = float(rail.get("surface_pressure", 13.9))
     shr = nh * khr * ghr * fi * w
     slr = klr * glr * nl * fi * w

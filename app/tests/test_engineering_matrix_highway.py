@@ -107,6 +107,15 @@ def test_highway_cover_increase_reduces_live_load_trend():
     assert deep.intermediate_values["SLh"] < shallow.intermediate_values["SLh"]
 
 
+@pytest.mark.parametrize(
+    ("cover_depth", "impact_factor"),
+    [(0, 1.5), (5, 1.5), (6, 1.47), (21.666666666666668, 1.0), (30, 1.0)],
+)
+def test_highway_impact_factor_uses_api_linear_rule(cover_depth, impact_factor):
+    result = calculate_highway({"cover_depth": cover_depth})
+    assert result.intermediate_values["Fi"] == pytest.approx(impact_factor)
+
+
 def test_highway_pavement_and_axle_options_change_live_load():
     values = {
         (pavement, axle): calculate_highway({}, {"pavement_type": pavement, "axle_configuration": axle}).intermediate_values["SHh"]

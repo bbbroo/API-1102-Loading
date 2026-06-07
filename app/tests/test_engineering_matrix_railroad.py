@@ -93,14 +93,27 @@ def test_railroad_invalid_track_count_warning_contract():
     assert result.intermediate_values["number_of_tracks"] == 2
 
 
-def test_railroad_one_track_vs_two_track_current_behavior_contract():
+def test_railroad_one_track_uses_api_single_track_factors():
     one = calculate_railroad({}, {"number_of_tracks": 1})
     two = calculate_railroad({}, {"number_of_tracks": 2})
-    # Current engine records track count but does not use it to alter stresses.
     assert one.intermediate_values["number_of_tracks"] == 1
     assert two.intermediate_values["number_of_tracks"] == 2
-    assert one.intermediate_values["SHr"] == two.intermediate_values["SHr"]
-    assert one.intermediate_values["SLr"] == two.intermediate_values["SLr"]
+    assert one.intermediate_values["Nh"] == 1.0
+    assert one.intermediate_values["NL"] == 1.0
+    assert two.intermediate_values["Nh"] > one.intermediate_values["Nh"]
+    assert two.intermediate_values["NL"] > one.intermediate_values["NL"]
+    assert one.intermediate_values["SHr"] < two.intermediate_values["SHr"]
+    assert one.intermediate_values["SLr"] < two.intermediate_values["SLr"]
+
+
+def test_railroad_geometry_uses_ten_foot_curve_through_ten_feet():
+    eight = calculate_railroad({"cover_depth": 8})
+    ten = calculate_railroad({"cover_depth": 10})
+    just_over_ten = calculate_railroad({"cover_depth": 10.1})
+    assert eight.intermediate_values["GHr"] == pytest.approx(ten.intermediate_values["GHr"])
+    assert eight.intermediate_values["GLr"] == pytest.approx(ten.intermediate_values["GLr"])
+    assert just_over_ten.intermediate_values["GHr"] != pytest.approx(ten.intermediate_values["GHr"])
+    assert just_over_ten.intermediate_values["GLr"] != pytest.approx(ten.intermediate_values["GLr"])
 
 
 def test_railroad_cover_increase_reduces_live_load_trend():
@@ -108,3 +121,12 @@ def test_railroad_cover_increase_reduces_live_load_trend():
     deep = calculate_railroad({"cover_depth": 14})
     assert deep.intermediate_values["SHr"] < shallow.intermediate_values["SHr"]
     assert deep.intermediate_values["SLr"] < shallow.intermediate_values["SLr"]
+
+
+@pytest.mark.parametrize(
+    ("cover_depth", "impact_factor"),
+    [(0, 1.75), (5, 1.75), (6, 1.72), (30, 1.0), (40, 1.0)],
+)
+def test_railroad_impact_factor_uses_api_linear_rule(cover_depth, impact_factor):
+    result = calculate_railroad({"cover_depth": cover_depth})
+    assert result.intermediate_values["Fi"] == pytest.approx(impact_factor)
