@@ -176,12 +176,13 @@ The app presents:
 
 The calculation engine follows the implemented API RP 1102 workflow for highway and railroad loading cases. It combines shared pipeline, soil, pressure, geometry, and design inputs with mode-specific loading inputs, then calculates intermediate stress components and final checks.
 
-The app uses repo-local reference workbooks as validation sources:
+The app uses repo-local reference workbooks and Testing-tab parity cases as validation sources:
 
-- `Refs/Copy of API 1102 Highway.xlsx`
-- `Refs/Copy of API 1102 Railroad.xlsx`
+- `Refs/API 1102 Highway_260606.xlsx`
+- `Refs/API 1102 Railroad_260606.xlsx`
+- legacy comparison/reference workbooks retained in `Refs/`, including the copied highway and railroad workbooks
 
-Automated validation compares app outputs against mapped workbook cells for default and edited highway/railroad scenarios. The current workflow preserves the spreadsheet-derived formula behavior unless tests identify a specific parity issue.
+Automated validation includes Testing-tab parity checks for Highway and Railroad cases, numeric regression snapshots, workbook-contract checks, validation-rule tests, warning-contract tests, CRUD/API tests, import/export tests, detailed report tests, and frontend Playwright smoke checks. Some legacy workbook-loading-sheet parity tests are retained for historical comparison but are superseded by the Testing-tab source-of-truth workflow where noted in the test suite.
 
 ---
 
