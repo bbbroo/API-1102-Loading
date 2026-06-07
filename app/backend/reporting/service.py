@@ -106,7 +106,7 @@ def build_equation_traces(calculation_type: str, results: dict[str, Any], values
             "Internal Pressure",
             "Barlow hoop stress",
             "S_Hi = P D / (2 t)",
-            f"P={fmt(values.get('operating_pressure'))} psig, D={fmt(values.get('outside_diameter'))} in, t={fmt(values.get('wall_thickness'), 3)} in",
+            f"P={fmt(values.get('operating_pressure'))} psig, D={fmt(values.get('outside_diameter'), 2)} in, t={fmt(values.get('wall_thickness'), 3)} in",
             f"S_Hi={fmt(values.get('SHi'))} psi",
             f"Allowable={fmt(values.get('allowable_hoop'))} psi",
             utilization_for(checks, "Barlow Stress"),
@@ -155,15 +155,48 @@ def build_equation_traces(calculation_type: str, results: dict[str, Any], values
                 "Fatigue / Welds",
                 "Girth and longitudinal weld checks",
                 "S_F <= allowable fatigue stress",
-                f"SFG={fmt(values.get('SFG'))} psi, SFL={fmt(values.get('SFL'))} psi",
-                f"Allowables={fmt(values.get('allowable_girth'))}/{fmt(values.get('allowable_longitudinal'))} psi",
-                "Per stored calculation result",
+                weld_substitution(values, checks),
+                weld_result(values, checks),
+                weld_allowable(values, checks),
                 f"{utilization_for(checks, 'Girth Weld Stress')} / {utilization_for(checks, 'Longitudinal Weld Stress')}",
                 worst_status([status_for(checks, "Girth Weld Stress"), status_for(checks, "Longitudinal Weld Stress")]),
             ),
         ]
     )
     return traces
+
+
+def weld_substitution(values: dict[str, Any], checks: list[dict[str, Any]]) -> str:
+    sfg = value_or_check(values, checks, "SFG", "Girth Weld Stress", "calculated_psi")
+    sfl = value_or_check(values, checks, "SFL", "Longitudinal Weld Stress", "calculated_psi")
+    if sfg is None and sfl is None:
+        return "SFG/SFL: calculated weld stresses reported in Results Summary."
+    return f"SFG={fmt_or_dash(sfg)} psi, SFL={fmt_or_dash(sfl)} psi"
+
+
+def weld_result(values: dict[str, Any], checks: list[dict[str, Any]]) -> str:
+    sfg = value_or_check(values, checks, "SFG", "Girth Weld Stress", "calculated_psi")
+    sfl = value_or_check(values, checks, "SFL", "Longitudinal Weld Stress", "calculated_psi")
+    if sfg is None and sfl is None:
+        return "Calculated weld stresses reported in Results Summary."
+    return f"SFG={fmt_or_dash(sfg)} psi; SFL={fmt_or_dash(sfl)} psi"
+
+
+def weld_allowable(values: dict[str, Any], checks: list[dict[str, Any]]) -> str:
+    girth = value_or_check(values, checks, "allowable_girth", "Girth Weld Stress", "allowable_psi")
+    longitudinal = value_or_check(values, checks, "allowable_longitudinal", "Longitudinal Weld Stress", "allowable_psi")
+    return f"{fmt_or_dash(girth)} / {fmt_or_dash(longitudinal)} psi"
+
+
+def value_or_check(values: dict[str, Any], checks: list[dict[str, Any]], key: str, check_name: str, check_key: str) -> Any:
+    if values.get(key) is not None:
+        return values.get(key)
+    check = next((item for item in checks if item.get("name") == check_name), None)
+    return check.get(check_key) if check else None
+
+
+def fmt_or_dash(value: Any, digits: int = 1) -> str:
+    return "—" if value is None else fmt(value, digits)
 
 
 def mode_substitution(calculation_type: str, values: dict[str, Any], direction: str) -> str:
@@ -200,4 +233,3 @@ def fmt(value: Any, digits: int = 1) -> str:
         return f"{float(value):,.{digits}f}"
     except (TypeError, ValueError):
         return "-"
-

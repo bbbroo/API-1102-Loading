@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import fitz
 from fastapi.testclient import TestClient
 
 from app.backend.database.models import Scenario
 from app.backend.database.session import SessionLocal
 from app.backend.main import app
+from app.backend.reporting.pdf import HDR_LOGO_SVG, PipelineSchematic
 from app.backend.reporting.plots import build_plot, factor_for_trace, figure_for_trace
 from app.backend.services.helpers import dumps, loads
 
@@ -33,6 +35,16 @@ def detailed_payload(project, calc):
     }
 
 
+def pdf_text(content: bytes) -> str:
+    doc = fitz.open(stream=content, filetype="pdf")
+    return "\n".join(page.get_text() for page in doc)
+
+
+def pdf_page_texts(content: bytes) -> list[str]:
+    doc = fitz.open(stream=content, filetype="pdf")
+    return [page.get_text() for page in doc]
+
+
 def test_detailed_pdf_endpoint_returns_pdf():
     with TestClient(app) as client:
         project, calc, scenario = create_report_fixture(client)
@@ -40,8 +52,84 @@ def test_detailed_pdf_endpoint_returns_pdf():
         assert response.status_code == 200
         assert response.headers["content-type"] == "application/pdf"
         assert response.content.startswith(b"%PDF")
-        assert b"Detailed Scenario Report" in response.content
-        assert b"Generated coefficient plot based on implemented lookup data" in response.content
+        text = pdf_text(response.content)
+        pages = pdf_page_texts(response.content)
+        upper = text.upper()
+        for expected in [
+            "API RP 1102 Highway Loading Analysis",
+            "Project & Calculation",
+            "Purpose & References",
+            "Inputs & Assumptions",
+            "Pipeline Cross-Section Schematic",
+            "Results Summary",
+            "Effective Stress",
+            "Coefficient Lookup Summary",
+            "References",
+            "Barlow Stress",
+            "Girth Weld Stress",
+            "Longitudinal Weld Stress",
+            "Source",
+            "Workbooks",
+            "Application",
+            "Engine",
+        ]:
+            assert expected in text
+        for expected in ["OVERALL RESULT", "CONTROLLING CHECK", "MAXIMUM UTILIZATION"]:
+            assert expected in upper
+        for expected in [
+            "EXECUTIVE CALCULATION SHEET",
+            "INPUT REGISTER & WARNINGS",
+            "SYMBOLS & METHODOLOGY",
+            "DETAILED FORMULA TRACE",
+            "INTERMEDIATE VALUES",
+            "APPENDIX FULL-SIZE PLOTS",
+        ]:
+            assert expected in upper
+        for expected_value in ["25,500", "26,699.1", "46,800", "54.5%", "57.0%", "11.6%", "8.9%"]:
+            assert expected_value in text
+        assert 12 <= len(pages) <= 18
+        assert "PAGE 2 - INPUT REGISTER & WARNINGS" in pages[1]
+        assert "This report supports engineering documentation" not in pages[1]
+        assert "Executive Metrics" not in text
+        assert "Report Metadata" in text
+        assert "psig" in text
+        assert "D=12.75 in" in text
+        assert "1e+04" not in text
+        assert "0.01961" in text
+        assert "0.0175" in text
+        assert "2,744.4" in text
+        assert "Be\nFigure 4 Be" in text
+        assert "Ee\nFigure 5 Ee" in text
+        assert "Fi\nFigure 7 Fi" in text
+        assert text.count("KHe\nFigure 3 KHe") == 1
+        assert text.count("KHh\nFigure 14 KHh") == 1
+        assert text.count("KLh\nFigure 16 KLh") == 1
+        assert "KHe @ 200" not in text
+        assert "KHe @ 1000" not in text
+        assert "KHe @ 2000" not in text
+        assert "Highway KHh @ 5000" not in text
+        assert "Highway KHh @ 20000" not in text
+        assert "Highway KLh @ 5000" not in text
+        assert "Highway KLh @ 20000" not in text
+        assert "S3=-1,000.0 psi" in text
+        assert "S3=—1,000.0 psi" not in text
+        assert "SFG=- psi" not in text
+        assert "SFL=- psi" not in text
+        assert "SFG=1,002.4 psi" in text
+        assert "SFL=1,467.5 psi" in text
+        assert "Trace item only" in text
+        assert "Trace  Pass" not in text
+        assert "T\nTrace" not in text
+        assert "Interpolation note: Linear interpolation from implemented lookup data." in text
+        assert "Figure Figure" not in text
+        for page_text in pages:
+            assert page_text.count("Plot placeholder: Selected point is outside calibrated graph range") <= 1
+        assert HDR_LOGO_SVG.name == "hdr-logo.svg"
+        assert HDR_LOGO_SVG.parts[-4:] == ("frontend", "src", "assets", "hdr-logo.svg")
+        assert HDR_LOGO_SVG.exists()
+        schematic = PipelineSchematic({}, "Highway")
+        assert schematic.diagram_width == 565
+        assert schematic.diagram_height == 360
 
 
 def test_detailed_pdf_export_alias_returns_pdf():
