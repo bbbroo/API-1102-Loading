@@ -348,7 +348,7 @@ The app surfaces warnings and review prompts for conditions such as:
 - Stale, legacy, changed-input, or not-yet-calculated scenario results.
 - Detailed PDF generation is blocked for not-calculated scenarios, stale or mismatched input fingerprints, missing trusted result timestamps, and error-level required-input conditions. The simplified report may still be printed with warnings.
 
-Automated checks include backend tests, detailed PDF endpoint/blocking/fallback tests, workbook parity tests against the copied reference workbooks, frontend TypeScript/build checks, and a Playwright smoke flow that exercises project creation, calculation creation, warnings, simplified reports, detailed report generation, blocked detailed report state, standards tables, and delete workflows.
+Automated checks include backend tests, detailed PDF endpoint/blocking/fallback tests, Testing-tab workbook parity tests against the `_260606` Highway and Railroad workbooks, retained legacy workbook checks where applicable, frontend TypeScript/build checks, and a Playwright smoke flow that exercises project creation, calculation creation, warnings, simplified reports, detailed report generation, blocked detailed report state, standards tables, and delete workflows.
 
 ---
 
