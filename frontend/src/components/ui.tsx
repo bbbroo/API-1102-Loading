@@ -117,13 +117,15 @@ export function Button({
   icon,
   children,
   onClick,
-  href
+  href,
+  disabled = false
 }: {
   variant?: "primary" | "secondary" | "ghost";
   icon?: React.ReactNode;
   children: React.ReactNode;
   onClick?: () => void;
   href?: string;
+  disabled?: boolean;
 }) {
   const className = `ui-button ${variant}`;
   if (href) {
@@ -135,7 +137,7 @@ export function Button({
     );
   }
   return (
-    <button className={className} onClick={onClick}>
+    <button className={className} onClick={onClick} disabled={disabled}>
       {icon}
       {children}
     </button>

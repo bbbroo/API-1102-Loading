@@ -245,7 +245,7 @@ try {
       ? !(coverLabel.right < soilLabel.left || coverLabel.left > soilLabel.right || coverLabel.bottom < soilLabel.top || coverLabel.top > soilLabel.bottom)
       : true;
     return {
-      wheelToRail: wheel && upperRail ? Math.abs(wheel.bottom - upperRail.bottom) : 999,
+      wheelToRail: wheel && upperRail ? Math.abs(wheel.bottom - upperRail.top) : 999,
       labelsOverlap: overlaps
     };
   });

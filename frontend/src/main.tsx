@@ -18,6 +18,7 @@ import {
   Image as ImageIcon,
   Layers,
   LineChart,
+  Loader,
   Plus,
   Printer,
   RailSymbol,
@@ -206,6 +207,7 @@ function App() {
   const [exportRecords, setExportRecords] = useState<ExportRecord[]>([]);
   const [standards, setStandards] = useState<StandardsPayload | null>(null);
   const [autosave, setAutosave] = useState("Autosaved - just now");
+  const [deleting, setDeleting] = useState(false);
 
   async function refresh() {
     const [dash, projectList, calcList] = await Promise.all([
@@ -309,26 +311,29 @@ function App() {
     const message = uniqueIds.length === 1
       ? "Delete this project and all of its calculations? This cannot be undone."
       : `Delete ${uniqueIds.length} selected projects and all of their calculations? This cannot be undone.`;
-    if (!window.confirm(message)) {
-      return false;
+    if (!window.confirm(message)) return false;
+    setDeleting(true);
+    try {
+      const activeProjectDeleted = activeProject ? uniqueIds.includes(activeProject.id) : false;
+      const activeCalcDeleted = activeCalc ? uniqueIds.includes(activeCalc.project_id) : false;
+      for (const projectId of uniqueIds) {
+        await api(`/projects/${projectId}`, { method: "DELETE" });
+      }
+      if (activeProjectDeleted) {
+        setActiveProject(null);
+        setPage("projects");
+      }
+      if (activeCalcDeleted) {
+        setActiveCalc(null);
+        setActiveScenario(null);
+        setScenarios([]);
+        setExportRecords([]);
+      }
+      await refresh();
+      return true;
+    } finally {
+      setDeleting(false);
     }
-    const activeProjectDeleted = activeProject ? uniqueIds.includes(activeProject.id) : false;
-    const activeCalcDeleted = activeCalc ? uniqueIds.includes(activeCalc.project_id) : false;
-    for (const projectId of uniqueIds) {
-      await api(`/projects/${projectId}`, { method: "DELETE" });
-    }
-    if (activeProjectDeleted) {
-      setActiveProject(null);
-      setPage("projects");
-    }
-    if (activeCalcDeleted) {
-      setActiveCalc(null);
-      setActiveScenario(null);
-      setScenarios([]);
-      setExportRecords([]);
-    }
-    await refresh();
-    return true;
   }
 
   async function deleteProject(projectId: number) {
@@ -396,23 +401,26 @@ function App() {
     const message = uniqueIds.length === 1
       ? "Delete this calculation and its scenarios? This cannot be undone."
       : `Delete ${uniqueIds.length} selected calculations and their scenarios? This cannot be undone.`;
-    if (!window.confirm(message)) {
-      return false;
+    if (!window.confirm(message)) return false;
+    setDeleting(true);
+    try {
+      const activeCalcDeleted = activeCalc ? uniqueIds.includes(activeCalc.id) : false;
+      for (const calcId of uniqueIds) {
+        await api(`/calculations/${calcId}`, { method: "DELETE" });
+      }
+      setCalculations((items) => items.filter((item) => !uniqueIds.includes(item.id)));
+      if (activeCalcDeleted) {
+        setActiveCalc(null);
+        setActiveScenario(null);
+        setScenarios([]);
+        setExportRecords([]);
+        setPage("projectDetail");
+      }
+      await refresh();
+      return true;
+    } finally {
+      setDeleting(false);
     }
-    const activeCalcDeleted = activeCalc ? uniqueIds.includes(activeCalc.id) : false;
-    for (const calcId of uniqueIds) {
-      await api(`/calculations/${calcId}`, { method: "DELETE" });
-    }
-    setCalculations((items) => items.filter((item) => !uniqueIds.includes(item.id)));
-    if (activeCalcDeleted) {
-      setActiveCalc(null);
-      setActiveScenario(null);
-      setScenarios([]);
-      setExportRecords([]);
-      setPage("projectDetail");
-    }
-    await refresh();
-    return true;
   }
 
   async function deleteCalculation(calcId: number) {
@@ -494,6 +502,11 @@ function App() {
 
   return (
     <AppShell page={page} setPage={setPage} autosave={autosave} activeCalc={activeCalc}>
+      {deleting && (
+        <div className="deleting-overlay">
+          <span><Loader size={18} className="spin" /> Deleting...</span>
+        </div>
+      )}
       {page === "dashboard" ? (
         <Dashboard
           summary={summary}
@@ -510,6 +523,7 @@ function App() {
         <ProjectsPage
           projects={projects}
           calculations={calculations}
+          deleting={deleting}
           onOpen={openProject}
           onNewProject={createProject}
           onImportProject={importProjectPackage}
@@ -523,6 +537,7 @@ function App() {
         <ProjectDetail
           project={activeProject}
           calculations={calculations.filter((calc) => calc.project_id === activeProject.id)}
+          deleting={deleting}
           onBack={() => setPage("projects")}
           onOpenCalculation={openCalculation}
           onNewCalculation={(type) => createCalculation(activeProject.id, type)}
@@ -688,6 +703,7 @@ function CalculationTable({ rows, onOpenId }: { rows: DashboardSummary["recent"]
 function ProjectsPage({
   projects,
   calculations,
+  deleting,
   onOpen,
   onNewProject,
   onImportProject,
@@ -698,6 +714,7 @@ function ProjectsPage({
 }: {
   projects: Project[];
   calculations: Calculation[];
+  deleting: boolean;
   onOpen: (project: Project) => void;
   onNewProject: () => void;
   onImportProject: (file: File) => void;
@@ -708,8 +725,13 @@ function ProjectsPage({
 }) {
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<number[]>([]);
+  const [visibleCount, setVisibleCount] = useState(50);
   const visible = projects.filter((project) => JSON.stringify(project).toLowerCase().includes(query.toLowerCase()));
+  const displayProjects = visible.slice(0, visibleCount);
+  const remaining = visible.length - visibleCount;
   const selectedText = `${selected.length} selected`;
+
+  useEffect(() => { setVisibleCount(50); }, [query]);
 
   function toggle(projectId: number) {
     setSelected((items) => (items.includes(projectId) ? items.filter((id) => id !== projectId) : [...items, projectId]));
@@ -720,6 +742,7 @@ function ProjectsPage({
   }
 
   async function deleteSelected() {
+    if (deleting) return;
     const deleted = await onDeleteSelected(selected);
     if (deleted) setSelected([]);
   }
@@ -756,7 +779,7 @@ function ProjectsPage({
               </tr>
             </thead>
             <tbody>
-              {visible.map((project) => (
+              {displayProjects.map((project) => (
                 <tr key={project.id} onClick={() => onOpen(project)}>
                   <td onClick={(event) => event.stopPropagation()}><input type="checkbox" checked={selected.includes(project.id)} onChange={() => toggle(project.id)} /></td>
                   <td><strong>{project.project_name || "Untitled Project"}</strong></td>
@@ -768,13 +791,20 @@ function ProjectsPage({
                   <td onClick={(event) => event.stopPropagation()}>
                     <div className="icon-actions">
                       <button title="Duplicate" onClick={() => onDuplicate(project.id)}><Copy size={16} /></button>
-                      <button title="Delete" className="danger" onClick={() => onDelete(project.id)}><Trash2 size={16} /></button>
+                      <button title="Delete" className="danger" disabled={deleting} onClick={() => onDelete(project.id)}><Trash2 size={16} /></button>
                     </div>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+          {remaining > 0 && (
+            <div className="show-more-projects">
+              <button onClick={() => setVisibleCount((c) => c + Math.min(50, remaining))}>
+                Show {remaining >= 50 ? 50 : remaining} More Project{remaining === 1 ? "" : "s"}
+              </button>
+            </div>
+          )}
         </div>
       </Panel>
     </div>
@@ -784,6 +814,7 @@ function ProjectsPage({
 function ProjectDetail({
   project,
   calculations,
+  deleting,
   onBack,
   onOpenCalculation,
   onNewCalculation,
@@ -796,6 +827,7 @@ function ProjectDetail({
 }: {
   project: Project;
   calculations: Calculation[];
+  deleting: boolean;
   onBack: () => void;
   onOpenCalculation: (calc: Calculation) => void;
   onNewCalculation: (type: "Highway" | "Railroad") => void;
@@ -822,6 +854,7 @@ function ProjectDetail({
   }
 
   async function deleteSelectedCalculations() {
+    if (deleting) return;
     const deleted = await onDeleteCalculations(selectedCalcIds);
     if (deleted) setSelectedCalcIds([]);
   }
@@ -836,7 +869,7 @@ function ProjectDetail({
         </div>
         <div className="inline-actions">
           <Button icon={<Copy size={16} />} onClick={onDuplicateProject}>Duplicate Project</Button>
-          <Button icon={<Trash2 size={16} />} onClick={onDeleteProject}>Delete Project</Button>
+          <Button icon={<Trash2 size={16} />} disabled={deleting} onClick={onDeleteProject}>Delete Project</Button>
           <ImportProjectButton onImport={onImportProject} compact />
           <Button variant="primary" href={`/api/exports/project/${project.id}.json`} icon={<Download size={16} />}>Export Project</Button>
         </div>
@@ -868,7 +901,7 @@ function ProjectDetail({
           <>
             <div className="calc-selection-bar">
               <span>{selectedCalcIds.length} selected</span>
-              {selectedCalcIds.length ? <Button icon={<Trash2 size={16} />} onClick={deleteSelectedCalculations}>Delete Selected Calculations</Button> : null}
+              {selectedCalcIds.length ? <Button icon={<Trash2 size={16} />} disabled={deleting} onClick={deleteSelectedCalculations}>Delete Selected Calculations</Button> : null}
             </div>
             <div className="table-scroll">
               <table className="engineering-table project-calcs-table">
@@ -886,7 +919,7 @@ function ProjectDetail({
                       <td>{calc.revision || "0"}</td>
                       <td onClick={(event) => event.stopPropagation()}>
                         <div className="icon-actions">
-                          <button title="Delete Calculation" className="danger" onClick={() => onDeleteCalculation(calc.id)}><Trash2 size={16} /></button>
+                          <button title="Delete Calculation" className="danger" disabled={deleting} onClick={() => onDeleteCalculation(calc.id)}><Trash2 size={16} /></button>
                         </div>
                       </td>
                     </tr>
@@ -1090,7 +1123,7 @@ function LoadingForm({
   const pipeGrades = standards?.pipe_grades || {};
   const dropdowns = standards?.dropdown_options || {};
   const selectedNps = String(shared.nps || "12");
-  const npsOptions = keys(pipeDimensions, ["8", "10", "12", "16"]);
+  const npsOptions = keys(pipeDimensions, ["8", "10", "12", "16"]).sort((a, b) => npsToNumber(a) - npsToNumber(b));
   const pipeInfo = pipeDimensions[selectedNps] || pipeDimensions["12"] || {};
   const wallOptions = pipeInfo.wall_thickness_options || [0.18, 0.203, 0.219, 0.25, 0.281, 0.312, 0.33, 0.344, 0.375, 0.406, 0.438, 0.5];
   const wallThicknessValue = shared.wall_thickness ?? 0.25;
@@ -1228,7 +1261,7 @@ function CrossSectionDiagram({ mode, values, compact = false }: { mode: LoadingM
   const pipeTopY = surfaceY + scaledCoverHeight;
   const pipeCenterY = pipeTopY + pipeSize / 2;
   const boreTopY = pipeCenterY - boreSize / 2;
-  const coverStartY = Math.min(surfaceY + surfaceHeight, Math.max(surfaceY, pipeTopY - 1));
+  const coverStartY = surfaceY;
   const coverLineHeight = Math.max(pipeTopY - coverStartY, 1);
   const pipeWallSize = Math.max(2, Math.min(8, tw * scale));
   const boreBorderSize = Math.max(2, Math.min(7, ((bd - d) / 2) * scale));
@@ -1260,7 +1293,6 @@ function CrossSectionDiagram({ mode, values, compact = false }: { mode: LoadingM
             </div>
             <div className="diagram-track" aria-hidden="true">
               <span />
-              <span />
               <i />
               <i />
               <i />
@@ -1282,8 +1314,9 @@ function CrossSectionDiagram({ mode, values, compact = false }: { mode: LoadingM
         <div className="diagram-soil"><span>Soil / backfill</span></div>
         <div className="diagram-cover"><span>H = {fmt(cover, 1)} ft to top of pipe</span></div>
         <div className="diagram-bore">
-          <div className="diagram-pipe"><span>D {fmt(d, 2)} in</span></div>
-          <span className="diagram-bore-label">Bd {fmt(bd, 2)} in</span>
+          <div className="diagram-pipe"><span /></div>
+          <span className="diagram-bore-label">Bd {fmt(bd, 3)} in</span>
+          <span className="diagram-pipe-label">D {fmt(d, 3)} in</span>
         </div>
       </div>
   );
@@ -1442,7 +1475,7 @@ function Standards() {
       <StandardsBlock icon={<Ruler size={18} />} title="Pipe Dimensions">
         <StandardsTable
           columns={["NPS", "D (in)", "tw Options (in)"]}
-          rows={Object.entries(data?.pipe_dimensions || {}).map(([nps, pipe]: [string, any]) => [
+          rows={Object.entries(data?.pipe_dimensions || {}).sort(([a], [b]) => npsToNumber(a) - npsToNumber(b)).map(([nps, pipe]: [string, any]) => [
             nps,
             fmt(pipe.outside_diameter, 3),
             (pipe.wall_thickness_options || []).map((item: number) => fmt(item, 3)).join(", ")
@@ -2143,7 +2176,7 @@ function SimplifiedReportPreview({
         <section className="report-schematic">
           <h2>Pipeline Cross-Section Schematic</h2>
           <div className="report-diagram-frame">
-            <CrossSectionDiagram mode={calc.calculation_type === "Railroad" ? "railroad" : "highway"} values={values} compact />
+            <CrossSectionDiagram mode={calc.calculation_type === "Railroad" ? "railroad" : "highway"} values={values} compact={false} />
           </div>
         </section>
         <section className="report-results-section" id="results">
@@ -2238,6 +2271,20 @@ function ImportProjectButton({ onImport, compact = false }: { onImport: (file: F
   );
 }
 
+function npsToNumber(nps: string | number): number {
+  const s = String(nps);
+  if (s.includes('/') && !s.includes('-')) {
+    const [num, den] = s.split('/');
+    return parseInt(num) / parseInt(den);
+  }
+  if (s.includes('-') && s.includes('/')) {
+    const [whole, frac] = s.split('-');
+    const [num, den] = frac.split('/');
+    return parseInt(whole) + parseInt(num) / parseInt(den);
+  }
+  return parseFloat(s);
+}
+
 function keys(source: Record<string, any> | undefined, fallback: Array<string | number>) {
   const values = Object.keys(source || {});
   return values.length ? values : fallback;
@@ -2254,7 +2301,7 @@ function nextPipeSelection(nps: string, currentWallThickness: any, currentBoredD
     outside_diameter: Number.isFinite(outsideDiameter) ? outsideDiameter : undefined,
     wall_thickness: Number.isFinite(current) && current > 0 ? current : wallOptions[0] || 0.25
   };
-  if (Number.isFinite(outsideDiameter) && (!Number.isFinite(boredDiameter) || boredDiameter <= outsideDiameter)) {
+  if (Number.isFinite(outsideDiameter)) {
     next.bored_diameter = Number((outsideDiameter + 2).toFixed(3));
   }
   return next;

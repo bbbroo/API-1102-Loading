@@ -190,7 +190,7 @@ class PipelineSchematic(Flowable):
         self.mode = "railroad" if calculation_type == "Railroad" else "highway"
         self.scale = 0.395
         self.diagram_width = 565
-        self.diagram_height = 360
+        self.diagram_height = 380
         self.width = self.diagram_width * self.scale
         self.height = self.diagram_height * self.scale
 
@@ -207,11 +207,11 @@ class PipelineSchematic(Flowable):
         load_label = f"w = {clean_number(load or 13.9, 1)} psi" if self.mode == "railroad" else f"W = {clean_number(load or 10000, 0)} lb"
         surface_y = 116 if self.mode == "railroad" else 108
         surface_height = 16 if self.mode == "railroad" else 24
-        label_allowance = 46
+        label_allowance = 56
         cover_in = cover * 12
         vertical_span_in = cover_in + (d + bd) / 2
         available_height = max(120, self.diagram_height - surface_y - label_allowance)
-        available_width = 188
+        available_width = 224
         geom_scale = min(available_height / vertical_span_in, available_width / bd)
         pipe_size = max(d * geom_scale, 6)
         bore_size = max(bd * geom_scale, pipe_size + 4)
@@ -219,7 +219,7 @@ class PipelineSchematic(Flowable):
         pipe_top_y = surface_y + scaled_cover_height
         pipe_center_y = pipe_top_y + pipe_size / 2
         bore_top_y = pipe_center_y - bore_size / 2
-        cover_start_y = min(surface_y + surface_height, max(surface_y, pipe_top_y - 1))
+        cover_start_y = surface_y
         cover_line_height = max(pipe_top_y - cover_start_y, 1)
         pipe_wall_size = max(2, min(8, tw * geom_scale))
         bore_border_size = max(2, min(7, ((bd - d) / 2) * geom_scale))
@@ -237,15 +237,22 @@ class PipelineSchematic(Flowable):
         canvas.rect(0, 0, self.diagram_width, self.diagram_height - soil_top, fill=1, stroke=0)
         canvas.setFillColor(colors.HexColor("#73694d"))
         canvas.setFont("Helvetica-Bold", 15)
-        canvas.drawRightString(self.diagram_width - 82, self._y(soil_top + 34, 15), "Soil / backfill")
+        label_text = "Soil / backfill"
+        label_w = canvas.stringWidth(label_text, "Helvetica-Bold", 15)
+        label_right = self.diagram_width - 82
+        label_bottom_y = self._y(soil_top + 34, 15)
+        canvas.setFillColor(colors.HexColor("#f2ead7"))
+        canvas.roundRect(label_right - label_w - 16, label_bottom_y - 4, label_w + 16, 23, 4, fill=1, stroke=0)
+        canvas.setFillColor(colors.HexColor("#73694d"))
+        canvas.drawRightString(label_right, label_bottom_y, label_text)
 
         if self.mode == "railroad":
+            self._draw_train(canvas, surface_y)
+            self._draw_track(canvas, surface_y)
             canvas.setFillColor(colors.HexColor("#4b5563"))
             canvas.rect(0, self._y(surface_y, surface_height), self.diagram_width, surface_height, fill=1, stroke=0)
-            canvas.setStrokeColor(colors.HexColor("#2b3138"))
-            canvas.setLineWidth(5)
-            canvas.line(0, self._y(surface_y, 0), self.diagram_width, self._y(surface_y, 0))
-            self._draw_track(canvas, surface_y)
+            canvas.setFillColor(colors.HexColor("#2b3138"))
+            canvas.rect(0, self._y(surface_y, 5), self.diagram_width, 5, fill=1, stroke=0)
         else:
             y0 = self._y(surface_y, surface_height)
             segment = self.diagram_width / 5
@@ -276,22 +283,22 @@ class PipelineSchematic(Flowable):
         canvas.setStrokeColor(RED)
         canvas.setFont("Helvetica-Bold", 12)
         canvas.drawCentredString(load_x, self._y(load_y, 12), load_label)
-        arrow_top = load_y + 18
-        arrow_bottom = load_y + 49
+        arrow_top = load_y + 16
+        arrow_bottom = load_y + 47
         canvas.setLineWidth(3)
         canvas.line(load_x, self._y(arrow_top, 0), load_x, self._y(arrow_bottom, 0))
-        canvas.line(load_x - 6, self._y(arrow_bottom - 6, 0), load_x, self._y(arrow_bottom, 0))
-        canvas.line(load_x + 6, self._y(arrow_bottom - 6, 0), load_x, self._y(arrow_bottom, 0))
+        canvas.line(load_x - 7, self._y(arrow_bottom - 7, 0), load_x, self._y(arrow_bottom, 0))
+        canvas.line(load_x + 7, self._y(arrow_bottom - 7, 0), load_x, self._y(arrow_bottom, 0))
 
         cover_x = 58
         cover_y = self._y(cover_start_y + cover_line_height, 0)
         canvas.setStrokeColor(colors.HexColor("#7f5f35"))
         canvas.setLineWidth(3)
         canvas.line(cover_x, cover_y, cover_x, cover_y + cover_line_height)
-        canvas.line(cover_x - 8, cover_y + cover_line_height, cover_x, cover_y + cover_line_height + 8)
-        canvas.line(cover_x + 8, cover_y + cover_line_height, cover_x, cover_y + cover_line_height + 8)
-        canvas.line(cover_x - 8, cover_y, cover_x, cover_y - 8)
-        canvas.line(cover_x + 8, cover_y, cover_x, cover_y - 8)
+        canvas.line(cover_x - 8, cover_y + cover_line_height, cover_x, cover_y + cover_line_height - 8)
+        canvas.line(cover_x + 8, cover_y + cover_line_height, cover_x, cover_y + cover_line_height - 8)
+        canvas.line(cover_x - 8, cover_y, cover_x, cover_y + 8)
+        canvas.line(cover_x + 8, cover_y, cover_x, cover_y + 8)
         canvas.setFillColor(colors.HexColor("#4b3920"))
         canvas.setFont("Helvetica-Bold", 16)
         canvas.drawString(cover_x + 14, cover_y + cover_line_height / 2 - 6, f"H = {clean_number(cover, 1)} ft to top of pipe")
@@ -312,10 +319,17 @@ class PipelineSchematic(Flowable):
         canvas.circle(bore_x, bore_y + bore_r, pipe_r * 0.62, fill=1, stroke=0)
         canvas.setFillColor(colors.HexColor("#17212b"))
         canvas.setFont("Helvetica-Bold", 10)
-        canvas.drawCentredString(bore_x, bore_y + bore_r - 3, f"D {clean_number(d, 2)} in")
+        pipe_label = f"D {clean_number(d, 3)} in"
+        pipe_label_x = bore_x + bore_r + 8
+        pipe_label_y = bore_y + bore_r - 3.5
+        pipe_label_w = canvas.stringWidth(pipe_label, "Helvetica-Bold", 10)
+        canvas.setFillColor(colors.white)
+        canvas.roundRect(pipe_label_x - 2, pipe_label_y - 8, pipe_label_w + 4, 13, 3, fill=1, stroke=0)
+        canvas.setFillColor(colors.HexColor("#17212b"))
+        canvas.drawString(pipe_label_x, pipe_label_y, pipe_label)
         canvas.setFillColor(colors.HexColor("#475467"))
         canvas.setFont("Helvetica-Bold", 10)
-        canvas.drawCentredString(bore_x, bore_y - 24, f"Bd {clean_number(bd, 2)} in")
+        canvas.drawCentredString(bore_x, bore_y - 24, f"Bd {clean_number(bd, 3)} in")
         canvas.restoreState()
 
     def _y(self, css_y: float, height: float) -> float:
@@ -338,13 +352,51 @@ class PipelineSchematic(Flowable):
 
     def _draw_track(self, canvas, surface_y: float) -> None:
         left = self.diagram_width / 2 - 85
-        top = surface_y - 22
+        top = surface_y - 12
+        # Draw ties: frontend uses transform:rotate(90deg) on 10×28 elements,
+        # making them appear as 28×10 horizontal bars centered at (left+x+5, top+13)
         canvas.setFillColor(colors.HexColor("#7a5a3a"))
         for x in (30, 80, 130):
-            canvas.rect(left + x, self._y(top + 28, 28), 10, 28, fill=1, stroke=0)
+            canvas.roundRect(left + x - 9, self._y(top + 8, 10), 28, 10, 2, fill=1, stroke=0)
+        # Draw single rail above ties, between wheels and ties
         canvas.setFillColor(colors.HexColor("#2b3138"))
-        canvas.roundRect(left, self._y(top + 17, 5), 170, 5, 2, fill=1, stroke=0)
-        canvas.roundRect(left, self._y(top + 26, 5), 170, 5, 2, fill=1, stroke=0)
+        canvas.roundRect(left, self._y(top + 3, 5), 170, 5, 2, fill=1, stroke=0)
+
+    def _draw_train(self, canvas, surface_y: float) -> None:
+        cx = self.diagram_width / 2
+        container_left = cx - 77
+        train_top = surface_y - 47  # CSS top of train body elements (container top 64 + 5)
+        engine_left = container_left + 15
+        engine_right = engine_left + 56
+        car_left = container_left + 154 - 14 - 68  # right edge - 14 - width
+        car_right = car_left + 68
+        wheel_centers_y = 100.5  # CSS center-y (wheel bottom 107 at rail top 107)
+
+        # engine body
+        canvas.setFillColor(colors.HexColor("#263746"))
+        canvas.roundRect(engine_left, self._y(train_top, 28), 56, 28, 8, fill=1, stroke=0)
+        # engine smokestack (::before)
+        canvas.roundRect(engine_left + 8, self._y(train_top - 9, 10), 18, 10, 3, fill=1, stroke=0)
+        # engine window (::after)
+        canvas.setFillColor(colors.HexColor("#b9dce8"))
+        canvas.roundRect(engine_right - 8 - 16, self._y(train_top + 7, 9), 16, 9, 2, fill=1, stroke=0)
+
+        # car body
+        canvas.setFillColor(colors.HexColor("#354658"))
+        canvas.roundRect(car_left, self._y(train_top, 28), 68, 28, 8, fill=1, stroke=0)
+        # car window (::after)
+        canvas.setFillColor(colors.HexColor("#b9dce8"))
+        canvas.roundRect(car_right - 12 - 30, self._y(train_top + 7, 9), 30, 9, 2, fill=1, stroke=0)
+
+        # wheels
+        wheel_y = self._y(wheel_centers_y, 0)
+        canvas.setFillColor(colors.HexColor("#f8fafc"))
+        canvas.setStrokeColor(colors.HexColor("#1f2933"))
+        canvas.setLineWidth(4)
+        wheel_radius = 4.5
+        for wx in (container_left + 24 + 6.5, container_left + 53 + 6.5,
+                   container_left + 154 - 54 - 6.5, container_left + 154 - 23 - 6.5):
+            canvas.circle(wx, wheel_y, wheel_radius, fill=1, stroke=1)
 
 
 def render_detailed_pdf(data: DetailedReportData) -> bytes:

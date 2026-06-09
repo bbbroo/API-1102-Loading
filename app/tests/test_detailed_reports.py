@@ -137,7 +137,7 @@ def test_detailed_pdf_endpoint_returns_pdf():
         assert HDR_LOGO_SVG.exists()
         schematic = PipelineSchematic({}, "Highway")
         assert schematic.diagram_width == 565
-        assert schematic.diagram_height == 360
+        assert schematic.diagram_height == 380
 
 
 def test_detailed_pdf_export_alias_returns_pdf():
