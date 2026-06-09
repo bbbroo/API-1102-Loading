@@ -45,7 +45,7 @@ try {
   await page.getByRole("button", { name: "Standards Tables", exact: true }).click();
   await page.locator("h1", { hasText: "Standards & Lookup Tables" }).waitFor({ timeout: 8000 });
   await page.getByRole("columnheader", { name: "D (in)", exact: true }).waitFor({ timeout: 8000 });
-  await page.getByRole("columnheader", { name: "tw Options (in)", exact: true }).waitFor({ timeout: 8000 });
+  await page.getByRole("columnheader", { name: "Wall Thickness Options (in)", exact: true }).waitFor({ timeout: 8000 });
   await page.getByRole("columnheader", { name: "R", exact: true }).waitFor({ timeout: 8000 });
   if (await page.getByRole("columnheader", { name: "Source", exact: true }).count()) {
     throw new Error("Standards tables still show Source columns");

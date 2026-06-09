@@ -1478,7 +1478,7 @@ function Standards() {
       <PageTitle title="Standards & Lookup Tables" subtitle="Read-only engineering data used by the calculation engine." />
       <StandardsBlock icon={<Ruler size={18} />} title="Pipe Dimensions">
         <StandardsTable
-          columns={["NPS", "D (in)", "tw Options (in)"]}
+          columns={["NPS", "D (in)", "Wall Thickness Options (in)"]}
           rows={Object.entries(data?.pipe_dimensions || {}).sort(([a], [b]) => npsToNumber(a) - npsToNumber(b)).map(([nps, pipe]: [string, any]) => [
             nps,
             fmt(pipe.outside_diameter, 3),
