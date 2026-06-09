@@ -9,6 +9,7 @@ from app.backend.schemas.scenario import ScenarioCreate, ScenarioPatch
 from app.backend.services.calculation_defaults import merged_mode_inputs
 from app.backend.services.calculation_service import run_scenario, update_calculation_summary
 from app.backend.services.helpers import dumps, loads
+from app.standards.metadata import ENGINE_VERSION
 
 router = APIRouter(prefix="/scenarios", tags=["scenarios"])
 
@@ -35,7 +36,7 @@ def list_scenarios(calculation_id: int, db: Session = Depends(get_db)):
     scenarios = db.query(Scenario).filter(Scenario.calculation_id == calculation_id).all()
     for scenario in scenarios:
         results = loads(scenario.results_json, {})
-        if not results.get("checks"):
+        if not results.get("checks") or results.get("engine_version") != ENGINE_VERSION:
             run_scenario(db, scenario)
     scenarios = db.query(Scenario).filter(Scenario.calculation_id == calculation_id).all()
     return [scenario_payload(s) for s in scenarios]

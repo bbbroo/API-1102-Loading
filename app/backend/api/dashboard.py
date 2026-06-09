@@ -1,18 +1,35 @@
 from __future__ import annotations
 
 from fastapi import APIRouter, Depends
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 
 from app.backend.database.models import Calculation, Project
 from app.backend.database.session import get_db
+from app.backend.services.helpers import loads
 
 router = APIRouter(prefix="/dashboard", tags=["dashboard"])
+
+
+def _pipe_size_label(calc: Calculation) -> str:
+    """Extract the pipe size label from the calculation's first scenario."""
+    scenarios = calc.scenarios
+    if scenarios:
+        shared = loads(scenarios[0].shared_inputs_json, {})
+        nps = shared.get("nps", "12")
+        wall = shared.get("wall_thickness", 0.250)
+        return f"NPS {nps} x {float(wall):.3f} in"
+    return "NPS 12 x 0.250 in"
 
 
 @router.get("/summary")
 def summary(db: Session = Depends(get_db)):
     projects = db.query(Project).all()
-    calcs = db.query(Calculation).order_by(Calculation.updated_at.desc()).all()
+    calcs = (
+        db.query(Calculation)
+        .options(selectinload(Calculation.scenarios))
+        .order_by(Calculation.updated_at.desc())
+        .all()
+    )
     return {
         "total_projects": len(projects),
         "total_calculations": len(calcs),
@@ -32,8 +49,8 @@ def summary(db: Session = Depends(get_db)):
                 "prepared_by": c.prepared_by,
                 "checked_by": c.checked_by,
                 "reviewer": c.reviewer,
-                "pipe_size": "NPS 12 x 0.250 in",
+                "pipe_size": _pipe_size_label(c),
             }
-            for c in calcs[:20]
+            for c in calcs
         ],
     }

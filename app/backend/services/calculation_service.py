@@ -11,6 +11,7 @@ from app.backend.services.calculation_defaults import merged_mode_inputs
 from app.backend.services.helpers import dumps, loads
 from app.calculations.highway import calculate_highway
 from app.calculations.railroad import calculate_railroad
+from app.standards.metadata import ENGINE_VERSION
 
 RESULT_PRIORITY = {"Fail": 4, "Needs Review": 3, "Pass": 2, "Not Calculated": 1}
 
@@ -40,6 +41,7 @@ def run_scenario(db: Session, scenario: Scenario) -> Scenario:
     else:
         result = calculate_highway(shared, highway_inputs)
     payload = result.to_dict()
+    payload["engine_version"] = ENGINE_VERSION
     payload["input_fingerprint"] = scenario_input_fingerprint(
         calc.calculation_type if calc else payload.get("calculation_type", "Highway"),
         shared,

@@ -16,6 +16,7 @@ import {
   FolderPlus,
   Gauge,
   Image as ImageIcon,
+  Info,
   Layers,
   LineChart,
   Loader,
@@ -120,8 +121,6 @@ type DigitizedGraphsPayload = {
   figures: DigitizedGraphFigure[];
 };
 
-const statusOptions = ["Draft", "For Review", "Reviewed", "Issued", "Superseded", "Void", "Archive"];
-const projectStatuses = ["Active", "On Hold", "Complete", "Archived"];
 const fieldHelp: Record<string, string> = {
   project_name: "Use the project name your team will recognize in exports, reports, and dashboard searches.",
   project_number: "Optional internal or client project identifier used for report traceability.",
@@ -373,6 +372,7 @@ function App() {
       await createProject();
       return;
     }
+    const today = new Date().toISOString().split("T")[0];
     const calc = await api<Calculation>("/calculations", {
       method: "POST",
       body: JSON.stringify({
@@ -382,7 +382,7 @@ function App() {
         calculation_type: type,
         road_highway: type === "Highway" ? "New Highway / Road" : "",
         railroad_route: type === "Railroad" ? "New Railroad / Route" : "",
-        status: "Draft"
+        date: today
       })
     });
     await refresh();
@@ -609,12 +609,16 @@ function Dashboard({
   onNewCalculation: () => void;
 }) {
   const [filter, setFilter] = useState("");
+  const [visibleCount, setVisibleCount] = useState(20);
   const rows = useMemo(() => {
     return (summary?.recent || []).filter((row) => {
       const matchesSearch = JSON.stringify(row).toLowerCase().includes(filter.toLowerCase());
       return matchesSearch;
     });
   }, [summary, filter]);
+  const displayRows = rows.slice(0, visibleCount);
+  const remaining = rows.length - visibleCount;
+  useEffect(() => { setVisibleCount(20); }, [filter]);
   const passRate = summary && summary.total_calculations ? `${Math.round((summary.passing_calculations / summary.total_calculations) * 100)}%` : "0%";
 
   return (
@@ -650,7 +654,16 @@ function Dashboard({
             New Calculation
           </Button>
         </div>
-        <CalculationTable rows={rows} onOpenId={onOpenCalculationId} />
+        <div className="table-scroll">
+          <CalculationTable rows={displayRows} onOpenId={onOpenCalculationId} />
+          {remaining > 0 && (
+            <div className="show-more-projects">
+              <button onClick={() => setVisibleCount((c) => c + Math.min(20, remaining))}>
+                Show {remaining >= 20 ? 20 : remaining} More Calculation{remaining === 1 ? "" : "s"}
+              </button>
+            </div>
+          )}
+        </div>
       </Panel>
 
       <Panel>
@@ -671,20 +684,19 @@ function Dashboard({
 
 function CalculationTable({ rows, onOpenId }: { rows: DashboardSummary["recent"]; onOpenId: (id: number) => void }) {
   return (
-    <div className="table-scroll">
-      <table className="engineering-table">
-        <thead>
-          <tr>
-            <th>Calc #</th>
-            <th>Project</th>
-            <th>Crossing</th>
-            <th>Pipe Size</th>
-            <th>Result</th>
-            <th>Modified</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row) => (
+    <table className="engineering-table">
+      <thead>
+        <tr>
+          <th>Calc #</th>
+          <th>Project</th>
+          <th>Crossing</th>
+          <th>Pipe Size</th>
+          <th>Result</th>
+          <th>Modified</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row) => (
             <tr key={row.id} onClick={() => onOpenId(row.id)}>
               <td>{row.calc_number}</td>
               <td>{row.project}</td>
@@ -696,7 +708,6 @@ function CalculationTable({ rows, onOpenId }: { rows: DashboardSummary["recent"]
           ))}
         </tbody>
       </table>
-    </div>
   );
 }
 
@@ -881,7 +892,6 @@ function ProjectDetail({
           <Field label="Project Number" value={project.project_number || ""} onChange={(value) => onPatchProject({ project_number: value })} helpText={fieldHelp.project_number} />
           <Field label="Client" value={project.client || ""} onChange={(value) => onPatchProject({ client: value })} helpText={fieldHelp.client} />
           <Field label="Location" value={project.location || ""} onChange={(value) => onPatchProject({ location: value })} helpText={fieldHelp.location} />
-          <Field label="Status" value={project.status || "Active"} select options={projectStatuses} onChange={(value) => onPatchProject({ status: value })} helpText="Project organization status only. It does not affect calculations." />
           <Field label="Modified Date" value={formatDate(project.updated_at || project.created_at || "")} readOnly helpText="Last saved date for this project record." />
         </div>
         <p className="detail-description">{project.description || "No project description has been entered."}</p>
@@ -1001,7 +1011,6 @@ function CalculationWorksheet({
           <p>{project?.project_name || `Project ${calc.project_id}`} / {calc.road_highway || calc.railroad_route || "Crossing route not entered"}</p>
         </div>
         <div className="calc-header-badges">
-          <StatusPill value={calc.status || "Draft"} />
           <ResultBadge value={calc.overall_result || "Not Calculated"} />
           <span className="calc-type-chip">{calc.calculation_type}</span>
           <Button icon={<Copy size={16} />} onClick={onDuplicate}>Duplicate Calc</Button>
@@ -1039,7 +1048,7 @@ function MetadataPanel({ calc, project, onPatch }: { calc: Calculation; project?
 
   return (
     <Panel className="metadata-panel">
-      <SectionHeader title="Calculation Metadata" subtitle="Documentation fields only. Status does not lock or route the calculation." />
+      <SectionHeader title="Calculation Metadata" subtitle="Documentation fields for the calculation record." />
       <div className="metadata-grid">
         <Field label="Project Name" value={project?.project_name || `Project ${calc.project_id}`} readOnly helpText={fieldHelp.project_name} />
         <Field label="Project Number" value={project?.project_number || ""} readOnly helpText={fieldHelp.project_number} />
@@ -1047,16 +1056,11 @@ function MetadataPanel({ calc, project, onPatch }: { calc: Calculation; project?
         <Field label="Location" value={project?.location || ""} readOnly helpText={fieldHelp.location} />
         <Field label="Calc Number" value={calc.calc_number} onChange={(value) => guardedPatch({ calc_number: value })} helpText={fieldHelp.calc_number} />
         <Field label="Crossing Name" value={calc.crossing_name} onChange={(value) => guardedPatch({ crossing_name: value })} helpText={fieldHelp.crossing_name} />
-        <Field label="Road / Highway" value={calc.road_highway || ""} onChange={(value) => guardedPatch({ road_highway: value })} helpText={fieldHelp.route} />
         <Field label="Revision" value={calc.revision || "0"} onChange={(value) => guardedPatch({ revision: value })} helpText={fieldHelp.revision} />
         <Field label="Prepared By" value={calc.prepared_by || ""} onChange={(value) => guardedPatch({ prepared_by: value })} helpText="Engineer or preparer responsible for the calculation." />
         <Field label="Checked By" value={calc.checked_by || ""} onChange={(value) => guardedPatch({ checked_by: value })} helpText="Independent checker or reviewer name for documentation." />
-        <Field label="Reviewer" value={calc.reviewer || ""} onChange={(value) => guardedPatch({ reviewer: value })} helpText="Optional additional reviewer for client or internal review." />
-        <Field label="Date" value={calc.date || ""} onChange={(value) => guardedPatch({ date: value || null })} helpText="Calculation date shown in reports and exports." />
-        <Field label="Status" value={calc.status || "Draft"} select options={statusOptions} onChange={(value) => guardedPatch({ status: value })} helpText={fieldHelp.status} />
+        <Field label="Date" value={calc.date || ""} readOnly helpText="Calculation date shown in reports and exports. Auto-populated on creation." />
         <Field label="Calculation Type" value={calc.calculation_type} select options={["Highway", "Railroad"]} onChange={(value) => guardedPatch({ calculation_type: value })} helpText={fieldHelp.calculation_type} />
-        <Field label="Railroad / Route" value={calc.railroad_route || ""} onChange={(value) => guardedPatch({ railroad_route: value })} helpText={fieldHelp.route} />
-        <Field label="Review Comments" value={calc.review_comments || ""} onChange={(value) => guardedPatch({ review_comments: value })} helpText="Short documentation note for review comments or disposition." />
         <div className="wide">
           <Field label="Notes" value={calc.notes || ""} onChange={(value) => guardedPatch({ notes: value })} textarea helpText="Assumptions, limitations, or project-specific notes included in the calculation package." />
         </div>
@@ -1407,7 +1411,7 @@ function AdvancedPanel({ result, intermediate, warnings }: { result: Record<stri
               <h3>{title}</h3>
               {(rows as string[][]).map(([label, key, unit]) => (
                 <div className="advanced-row" key={label}>
-                  <span>{label} <i title={advancedHelp[key] || label} aria-label={advancedHelp[key] || label}>i</i></span>
+                  <span>{label} <span className="tooltip-wrap"><Info size={13} tabIndex={0} aria-label={`${label} help`} /><span className="field-tooltip" role="tooltip">{advancedHelp[key] || label}</span></span></span>
                   <strong>{fmt(values[key])} {unit}</strong>
                 </div>
               ))}
@@ -1766,8 +1770,8 @@ function References() {
     ["API Recommended Practice 1102, 7th Edition, December 2007 (Reaffirmed 2024)", "Steel Pipelines Crossing Railroads and Highways. Primary technical basis for loading, stiffness, burial, excavation geometry, impact, and fatigue calculations."],
     ["49 CFR Part 192 Subpart C - Pipe Design", "U.S. federal pipeline safety regulations governing design factor F and longitudinal joint factor E."],
     ["ASME B31.8 - Gas Transmission and Distribution Piping Systems", "Industry consensus standard. Chapter 4 defines design factor F by location and class."],
-    ["Copy of API 1102 Highway.xlsx", "Source workbook used to port highway formulas, tables, defaults, and validation cases."],
-    ["Copy of API 1102 Railroad.xlsx", "Source workbook used to port railroad formulas, tables, defaults, and validation cases."]
+    ["API 1102 Highway_260606.xlsx", "Source workbook used to port highway formulas, tables, defaults, and validation cases."],
+    ["API 1102 Railroad_260606.xlsx", "Source workbook used to port railroad formulas, tables, defaults, and validation cases."]
   ];
   return (
     <div className="screen-stack">
@@ -1797,7 +1801,7 @@ function About() {
           <div className="about-meta">
             <span>App version: v0.1.0</span>
             <span>Calculation engine: v0.1.0</span>
-            <span>Source workbooks: Copy of API 1102 Highway / Railroad</span>
+            <span>Source workbooks: API 1102 Highway_260606 / API 1102 Railroad_260606</span>
           </div>
         </div>
       </Panel>

@@ -54,4 +54,14 @@ def two_step(table_name: str, nested: dict[float, dict[float, float]], outer_x: 
         outer_values[outer_key] = y
     y, trace = linear(table_name, outer_values, outer_x)
     traces.append(trace)
+    # Suppress warnings from inner tables whose outer key is not used in
+    # the outer interpolation, since they are irrelevant to the result.
+    if trace.lower_bound is not None and trace.upper_bound is not None:
+        for t in traces[:-1]:
+            try:
+                key = float(t.table_name.split(" @ ")[-1])
+                if key < trace.lower_bound or key > trace.upper_bound:
+                    t.warning = None
+            except (ValueError, IndexError):
+                pass
     return y, traces

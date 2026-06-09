@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from datetime import date
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -23,7 +25,10 @@ def list_calculations(project_id: int | None = None, db: Session = Depends(get_d
 
 @router.post("", response_model=CalculationRead)
 def create_calculation(payload: CalculationCreate, db: Session = Depends(get_db)):
-    calc = Calculation(**payload.model_dump())
+    data = payload.model_dump()
+    if data.get("date") is None:
+        data["date"] = date.today()
+    calc = Calculation(**data)
     db.add(calc)
     db.flush()
     shared, highway, railroad = merged_mode_inputs(payload.calculation_type)
