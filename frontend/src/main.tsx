@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
+  Activity,
   AlertTriangle,
   ArrowLeft,
   Calculator,
@@ -619,7 +620,6 @@ function Dashboard({
   const displayRows = rows.slice(0, visibleCount);
   const remaining = rows.length - visibleCount;
   useEffect(() => { setVisibleCount(20); }, [filter]);
-  const passRate = summary && summary.total_calculations ? `${Math.round((summary.passing_calculations / summary.total_calculations) * 100)}%` : "0%";
 
   return (
     <div className="screen-stack">
@@ -640,8 +640,7 @@ function Dashboard({
       <div className="metric-grid">
         <MetricCard icon={<FolderPlus size={18} />} label="Projects" value={summary?.total_projects ?? 0} />
         <MetricCard icon={<Calculator size={18} />} label="Calculations" value={summary?.total_calculations ?? 0} />
-        <MetricCard icon={<ShieldCheck size={18} />} label="Pass Rate" value={passRate} />
-        <MetricCard icon={<AlertTriangle size={18} />} label="In Review" value={summary?.by_status?.["For Review"] ?? 0} />
+        <MetricCard icon={<Activity size={18} />} label="Recent Activity" value={summary?.recent_activity ?? 0} />
       </div>
 
       <Panel className="table-panel">

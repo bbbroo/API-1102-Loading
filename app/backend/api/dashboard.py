@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from datetime import datetime, timedelta
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session, selectinload
 
@@ -30,12 +32,13 @@ def summary(db: Session = Depends(get_db)):
         .order_by(Calculation.updated_at.desc())
         .all()
     )
+    cutoff = datetime.utcnow() - timedelta(days=7)
+    recent_activity = sum(1 for p in projects if p.updated_at and p.updated_at >= cutoff)
+
     return {
         "total_projects": len(projects),
         "total_calculations": len(calcs),
-        "passing_calculations": sum(1 for c in calcs if c.overall_result == "Pass"),
-        "failing_calculations": sum(1 for c in calcs if c.overall_result == "Fail"),
-        "by_status": {status: sum(1 for c in calcs if c.status == status) for status in sorted({c.status for c in calcs} | {"Draft"})},
+        "recent_activity": recent_activity,
         "recent": [
             {
                 "id": c.id,

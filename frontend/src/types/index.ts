@@ -16,9 +16,7 @@ export type DashboardRow = {
 export type DashboardSummary = {
   total_projects: number;
   total_calculations: number;
-  passing_calculations: number;
-  failing_calculations: number;
-  by_status: Record<string, number>;
+  recent_activity: number;
   recent: DashboardRow[];
 };
 
