@@ -11,6 +11,7 @@ API RP 1102 Loading Calculator is an engineering calculation application used to
 - [Use Cases](#use-cases)
 - [Engineering Scope](#engineering-scope)
 - [Screenshots](#screenshots)
+- [Refreshing Screenshots](#refreshing-screenshots)
 - [Calculation Workflow](#calculation-workflow)
 - [Inputs](#inputs)
 - [Outputs](#outputs)
@@ -106,19 +107,59 @@ The tool supports both Highway and Railroad loading calculations. It can be used
 
 ## Screenshots
 
-![Dashboard](docs/playwright-confirmation/dashboard.png)
+### Dashboard
+Project and calculation summary with recent work and status metrics.
 
-![Projects](docs/playwright-confirmation/projects.png)
+![Dashboard](docs/screenshots/dashboard.png)
 
-![Project Detail](docs/playwright-confirmation/project-detail-from-dashboard.png)
+### Projects
+Project list with search, selection, export, duplicate, and delete actions.
 
-![Calculation Worksheet](docs/playwright-confirmation/calculation-worksheet.png)
+![Projects](docs/screenshots/projects.png)
 
-![Railroad Calculation Worksheet](docs/playwright-confirmation/railroad-calculation-worksheet.png)
+### Project Detail
+Project metadata and the calculation list for highway and railroad crossings.
 
-![Calculation Report](docs/playwright-confirmation/report-preview.png)
+![Project Detail](docs/screenshots/project-detail.png)
 
-Additional screenshot references used during UI alignment are stored in `App Screenshots/`, and the screenshot audit is documented in `docs/screenshot-audit.md`.
+### Highway Calculation Worksheet
+Highway loading worksheet with metadata, scenario controls, engineering inputs, and live schematic.
+
+![Highway Calculation Worksheet](docs/screenshots/highway-calculation.png)
+
+### Railroad Calculation Worksheet
+Railroad loading worksheet with railroad-specific inputs and schematic.
+
+![Railroad Calculation Worksheet](docs/screenshots/railroad-calculation.png)
+
+### Results and Advanced Values
+Pass/fail summary, utilization bars, warnings, and intermediate calculation values.
+
+![Results and Advanced Values](docs/screenshots/results-advanced.png)
+
+### Report Preview
+Browser-print simplified calculation report preview.
+
+![Report Preview](docs/screenshots/report-preview.png)
+
+Current README screenshots are stored in `docs/screenshots/`. Historical UI-reference screenshots used for alignment remain in `App Screenshots/`, with audit notes in `docs/screenshot-audit.md`.
+
+---
+
+## Refreshing Screenshots
+
+Start the backend and frontend, then run the Playwright capture utility from `frontend/`:
+
+```powershell
+python -m uvicorn app.backend.main:app --reload --host 127.0.0.1 --port 8000
+
+cd frontend
+npm install
+npm run dev
+npm run screenshots
+```
+
+The screenshot script creates a temporary deterministic documentation project, captures the current UI into `docs/screenshots/`, and removes the temporary project after capture. See `docs/screenshots.md` for the short workflow note.
 
 ---
 
@@ -314,9 +355,9 @@ frontend/
   src/                  React app, UI components, styles, and TypeScript types
   package.json          Frontend scripts and dependencies
 Refs/                   Highway and railroad reference workbooks
-App Screenshots/        Source screenshots used for UI alignment
-docs/                   Screenshot audit and Playwright confirmation images
-scripts/                Playwright smoke test
+App Screenshots/        Historical screenshots used for UI alignment
+docs/                   Screenshot audit, refresh notes, and current README screenshots
+scripts/                Playwright smoke test and screenshot capture utilities
 requirements.txt        Python dependencies
 README.md               Project documentation
 ```

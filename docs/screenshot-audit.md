@@ -1,5 +1,7 @@
 # Screenshot Audit Matrix
 
+Current README screenshots live in `docs/screenshots/` and are captured from the latest running FastAPI/Vite app with `scripts/capture-screenshots.mjs`. The `App Screenshots/` directory remains historical UI-reference and audit material; do not treat its `ezgif-frame-*` images as current application screenshots unless they are explicitly recaptured from the running app.
+
 The reduced source set contains 68 screenshots in `App Screenshots/`. All images are `1274 x 1000`.
 
 ## UI Families

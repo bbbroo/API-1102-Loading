@@ -7,7 +7,8 @@
     "dev": "vite --host 127.0.0.1",
     "build": "tsc && vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "playwright:smoke": "npx -p playwright node ../scripts/playwright-smoke.mjs"
+    "playwright:smoke": "npx -p playwright node ../scripts/playwright-smoke.mjs",
+    "screenshots": "npx -p playwright node ../scripts/capture-screenshots.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.3.4",
