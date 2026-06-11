@@ -254,42 +254,59 @@ Automated validation includes Testing-tab parity checks for Highway and Railroad
 
 ## Installation
 
-### Backend
+### Recommended Development Startup
 
-Create and activate a Python virtual environment from the repository root:
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-```
-
-Run the FastAPI backend:
+From the repository root, start both the FastAPI backend and Vite frontend with one command:
 
 ```powershell
-python -m uvicorn app.backend.main:app --reload --host 127.0.0.1 --port 8000
+python scripts/dev.py
 ```
 
-Health check:
+To start both services and open the frontend in your default browser:
+
+```powershell
+python scripts/dev.py --open
+```
+
+On Windows, you can also run:
+
+```powershell
+.\dev.bat
+```
+
+The launcher creates `.venv` if needed, installs backend dependencies from `requirements.txt` when needed, installs frontend dependencies when `frontend/node_modules` is missing, checks that ports `8000` and `5173` are available, and prefixes backend/frontend logs in the same terminal. Press `Ctrl+C` to stop both services.
+
+Backend health check:
 
 ```text
 http://127.0.0.1:8000/api/health
 ```
 
-### Frontend
+Frontend:
 
-From a separate terminal:
+```text
+http://127.0.0.1:5173
+```
+
+### Manual Development Startup
+
+Use these fallback commands if you need to start the backend and frontend separately.
+
+Backend from the repository root:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python -m uvicorn app.backend.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+Frontend from a separate terminal:
 
 ```powershell
 cd frontend
 npm install
 npm run dev
-```
-
-The dev site is available at:
-
-```text
-http://127.0.0.1:5173
 ```
 
 ### Optional Static Build
@@ -357,7 +374,9 @@ frontend/
 Refs/                   Highway and railroad reference workbooks
 App Screenshots/        Historical screenshots used for UI alignment
 docs/                   Screenshot audit, refresh notes, and current README screenshots
-scripts/                Playwright smoke test and screenshot capture utilities
+scripts/                Dev launcher, Playwright smoke test, and screenshot capture utilities
+dev.bat                 Windows one-command development launcher
+dev.ps1                 PowerShell one-command development launcher
 requirements.txt        Python dependencies
 README.md               Project documentation
 ```
