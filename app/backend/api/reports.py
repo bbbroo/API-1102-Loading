@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, HTTPException, Response
+from fastapi import APIRouter, Depends, HTTPException, Query, Response
 from sqlalchemy.orm import Session
 
 from app.backend.database.session import get_db
@@ -12,7 +12,12 @@ router = APIRouter(prefix="/reports", tags=["reports"])
 
 
 @router.post("/scenario/{scenario_id}/detailed.pdf")
-def detailed_scenario_pdf(scenario_id: int, payload: dict, db: Session = Depends(get_db)):
+def detailed_scenario_pdf(
+    scenario_id: int,
+    payload: dict,
+    disposition: str = Query("inline", pattern="^(inline|attachment)$"),
+    db: Session = Depends(get_db),
+):
     try:
         data = _build_report_data(db, scenario_id, payload)
     except (TypeError, ValueError) as exc:
@@ -26,7 +31,7 @@ def detailed_scenario_pdf(scenario_id: int, payload: dict, db: Session = Depends
     return Response(
         render_detailed_pdf(data),
         media_type="application/pdf",
-        headers={"Content-Disposition": f"attachment; filename={filename}"},
+        headers={"Content-Disposition": f"{disposition}; filename={filename}"},
     )
 
 

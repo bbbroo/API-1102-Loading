@@ -54,6 +54,9 @@ type LoadingMode = "highway" | "railroad";
 type GraphLayer = "underlay" | "overlay";
 type GraphReadoutMode = "all" | "nearest";
 type ReportType = "simplified" | "detailed";
+type DetailedPdfDisposition = "inline" | "attachment";
+
+const DETAILED_PDF_OBJECT_URL_REVOKE_DELAY_MS = 60_000;
 
 type DetailedReportOptions = {
   include_formula_trace: boolean;
@@ -1894,9 +1897,9 @@ function ReportPreview({
     setDetailedPdfUrl(null);
   }
 
-  async function requestDetailedPdfBlob() {
+  async function requestDetailedPdfBlob(disposition: DetailedPdfDisposition = "inline") {
     const requestBody = buildDetailedRequestBody();
-    let response = await fetch(`/api/reports/scenario/${scenario.id}/detailed.pdf`, {
+    let response = await fetch(`/api/reports/scenario/${scenario.id}/detailed.pdf?disposition=${disposition}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: requestBody
@@ -1914,6 +1917,33 @@ function ReportPreview({
       throw detailedErrorFromResponse(response.status, payload);
     }
     return response.blob();
+  }
+
+  function scheduleDetailedPdfUrlRevoke(url: string) {
+    window.setTimeout(() => URL.revokeObjectURL(url), DETAILED_PDF_OBJECT_URL_REVOKE_DELAY_MS);
+  }
+
+  async function getCurrentDetailedPdfBlob(disposition: DetailedPdfDisposition = "inline") {
+    let blob = detailedPdfBlob;
+    if (!blob || !detailedPdfUrl || detailedPreviewStale) {
+      blob = await requestDetailedPdfBlob(disposition);
+      replaceDetailedPdfBlob(blob);
+    }
+    return blob;
+  }
+
+  function triggerDetailedPdfDownload(blob: Blob) {
+    const fileName = `scenario-${scenario.id}-detailed.pdf`;
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    window.setTimeout(() => {
+      link.remove();
+      URL.revokeObjectURL(url);
+    }, DETAILED_PDF_OBJECT_URL_REVOKE_DELAY_MS);
   }
 
   async function refreshDetailedPreview() {
@@ -1942,24 +1972,41 @@ function ReportPreview({
     setDetailedError(null);
     setDetailedNotice("");
     try {
-      let blob = detailedPdfBlob;
-      if (!blob || !detailedPdfUrl || detailedPreviewStale) {
-        blob = await requestDetailedPdfBlob();
-        replaceDetailedPdfBlob(blob);
-      }
-      const fileName = `scenario-${scenario.id}-detailed.pdf`;
-      const downloadFile = new File([blob], fileName, { type: "application/pdf" });
-      const url = URL.createObjectURL(downloadFile);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = fileName;
-      document.body.appendChild(link);
-      link.click();
-      window.setTimeout(() => {
-        link.remove();
-        URL.revokeObjectURL(url);
-      }, 1000);
+      const blob = await getCurrentDetailedPdfBlob("attachment");
+      triggerDetailedPdfDownload(blob);
     } catch (error: any) {
+      setDetailedError(normalizeDetailedError(error, "Detailed PDF generation is blocked."));
+    } finally {
+      setDetailedBusy(false);
+    }
+  }
+
+  async function printDetailedPdf() {
+    setDetailedBusy(true);
+    setDetailedError(null);
+    setDetailedNotice("");
+    const printWindow = window.open("", "_blank");
+    try {
+      const blob = await getCurrentDetailedPdfBlob("inline");
+      if (!printWindow) {
+        triggerDetailedPdfDownload(blob);
+        setDetailedNotice("Popup was blocked. The detailed PDF was downloaded instead.");
+        return;
+      }
+      const url = URL.createObjectURL(blob);
+      scheduleDetailedPdfUrlRevoke(url);
+      let printed = false;
+      const printPdf = () => {
+        if (printed || printWindow.closed) return;
+        printed = true;
+        printWindow.focus();
+        printWindow.print();
+      };
+      printWindow.onload = () => window.setTimeout(printPdf, 500);
+      printWindow.location.href = url;
+      window.setTimeout(printPdf, 1500);
+    } catch (error: any) {
+      if (printWindow && !printWindow.closed) printWindow.close();
       setDetailedError(normalizeDetailedError(error, "Detailed PDF generation is blocked."));
     } finally {
       setDetailedBusy(false);
@@ -2038,7 +2085,10 @@ function ReportPreview({
               <Button variant="primary" icon={<Printer size={16} />} onClick={() => window.print()}>Print / PDF</Button>
             </>
           ) : (
-            <Button variant="primary" icon={<FileDown size={16} />} onClick={downloadDetailedPdf}>{detailedBusy ? "Downloading..." : "Download Detailed PDF"}</Button>
+            <>
+              <Button icon={<Printer size={16} />} onClick={printDetailedPdf}>{detailedBusy ? "Preparing..." : "Print Detailed PDF"}</Button>
+              <Button variant="primary" icon={<FileDown size={16} />} onClick={downloadDetailedPdf}>{detailedBusy ? "Downloading..." : "Download Detailed PDF"}</Button>
+            </>
           )}
         </div>
       </div>
@@ -2060,6 +2110,7 @@ function ReportPreview({
           </div>
           <div className="detailed-report-actions">
             <Button icon={<FileText size={16} />} onClick={refreshDetailedPreview}>{detailedPreviewLoading ? "Refreshing..." : "Refresh Preview"}</Button>
+            <Button icon={<Printer size={16} />} onClick={printDetailedPdf}>{detailedBusy ? "Preparing..." : "Print Detailed PDF"}</Button>
             <Button variant="primary" icon={<FileDown size={16} />} onClick={downloadDetailedPdf}>{detailedBusy ? "Downloading..." : "Download Detailed PDF"}</Button>
             <span className={`detailed-preview-state ${detailedPreviewStale ? "stale" : detailedPdfUrl ? "current" : ""}`}>
               {detailedPreviewLoading ? "Generating PDF preview..." : detailedPreviewStale ? "Preview will refresh with current options" : detailedPdfUrl ? "Detailed PDF preview is current" : "PDF preview not generated"}

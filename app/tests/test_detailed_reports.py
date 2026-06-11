@@ -59,6 +59,7 @@ def test_detailed_pdf_endpoint_returns_pdf():
         response = client.post(f"/api/reports/scenario/{scenario['id']}/detailed.pdf", json=detailed_payload(project, calc))
         assert response.status_code == 200
         assert response.headers["content-type"] == "application/pdf"
+        assert response.headers["content-disposition"] == f"inline; filename=scenario-{scenario['id']}-detailed.pdf"
         assert response.content.startswith(b"%PDF")
         text = pdf_text(response.content)
         pages = pdf_page_texts(response.content)
@@ -146,6 +147,17 @@ def test_detailed_pdf_export_alias_returns_pdf():
         response = client.post(f"/api/exports/scenario/{scenario['id']}/detailed.pdf", json=detailed_payload(project, calc))
         assert response.status_code == 200
         assert response.headers["content-type"] == "application/pdf"
+        assert response.headers["content-disposition"] == f"attachment; filename=scenario-{scenario['id']}-detailed.pdf"
+        assert response.content.startswith(b"%PDF")
+
+
+def test_detailed_pdf_report_route_can_request_attachment_disposition():
+    with TestClient(app) as client:
+        project, calc, scenario = create_report_fixture(client)
+        response = client.post(f"/api/reports/scenario/{scenario['id']}/detailed.pdf?disposition=attachment", json=detailed_payload(project, calc))
+        assert response.status_code == 200
+        assert response.headers["content-type"] == "application/pdf"
+        assert response.headers["content-disposition"] == f"attachment; filename=scenario-{scenario['id']}-detailed.pdf"
         assert response.content.startswith(b"%PDF")
 
 
