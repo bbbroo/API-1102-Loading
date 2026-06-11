@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
+import pdfWorkerUrl from "pdfjs-dist/build/pdf.worker.mjs?url";
 import {
   Activity,
   AlertTriangle,
@@ -1842,11 +1843,9 @@ function ReportPreview({
   const [detailedBusy, setDetailedBusy] = useState(false);
   const [detailedError, setDetailedError] = useState<{ message: string; issues: Array<Record<string, any>> } | null>(null);
   const [detailedNotice, setDetailedNotice] = useState("");
-  const [detailedPdfUrl, setDetailedPdfUrl] = useState<string | null>(null);
   const [detailedPdfBlob, setDetailedPdfBlob] = useState<Blob | null>(null);
   const [detailedPreviewLoading, setDetailedPreviewLoading] = useState(false);
   const [detailedPreviewStale, setDetailedPreviewStale] = useState(false);
-  const detailedPdfUrlRef = useRef<string | null>(null);
   const detailedPreviewRequestRef = useRef(0);
   const detailedOptionsKey = JSON.stringify(reportOptions);
 
@@ -1854,12 +1853,6 @@ function ReportPreview({
     if (reportType !== "detailed") return;
     refreshDetailedPreview();
   }, [reportType, scenario.id, calc.id, project?.id, detailedOptionsKey]);
-
-  useEffect(() => {
-    return () => {
-      revokeDetailedPdfUrl();
-    };
-  }, []);
 
   function toggleReportOption(key: keyof DetailedReportOptions) {
     setDetailedPreviewStale(true);
@@ -1874,27 +1867,13 @@ function ReportPreview({
     });
   }
 
-  function revokeDetailedPdfUrl() {
-    if (detailedPdfUrlRef.current) {
-      URL.revokeObjectURL(detailedPdfUrlRef.current);
-      detailedPdfUrlRef.current = null;
-    }
-  }
-
   function replaceDetailedPdfBlob(blob: Blob) {
-    revokeDetailedPdfUrl();
-    const url = URL.createObjectURL(blob);
-    detailedPdfUrlRef.current = url;
     setDetailedPdfBlob(blob);
-    setDetailedPdfUrl(url);
     setDetailedPreviewStale(false);
-    return url;
   }
 
   function clearDetailedPdfPreview() {
-    revokeDetailedPdfUrl();
     setDetailedPdfBlob(null);
-    setDetailedPdfUrl(null);
   }
 
   async function requestDetailedPdfBlob(disposition: DetailedPdfDisposition = "inline") {
@@ -1919,13 +1898,9 @@ function ReportPreview({
     return response.blob();
   }
 
-  function scheduleDetailedPdfUrlRevoke(url: string) {
-    window.setTimeout(() => URL.revokeObjectURL(url), DETAILED_PDF_OBJECT_URL_REVOKE_DELAY_MS);
-  }
-
   async function getCurrentDetailedPdfBlob(disposition: DetailedPdfDisposition = "inline") {
     let blob = detailedPdfBlob;
-    if (!blob || !detailedPdfUrl || detailedPreviewStale) {
+    if (!blob || detailedPreviewStale) {
       blob = await requestDetailedPdfBlob(disposition);
       replaceDetailedPdfBlob(blob);
     }
@@ -1975,38 +1950,6 @@ function ReportPreview({
       const blob = await getCurrentDetailedPdfBlob("attachment");
       triggerDetailedPdfDownload(blob);
     } catch (error: any) {
-      setDetailedError(normalizeDetailedError(error, "Detailed PDF generation is blocked."));
-    } finally {
-      setDetailedBusy(false);
-    }
-  }
-
-  async function printDetailedPdf() {
-    setDetailedBusy(true);
-    setDetailedError(null);
-    setDetailedNotice("");
-    const printWindow = window.open("", "_blank");
-    try {
-      const blob = await getCurrentDetailedPdfBlob("inline");
-      if (!printWindow) {
-        triggerDetailedPdfDownload(blob);
-        setDetailedNotice("Popup was blocked. The detailed PDF was downloaded instead.");
-        return;
-      }
-      const url = URL.createObjectURL(blob);
-      scheduleDetailedPdfUrlRevoke(url);
-      let printed = false;
-      const printPdf = () => {
-        if (printed || printWindow.closed) return;
-        printed = true;
-        printWindow.focus();
-        printWindow.print();
-      };
-      printWindow.onload = () => window.setTimeout(printPdf, 500);
-      printWindow.location.href = url;
-      window.setTimeout(printPdf, 1500);
-    } catch (error: any) {
-      if (printWindow && !printWindow.closed) printWindow.close();
       setDetailedError(normalizeDetailedError(error, "Detailed PDF generation is blocked."));
     } finally {
       setDetailedBusy(false);
@@ -2085,10 +2028,7 @@ function ReportPreview({
               <Button variant="primary" icon={<Printer size={16} />} onClick={() => window.print()}>Print / PDF</Button>
             </>
           ) : (
-            <>
-              <Button icon={<Printer size={16} />} onClick={printDetailedPdf}>{detailedBusy ? "Preparing..." : "Print Detailed PDF"}</Button>
-              <Button variant="primary" icon={<FileDown size={16} />} onClick={downloadDetailedPdf}>{detailedBusy ? "Downloading..." : "Download Detailed PDF"}</Button>
-            </>
+            <Button variant="primary" icon={<FileDown size={16} />} onClick={downloadDetailedPdf}>{detailedBusy ? "Downloading..." : "Download Detailed PDF"}</Button>
           )}
         </div>
       </div>
@@ -2110,10 +2050,9 @@ function ReportPreview({
           </div>
           <div className="detailed-report-actions">
             <Button icon={<FileText size={16} />} onClick={refreshDetailedPreview}>{detailedPreviewLoading ? "Refreshing..." : "Refresh Preview"}</Button>
-            <Button icon={<Printer size={16} />} onClick={printDetailedPdf}>{detailedBusy ? "Preparing..." : "Print Detailed PDF"}</Button>
             <Button variant="primary" icon={<FileDown size={16} />} onClick={downloadDetailedPdf}>{detailedBusy ? "Downloading..." : "Download Detailed PDF"}</Button>
-            <span className={`detailed-preview-state ${detailedPreviewStale ? "stale" : detailedPdfUrl ? "current" : ""}`}>
-              {detailedPreviewLoading ? "Generating PDF preview..." : detailedPreviewStale ? "Preview will refresh with current options" : detailedPdfUrl ? "Detailed PDF preview is current" : "PDF preview not generated"}
+            <span className={`detailed-preview-state ${detailedPreviewStale ? "stale" : detailedPdfBlob ? "current" : ""}`}>
+              {detailedPreviewLoading ? "Generating PDF preview..." : detailedPreviewStale ? "Preview will refresh with current options" : detailedPdfBlob ? "Detailed PDF preview is current" : "PDF preview not generated"}
             </span>
           </div>
           {detailedError ? (
@@ -2139,7 +2078,7 @@ function ReportPreview({
         <SimplifiedReportPreview calc={calc} project={project} scenario={scenario} values={values} checks={checks} />
       ) : (
         <DetailedReportPreview
-          pdfUrl={detailedPdfUrl}
+          pdfBlob={detailedPdfBlob}
           loading={detailedPreviewLoading}
           stale={detailedPreviewStale}
           error={detailedError}
@@ -2247,36 +2186,106 @@ function SimplifiedReportPreview({
 }
 
 function DetailedReportPreview({
-  pdfUrl,
+  pdfBlob,
   loading,
   stale,
   error,
   onRefresh
 }: {
-  pdfUrl: string | null;
+  pdfBlob: Blob | null;
   loading: boolean;
   stale: boolean;
   error: { message: string; issues: Array<Record<string, any>> } | null;
   onRefresh: () => void;
 }) {
+  const [pages, setPages] = useState<Array<{ pageNumber: number; width: number; height: number }>>([]);
+  const [rendering, setRendering] = useState(false);
+  const [renderError, setRenderError] = useState("");
+  const canvasRefs = useRef<Array<HTMLCanvasElement | null>>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    let loadingTask: any = null;
+    const renderTasks: any[] = [];
+
+    async function renderPdfBlob() {
+      canvasRefs.current = [];
+      setPages([]);
+      setRenderError("");
+      if (!pdfBlob) {
+        setRendering(false);
+        return;
+      }
+      setRendering(true);
+      try {
+        const pdfjsLib = await import("pdfjs-dist");
+        pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
+        const data = await pdfBlob.arrayBuffer();
+        if (cancelled) return;
+        loadingTask = pdfjsLib.getDocument({ data });
+        const pdf = await loadingTask.promise;
+        if (cancelled) return;
+        const pageModels: Array<{ pageNumber: number; width: number; height: number }> = [];
+        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+          const page = await pdf.getPage(pageNumber);
+          const viewport = page.getViewport({ scale: 1.25 });
+          pageModels.push({ pageNumber, width: viewport.width, height: viewport.height });
+        }
+        if (cancelled) return;
+        setPages(pageModels);
+        await new Promise<void>((resolve) => window.requestAnimationFrame(() => window.requestAnimationFrame(() => resolve())));
+        const outputScale = Math.min(2, Math.max(1.25, window.devicePixelRatio || 1));
+        for (const model of pageModels) {
+          if (cancelled) return;
+          const canvas = canvasRefs.current[model.pageNumber - 1];
+          if (!canvas) continue;
+          const page = await pdf.getPage(model.pageNumber);
+          const viewport = page.getViewport({ scale: 1.25 * outputScale });
+          const context = canvas.getContext("2d");
+          if (!context) throw new Error("Canvas rendering context is unavailable.");
+          canvas.width = Math.floor(viewport.width);
+          canvas.height = Math.floor(viewport.height);
+          canvas.style.width = `${model.width}px`;
+          canvas.style.height = `${model.height}px`;
+          const renderTask = page.render({ canvasContext: context, viewport });
+          renderTasks.push(renderTask);
+          await renderTask.promise;
+        }
+      } catch (renderProblem: any) {
+        if (!cancelled) {
+          setRenderError(renderProblem?.message || "PDF preview rendering failed.");
+        }
+      } finally {
+        if (!cancelled) setRendering(false);
+      }
+    }
+
+    renderPdfBlob();
+    return () => {
+      cancelled = true;
+      renderTasks.forEach((task) => task?.cancel?.());
+      loadingTask?.destroy?.();
+    };
+  }, [pdfBlob]);
+
   return (
     <section className="detailed-pdf-preview" id="results">
-      {loading ? (
+      {loading || rendering ? (
         <div className="detailed-pdf-loading">
           <FileText size={26} />
-          <span>Generating detailed PDF preview...</span>
+          <span>{loading ? "Generating detailed PDF preview..." : "Rendering detailed PDF pages..."}</span>
         </div>
       ) : null}
-      {error && !pdfUrl ? (
+      {(error && !pdfBlob) || renderError ? (
         <div className="detailed-pdf-empty">
           <AlertTriangle size={24} />
           <div>
-            <strong>Detailed PDF preview is blocked.</strong>
-            <span>Use the issue list above, then recalculate or refresh the preview.</span>
+            <strong>Detailed PDF preview is unavailable.</strong>
+            <span>{renderError || "Use the issue list above, then recalculate or refresh the preview."}</span>
           </div>
         </div>
       ) : null}
-      {!loading && !error && !pdfUrl ? (
+      {!loading && !rendering && !error && !renderError && !pdfBlob ? (
         <div className="detailed-pdf-empty">
           <FileText size={24} />
           <div>
@@ -2285,10 +2294,21 @@ function DetailedReportPreview({
           </div>
         </div>
       ) : null}
-      {pdfUrl ? (
-        <div className="detailed-pdf-frame-wrap">
+      {pdfBlob && pages.length && !renderError ? (
+        <div className="detailed-pdf-pages" aria-label="Detailed PDF report preview pages">
           {stale ? <div className="detailed-pdf-stale">Preview is refreshing with the latest selected options.</div> : null}
-          <iframe className="detailed-pdf-frame" title="Detailed PDF report preview" src={pdfUrl} />
+          {pages.map((page) => (
+            <figure className="detailed-pdf-page" key={page.pageNumber} style={{ maxWidth: `${page.width}px` }}>
+              <canvas
+                ref={(element) => {
+                  canvasRefs.current[page.pageNumber - 1] = element;
+                }}
+                className="detailed-pdf-page-canvas"
+                aria-label={`Detailed PDF page ${page.pageNumber}`}
+              />
+              <figcaption>Page {page.pageNumber}</figcaption>
+            </figure>
+          ))}
         </div>
       ) : null}
     </section>

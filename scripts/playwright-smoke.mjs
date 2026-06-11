@@ -200,12 +200,28 @@ try {
   }
   await page.getByRole("button", { name: "Detailed", exact: true }).click();
   await page.getByLabel("Formula Trace").waitFor({ timeout: 8000 });
-  await page.locator(".detailed-pdf-frame").waitFor({ timeout: 15000 });
+  await page.locator(".detailed-pdf-page-canvas").first().waitFor({ timeout: 30000 });
+  await page.waitForFunction(() => {
+    const canvases = [...document.querySelectorAll(".detailed-pdf-page-canvas")];
+    return canvases.length > 0 && canvases.every((canvas) => canvas instanceof HTMLCanvasElement && canvas.width > 0 && canvas.height > 0);
+  }, null, { timeout: 30000 });
+  if (await page.locator(".detailed-pdf-preview iframe, .detailed-pdf-preview object, .detailed-pdf-preview embed").count()) {
+    throw new Error("Detailed PDF preview still uses a browser PDF viewer element");
+  }
   if (await page.locator(".report-page").count()) {
     throw new Error("Detailed report type still renders the simplified report body");
   }
+  if (await page.getByRole("button", { name: "Print Detailed Report", exact: true }).count()) {
+    throw new Error("Detailed report print button is still visible");
+  }
+  await page.emulateMedia({ media: "print" });
+  const detailedPrintDisplay = await page.locator(".detailed-pdf-preview").evaluate((element) => getComputedStyle(element).display);
+  if (detailedPrintDisplay === "none") {
+    throw new Error("Detailed rendered PDF pages are hidden in print mode");
+  }
+  await page.emulateMedia({ media: "screen" });
   await page.getByLabel("Formula Trace").uncheck();
-  await page.locator(".detailed-pdf-frame").waitFor({ timeout: 15000 });
+  await page.locator(".detailed-pdf-page-canvas").first().waitFor({ timeout: 30000 });
   await page.getByLabel("Formula Trace").check();
   const detailedDownloadPromise = page.waitForEvent("download", { timeout: 15000 });
   await page.locator(".detailed-report-panel").getByRole("button", { name: "Download Detailed PDF", exact: true }).click();
@@ -214,6 +230,7 @@ try {
     throw new Error(`Detailed PDF download filename is unexpected: ${detailedDownload.suggestedFilename()}`);
   }
   checks.push("Detailed backend PDF generates for the selected scenario");
+  checks.push("Detailed PDF preview renders with in-app canvases instead of iframe/object/embed");
   await screenshot(page, "report-preview");
   checks.push("Report preview opens with print-ready schematic and paper layout");
 

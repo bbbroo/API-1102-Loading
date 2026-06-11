@@ -2081,17 +2081,37 @@ button:disabled {
   padding: 14px;
 }
 
-.detailed-pdf-frame-wrap {
+.detailed-pdf-pages {
   position: relative;
+  display: grid;
+  gap: 24px;
+  justify-items: center;
+  padding: 8px 0 18px;
 }
 
-.detailed-pdf-frame {
+.detailed-pdf-page {
+  width: 100%;
+  margin: 0;
+  background: #fff;
+  border: 1px solid #d0d5dd;
+  box-shadow: 0 7px 18px rgba(16, 24, 40, 0.16);
+}
+
+.detailed-pdf-page-canvas {
   display: block;
   width: 100%;
-  height: min(82vh, 1120px);
-  min-height: 720px;
-  border: 1px solid #d0d5dd;
+  height: auto;
+  background: #fff;
+}
+
+.detailed-pdf-page figcaption {
+  border-top: 1px solid #eaecf0;
   background: #f8fafc;
+  color: #667085;
+  padding: 7px 10px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
 }
 
 .detailed-pdf-loading,
@@ -2377,9 +2397,8 @@ button:disabled {
     padding: 12px;
   }
 
-  .detailed-pdf-frame {
-    height: 76vh;
-    min-height: 520px;
+  .detailed-pdf-pages {
+    gap: 18px;
   }
 
   .footer-meta {
@@ -2406,7 +2425,6 @@ button:disabled {
   .hdr-shell,
   .report-toolbar,
   .detailed-report-panel,
-  .detailed-pdf-preview,
   .app-footer {
     display: none !important;
   }
@@ -2436,6 +2454,50 @@ button:disabled {
     break-inside: avoid;
     font-size: 8.4pt;
     line-height: 1.17;
+  }
+
+  .detailed-pdf-preview {
+    display: block;
+    width: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    box-shadow: none;
+  }
+
+  .detailed-pdf-loading,
+  .detailed-pdf-empty,
+  .detailed-pdf-stale,
+  .detailed-pdf-page figcaption {
+    display: none !important;
+  }
+
+  .detailed-pdf-pages {
+    display: block;
+    padding: 0;
+  }
+
+  .detailed-pdf-page {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 auto;
+    border: 0;
+    box-shadow: none;
+    page-break-after: always;
+    break-after: page;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .detailed-pdf-page:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .detailed-pdf-page-canvas {
+    width: 100% !important;
+    height: auto !important;
   }
 
   .report-header {
@@ -2525,4 +2587,5 @@ button:disabled {
     margin-top: 0.08in;
     line-height: 1.28;
   }
+
 }
