@@ -252,47 +252,46 @@ Automated validation includes Testing-tab parity checks for Highway and Railroad
 
 ---
 
-## Installation
+## Running the App
 
-### Recommended Development Startup
+### Quick Start (recommended)
 
-From the repository root, start both the FastAPI backend and Vite frontend with one command:
+From the repository root, start both the backend and frontend with one command:
 
 ```powershell
 python scripts/dev.py
 ```
 
-To start both services and open the frontend in your default browser:
+To open the frontend in your default browser automatically:
 
 ```powershell
 python scripts/dev.py --open
 ```
 
-On Windows, you can also run:
+On Windows, you can also use:
 
 ```powershell
 .\dev.bat
 ```
 
-The launcher creates `.venv` if needed, installs backend dependencies from `requirements.txt` when needed, installs frontend dependencies when `frontend/node_modules` is missing, checks that ports `8000` and `5173` are available, and prefixes backend/frontend logs in the same terminal. Press `Ctrl+C` to stop both services.
+The launcher handles everything automatically:
+- Creates a Python virtual environment (`.venv`) if needed
+- Installs backend dependencies from `requirements.txt`
+- Installs frontend dependencies
+- Checks that ports `8000` and `5173` are available
+- Starts both the FastAPI backend and Vite dev server with combined log output
 
-Backend health check:
+Press `Ctrl+C` to stop both services.
 
-```text
-http://127.0.0.1:8000/api/health
-```
+- **Backend:** `http://127.0.0.1:8000`
+- **Frontend:** `http://127.0.0.1:5173`
+- **Health check:** `http://127.0.0.1:8000/api/health`
 
-Frontend:
+### Manual Setup
 
-```text
-http://127.0.0.1:5173
-```
+If you prefer to start the services separately:
 
-### Manual Development Startup
-
-Use these fallback commands if you need to start the backend and frontend separately.
-
-Backend from the repository root:
+**Backend** (from the repository root):
 
 ```powershell
 python -m venv .venv
@@ -301,27 +300,12 @@ pip install -r requirements.txt
 python -m uvicorn app.backend.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-Frontend from a separate terminal:
+**Frontend** (in a separate terminal):
 
 ```powershell
 cd frontend
 npm install
 npm run dev
-```
-
-### Optional Static Build
-
-Build the frontend:
-
-```powershell
-cd frontend
-npm run build
-```
-
-The app is primarily developed with the Vite dev server. If serving static files through the backend, copy the built `frontend/dist` output into the backend static folder and open:
-
-```text
-http://127.0.0.1:8000/static/index.html
 ```
 
 ---

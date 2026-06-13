@@ -162,7 +162,6 @@ class StatusStrip(Flowable):
             ("Controlling Check", clean_text(results.get("controlling_check"))),
             ("Maximum Utilization", maximum_utilization(results)),
             ("Scenario", self.data.scenario.scenario_name or "Base Case"),
-            ("Status", self.data.calculation.status or MISSING),
         ]
         canvas = self.canv
         canvas.saveState()
@@ -294,11 +293,14 @@ class PipelineSchematic(Flowable):
         cover_y = self._y(cover_start_y + cover_line_height, 0)
         canvas.setStrokeColor(colors.HexColor("#7f5f35"))
         canvas.setLineWidth(3)
-        canvas.line(cover_x, cover_y, cover_x, cover_y + cover_line_height)
-        canvas.line(cover_x - 8, cover_y + cover_line_height, cover_x, cover_y + cover_line_height - 8)
-        canvas.line(cover_x + 8, cover_y + cover_line_height, cover_x, cover_y + cover_line_height - 8)
-        canvas.line(cover_x - 8, cover_y, cover_x, cover_y + 8)
-        canvas.line(cover_x + 8, cover_y, cover_x, cover_y + 8)
+        # Main dimension line between the arrowhead bases
+        canvas.line(cover_x, cover_y + 8, cover_x, cover_y + cover_line_height - 8)
+        # Top arrowhead: tip at surface, base set inward (points outward/upward)
+        canvas.line(cover_x - 8, cover_y + cover_line_height - 8, cover_x, cover_y + cover_line_height)
+        canvas.line(cover_x + 8, cover_y + cover_line_height - 8, cover_x, cover_y + cover_line_height)
+        # Bottom arrowhead: tip at pipe, base set inward (points outward/downward)
+        canvas.line(cover_x - 8, cover_y + 8, cover_x, cover_y)
+        canvas.line(cover_x + 8, cover_y + 8, cover_x, cover_y)
         canvas.setFillColor(colors.HexColor("#4b3920"))
         canvas.setFont("Helvetica-Bold", 16)
         canvas.drawString(cover_x + 14, cover_y + cover_line_height / 2 - 6, f"H = {clean_number(cover, 1)} ft to top of pipe")
@@ -984,6 +986,8 @@ def plot_block(plot: PlotArtifact, styles, index: int, values: dict[str, Any]) -
         block.extend([Spacer(1, 3), Paragraph(unique_note, styles["Note"])])
     else:
         block.extend([Spacer(1, 3), Paragraph("Interpolation note: Linear interpolation from implemented lookup data.", styles["Note"])])
+    if coefficient_name(plot) == "Fi":
+        block.extend([Spacer(1, 2), Paragraph("Note: This figure is for reference only and is not used within the calculation — the API 1102 formula is used instead.", styles["Note"])])
     block.append(Spacer(1, 7))
     return [KeepTogether(block)]
 
@@ -1091,6 +1095,8 @@ def lookup_value(plot: PlotArtifact, label_text: str) -> str:
 
 
 def lookup_status(plot: PlotArtifact) -> str:
+    if coefficient_name(plot) == "Fi":
+        return "API 1102 formula"
     if not plot.image_bytes:
         return "Fallback"
     if plot.underlay_used:
@@ -1212,7 +1218,49 @@ def lookup_rows(plot: PlotArtifact, values: dict[str, Any] | None = None) -> lis
             output.append(["API Figure", clean_lookup_value(value)])
         else:
             output.append([key, clean_lookup_value(value)])
+    # Inject additional input parameters from intermediate values
+    name = coefficient_name(plot)
+    extra = _additional_lookup_inputs(name, values)
+    for label, val in extra:
+        if not any(existing[0].lower().startswith(label.lower().split(" ")[0]) for existing in output):
+            output.append([label, val])
     return output
+
+
+def _additional_lookup_inputs(name: str, values: dict[str, Any] | None) -> list[list[str]]:
+    """Return additional input rows to show in the lookup values card for a given coefficient.
+
+    Only returns rows that provide genuinely new information beyond what is
+    already shown as "Input x" in the base lookup_values list.
+    """
+    if values is None:
+        return []
+    extras: list[list[str]] = []
+    if name == "Fi":
+        # Show H (Cover Depth) explicitly alongside Input x
+        h = values.get("cover_depth")
+        if h is not None:
+            extras.append(["H (Cover Depth)", f"{clean_number(h, 2)} ft"])
+    elif name == "KHe":
+        e_prime = values.get("e_prime")
+        tw_d = values.get("tw_d")
+        if e_prime is not None:
+            extras.append(["E' (Soil Modulus)", f"{clean_number(e_prime, 0)} psi"])
+        if tw_d is not None:
+            extras.append(["tw/D", clean_number(tw_d, 4)])
+    elif name in {"KHh", "KLh", "KHr", "KLr"}:
+        er = values.get("er")
+        tw_d = values.get("tw_d")
+        if er is not None:
+            extras.append(["Er", f"{clean_number(er, 0)} psi"])
+        if tw_d is not None:
+            extras.append(["tw/D", clean_number(tw_d, 4)])
+    elif name in {"GHh", "GLh", "GHr", "GLr"}:
+        # Depth band (H) is the curve selector; Input x is outside diameter
+        h = values.get("cover_depth")
+        if h is not None:
+            extras.append(["H (Cover Depth)", f"{clean_number(h, 2)} ft"])
+    return extras
 
 
 def numeric_text(value: str) -> bool:
