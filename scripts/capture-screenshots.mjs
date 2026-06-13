@@ -109,26 +109,6 @@ async function capture(page, name) {
   });
 }
 
-async function openProjectFromProjects(page) {
-  await page.getByRole("button", { name: "Projects", exact: true }).click();
-  await page.locator("h1", { hasText: "Projects" }).waitFor({ timeout: 10000 });
-  await settle(page);
-  await capture(page, "projects");
-
-  const row = page.locator(".project-table tbody tr", { hasText: demoProjectNumber }).first();
-  await row.waitFor({ timeout: 10000 });
-  await row.click();
-  await page.getByText("Project Information").waitFor({ timeout: 10000 });
-}
-
-async function openCalculation(page, calcNumber) {
-  const row = page.locator(".project-calcs-table tbody tr", { hasText: calcNumber }).first();
-  await row.waitFor({ timeout: 10000 });
-  await row.click();
-  await page.getByText("Calculation Metadata").waitFor({ timeout: 10000 });
-  await page.getByRole("heading", { name: "Results Summary", exact: true }).waitFor({ timeout: 10000 });
-}
-
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport, acceptDownloads: true });
 let demoProjectId = null;
@@ -139,35 +119,95 @@ try {
   const demo = await createDemoProject();
   demoProjectId = demo.project.id;
 
+  // ── 1. Dashboard ──────────────────────────────────────────────────
   await waitForApp(page);
   await capture(page, "dashboard");
 
-  await openProjectFromProjects(page);
-  await capture(page, "project-detail");
+  // ── 2. Projects ───────────────────────────────────────────────────
+  await page.getByRole("button", { name: "Projects", exact: true }).click();
+  await page.locator("h1", { hasText: "Projects" }).waitFor({ timeout: 10000 });
+  await capture(page, "projects");
 
-  await openCalculation(page, "CALC-DOC-HWY");
-  await page.getByRole("heading", { name: "F. Highway Loading", exact: true }).waitFor({ timeout: 10000 });
+  // ── Open the demo project ─────────────────────────────────────────
+  const row = page.locator(".project-table tbody tr", { hasText: demoProjectNumber }).first();
+  await row.waitFor({ timeout: 10000 });
+  await row.click();
+  await page.getByText("Project Information").waitFor({ timeout: 10000 });
+
+  // ── 3. Highway Calculation (inputs + schematic) ──────────────────
+  const hwyRow = page.locator(".project-calcs-table tbody tr", { hasText: "CALC-DOC-HWY" }).first();
+  await hwyRow.waitFor({ timeout: 10000 });
+  await hwyRow.click();
+  await page.getByText("Calculation Metadata").waitFor({ timeout: 10000 });
+  await page.getByRole("heading", { name: "Results Summary", exact: true }).waitFor({ timeout: 10000 });
+  // Scroll so the schematic and inputs are visible together
   await page.evaluate(() => window.scrollTo(0, 0));
   await capture(page, "highway-calculation");
 
+  // ── 4. Results — green Pass badges ────────────────────────────────
   await page.getByRole("heading", { name: "Results Summary", exact: true }).scrollIntoViewIfNeeded();
-  await page.evaluate(() => window.scrollBy(0, -120));
+  await page.evaluate(() => window.scrollBy(0, -80));
   await page.getByRole("heading", { name: "Advanced Calculation View", exact: true }).waitFor({ timeout: 10000 });
-  await capture(page, "results-advanced");
+  await capture(page, "results-pass");
 
+  // ── 5. Simple Report ──────────────────────────────────────────────
   await page.getByRole("button", { name: "Report", exact: true }).click();
   await page.getByText("Back to Calculation").waitFor({ timeout: 10000 });
   await page.locator(".report-page").waitFor({ timeout: 10000 });
   await page.evaluate(() => window.scrollTo(0, 0));
-  await capture(page, "report-preview");
+  await settle(page);
+  await page.screenshot({
+    path: resolve(screenshotDir, "simple-report.png"),
+    fullPage: true,
+    animations: "disabled"
+  });
 
-  await page.getByRole("button", { name: "Back to Calculation", exact: true }).click();
-  await page.getByRole("button", { name: "Back", exact: true }).click();
-  await page.getByText("Project Information").waitFor({ timeout: 10000 });
-  await openCalculation(page, "CALC-DOC-RR");
-  await page.getByRole("heading", { name: "F. Railroad Loading", exact: true }).waitFor({ timeout: 10000 });
-  await page.evaluate(() => window.scrollTo(0, 0));
-  await capture(page, "railroad-calculation");
+  // ── 6. Detailed Report panel with figure underlay ─────────────────
+  // Switch to Detailed tab
+  await page.getByRole("button", { name: "Detailed", exact: true }).click();
+  await page.locator(".detailed-report-panel").waitFor({ timeout: 10000 });
+  // Enable Plots + Plot Appendix options
+  const plotCb = page.locator(".report-option-grid label").filter({ hasText: "Plots" }).locator("input[type=checkbox]");
+  if (await plotCb.isChecked()) { /* already on */ }
+  // Ensure Plot Appendix is checked
+  const appendixCb = page.locator(".report-option-grid label").filter({ hasText: "Plot Appendix" }).locator("input[type=checkbox]");
+  if (!(await appendixCb.isChecked())) {
+    await appendixCb.check();
+  }
+  // Ensure Plots is checked
+  if (!(await plotCb.isChecked())) {
+    await plotCb.check();
+  }
+  // Also enable Intermediates for a richer view
+  const intermediatesCb = page.locator(".report-option-grid label").filter({ hasText: "Intermediates" }).locator("input[type=checkbox]");
+  if (!(await intermediatesCb.isChecked())) {
+    await intermediatesCb.check();
+  }
+  // Click Refresh Preview
+  await page.getByRole("button", { name: "Refresh Preview", exact: true }).click();
+  // Wait for the PDF preview to load (canvas elements appear)
+  await page.locator("canvas").first().waitFor({ timeout: 30000 }).catch(() => {});
+  await page.waitForTimeout(2000);
+  await capture(page, "detailed-report");
+
+  // ── 7. Graph Viewer ──────────────────────────────────────────────
+  // Navigate to Graph Viewer via the nav bar
+  await page.getByRole("button", { name: "Graph Viewer", exact: true }).click();
+  await page.locator("h1", { hasText: "Graph Viewer" }).waitFor({ timeout: 10000 });
+  // Wait for the graph image to load
+  await page.locator(".graph-viewer-panel img").first().waitFor({ timeout: 15000 }).catch(() => {});
+  await page.waitForTimeout(1500);
+  // Click on the graph image to activate a crosshair/readout
+  const graphImg = page.locator(".graph-viewer-panel img").first();
+  if (await graphImg.isVisible()) {
+    const box = await graphImg.boundingBox();
+    if (box) {
+      // Click in the center-ish area to activate crosshair
+      await page.mouse.click(box.x + box.width * 0.4, box.y + box.height * 0.5);
+      await page.waitForTimeout(500);
+    }
+  }
+  await capture(page, "graph-viewer");
 
   console.log(JSON.stringify({
     ok: true,
@@ -175,11 +215,11 @@ try {
     files: [
       "dashboard.png",
       "projects.png",
-      "project-detail.png",
       "highway-calculation.png",
-      "railroad-calculation.png",
-      "results-advanced.png",
-      "report-preview.png"
+      "results-pass.png",
+      "simple-report.png",
+      "detailed-report.png",
+      "graph-viewer.png"
     ]
   }, null, 2));
 } finally {

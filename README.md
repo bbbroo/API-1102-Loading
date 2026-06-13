@@ -108,39 +108,39 @@ The tool supports both Highway and Railroad loading calculations. It can be used
 ## Screenshots
 
 ### Dashboard
-Project and calculation summary with recent work and status metrics.
+Project and calculation summary with recent work, status filtering, and quick-access project cards.
 
 ![Dashboard](docs/screenshots/dashboard.png)
 
 ### Projects
-Project list with search, selection, export, duplicate, and delete actions.
+Project list with search, bulk selection, export, and delete actions for managing crossing records.
 
 ![Projects](docs/screenshots/projects.png)
 
-### Project Detail
-Project metadata and the calculation list for highway and railroad crossings.
-
-![Project Detail](docs/screenshots/project-detail.png)
-
 ### Highway Calculation Worksheet
-Highway loading worksheet with metadata, scenario controls, engineering inputs, and live schematic.
+Highway loading worksheet showing engineering inputs, standards-driven dropdowns, live cross-section schematic, and integrated results summary.
 
 ![Highway Calculation Worksheet](docs/screenshots/highway-calculation.png)
 
-### Railroad Calculation Worksheet
-Railroad loading worksheet with railroad-specific inputs and schematic.
+### Results and Warnings
+Pass/fail results with utilization bars, controlling check identification, green Pass badges, and intermediate calculation values.
 
-![Railroad Calculation Worksheet](docs/screenshots/railroad-calculation.png)
+![Results and Warnings](docs/screenshots/results-pass.png)
 
-### Results and Advanced Values
-Pass/fail summary, utilization bars, warnings, and intermediate calculation values.
+### Simple Report
+Browser-print simplified calculation report formatted for one-page review with CSV/JSON export links.
 
-![Results and Advanced Values](docs/screenshots/results-advanced.png)
+![Simple Report](docs/screenshots/simple-report.png)
 
-### Report Preview
-Browser-print simplified calculation report preview.
+### Detailed Report
+Backend-generated detailed PDF report with formula trace, coefficient lookup summary, digitized graph plots with API 1102 curve underlays, and appendix figures.
 
-![Report Preview](docs/screenshots/report-preview.png)
+![Detailed Report](docs/screenshots/detailed-report.png)
+
+### Graph Viewer
+Interactive digitized graph viewer for inspecting API 1102 figure curves with crosshair readout, typed x-value lookup, and underlay/overlay toggle.
+
+![Graph Viewer](docs/screenshots/graph-viewer.png)
 
 Current README screenshots are stored in `docs/screenshots/`. Historical UI-reference screenshots used for alignment remain in `App Screenshots/`, with audit notes in `docs/screenshot-audit.md`.
 
